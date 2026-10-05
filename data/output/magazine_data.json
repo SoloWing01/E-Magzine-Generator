@@ -1801,30 +1801,170 @@
       "display_page_number": 38
     },
     {
-      "type": "overview",
-      "title": "How This Edition Was Selected",
-      "content": "The editorial dataset contains 11 selected articles across 5 sections.\nThe selected articles contain approximately 3,773 generated editorial words, with an average of 343 words per article.\nSelected reporting spans 10 September 2026 to 04 October 2026.\nSelection is driven by the project's relevance, classification, scoring, retrieval and grounding pipeline rather than manual page placement.",
+      "type": "appendix_sources",
+      "title": "Appendix A — Sources & Article Count",
+      "source_rows": [
+        {
+          "source": "The Assam Tribune",
+          "article_count": 11
+        }
+      ],
+      "content": "This appendix lists every source represented in the final selected article set and the number of articles contributed by each source. Counts are calculated directly from the Phase 14 editorial records used to compose this edition.",
       "page_number": 39,
       "display_page_number": 39
     },
     {
-      "type": "state_coverage",
-      "title": "Northeast State Coverage",
-      "content": "State mentions detected in the selected editorial corpus:\nAssam: 6 article(s)\nManipur: 3 article(s)\nMizoram: 2 article(s)\nNagaland: 2 article(s)\nArunachal Pradesh: 1 article(s)\nMeghalaya: 1 article(s)\nSikkim: 1 article(s)\nTripura: 1 article(s)\n\nA state is counted when its name appears in the article title or editorial body. This is a coverage indicator, not a claim of exclusive geographic focus.",
+      "type": "appendix_selection",
+      "title": "Appendix B — Article Selection Reasoning",
+      "selection_rows": [
+        {
+          "number": 1,
+          "article_id": 11,
+          "title": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near",
+          "category": "Regional News",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T12:21:04",
+          "article_score": 39,
+          "northeast_score": 26,
+          "security_score": 0,
+          "reason": "Northeast relevance: 26/100; category: Regional News; overall score: 39/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 2,
+          "article_id": 12,
+          "title": "Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate",
+          "category": "Society & Youth",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T09:38:43",
+          "article_score": 44,
+          "northeast_score": 41,
+          "security_score": 3,
+          "reason": "Northeast relevance: 41/100; category: Society & Youth; overall score: 44/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 3,
+          "article_id": 13,
+          "title": "Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding",
+          "category": "Society & Youth",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T06:06:13",
+          "article_score": 40,
+          "northeast_score": 18,
+          "security_score": 0,
+          "reason": "Northeast relevance: 18/100; category: Society & Youth; overall score: 40/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 4,
+          "article_id": 15,
+          "title": "Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades",
+          "category": "Development",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T07:25:14",
+          "article_score": 43,
+          "northeast_score": 25,
+          "security_score": 0,
+          "reason": "Northeast relevance: 25/100; category: Development; overall score: 43/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 5,
+          "article_id": 29,
+          "title": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested",
+          "category": "Security & Strategic Affairs",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T06:59:55",
+          "article_score": 96,
+          "northeast_score": 100,
+          "security_score": 54,
+          "reason": "Northeast relevance: 100/100; category: Security & Strategic Affairs; security relevance: 54/100; overall score: 96/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 6,
+          "article_id": 3,
+          "title": "Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates",
+          "category": "Development",
+          "source": "The Assam Tribune",
+          "published_date": "2026-09-10T09:09:06",
+          "article_score": 48,
+          "northeast_score": 24,
+          "security_score": 5,
+          "reason": "Northeast relevance: 24/100; category: Development; overall score: 48/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 7,
+          "article_id": 30,
+          "title": "Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma",
+          "category": "Development",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T05:49:20",
+          "article_score": 65,
+          "northeast_score": 100,
+          "security_score": 0,
+          "reason": "Northeast relevance: 100/100; category: Development; overall score: 65/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 8,
+          "article_id": 31,
+          "title": "71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction",
+          "category": "Regional News",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T12:00:08",
+          "article_score": 45,
+          "northeast_score": 44,
+          "security_score": 7,
+          "reason": "Northeast relevance: 44/100; category: Regional News; overall score: 45/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 9,
+          "article_id": 32,
+          "title": "NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development",
+          "category": "Development",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T05:36:04",
+          "article_score": 67,
+          "northeast_score": 59,
+          "security_score": 0,
+          "reason": "Northeast relevance: 59/100; category: Development; overall score: 67/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 10,
+          "article_id": 34,
+          "title": "Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?",
+          "category": "Sports & Achievements",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-01T12:34:04",
+          "article_score": 37,
+          "northeast_score": 18,
+          "security_score": 0,
+          "reason": "Northeast relevance: 18/100; category: Sports & Achievements; overall score: 37/100; publication-window eligible; source: The Assam Tribune."
+        },
+        {
+          "number": 11,
+          "article_id": 9,
+          "title": "AASU Accuses CJP of Political Motives Behind School Visits in Assam",
+          "category": "Society & Youth",
+          "source": "The Assam Tribune",
+          "published_date": "2026-10-04T08:18:13",
+          "article_score": 43,
+          "northeast_score": 37,
+          "security_score": 0,
+          "reason": "Northeast relevance: 37/100; category: Society & Youth; overall score: 43/100; publication-window eligible; source: The Assam Tribune."
+        }
+      ],
+      "content": "Each selected article is accompanied by an auditable explanation derived from the pipeline's relevance, classification and scoring metadata. The reasoning explains the article's Northeast connection, editorial category, security relevance where applicable, overall score, date eligibility and source traceability.",
       "page_number": 40,
       "display_page_number": 40
+    },
+    {
+      "type": "overview",
+      "title": "How This Edition Was Selected",
+      "content": "The editorial dataset contains 11 selected articles across 5 sections.\nThe selected articles contain approximately 3,773 generated editorial words, with an average of 343 words per article.\nSelected reporting spans 10 September 2026 to 04 October 2026.\nSelection is driven by the project's relevance, classification, scoring, retrieval and grounding pipeline rather than manual page placement.",
+      "page_number": 41,
+      "display_page_number": 41
     },
     {
       "type": "category_overview",
       "title": "Editorial Mix by Section",
       "content": "The final editorial mix is:\nSecurity & Strategic Affairs: 1 article(s)\nDevelopment: 4 article(s)\nRegional News: 2 article(s)\nSociety & Youth: 3 article(s)\nSports & Achievements: 1 article(s)\n\nThe section structure is inherited from the classifier output used by the magazine composition stage.",
-      "page_number": 41,
-      "display_page_number": 41
-    },
-    {
-      "type": "source_distribution",
-      "title": "Source Distribution",
-      "content": "Sources represented in the final article set:\nThe Assam Tribune: 11 article(s)\n\nSource counts describe inclusion in this edition; they do not constitute a quality ranking by themselves.",
       "page_number": 42,
       "display_page_number": 42
     },
@@ -1897,5 +2037,5 @@
     "pages_without_body_chunk": [],
     "chart_pages_without_path": []
   },
-  "generated_at": "2026-10-05T16:17:43.810256+05:30"
+  "generated_at": "2026-10-05T17:44:09.890453+05:30"
 }

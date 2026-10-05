@@ -1,1594 +1,923 @@
 from __future__ import annotations
 
-import re
+import sys
 from pathlib import Path
-from typing import Optional
 
 from bs4 import BeautifulSoup
 from weasyprint import HTML
 
-try:
-    from pypdf import PdfReader
-except ImportError:
-    PdfReader = None
+from app.config.settings import settings
 
 
-# ============================================================================
-# PATH CONFIGURATION
-# ============================================================================
+# ============================================================
+# PAGE CONSTANTS
+# ============================================================
 
-# pdf_generator.py
-# app/magazine/templates/pdf_generator.py
-#
-# parents[0] -> templates
-# parents[1] -> magazine
-# parents[2] -> app
-# parents[3] -> project root
+PX_PER_MM = 96 / 25.4
 
-BASE_DIR = Path(__file__).resolve().parents[3]
+A4_WIDTH_MM = 210
+A4_HEIGHT_MM = 297
 
-OUTPUT_DIR = BASE_DIR / "data" / "output"
+PAGE_W = A4_WIDTH_MM * PX_PER_MM
+PAGE_H = A4_HEIGHT_MM * PX_PER_MM
 
-HTML_PATH = OUTPUT_DIR / "northeast_sentinel_magazine.html"
-PDF_PATH = OUTPUT_DIR / "northeast_sentinel_magazine.pdf"
+# Safety margins for layout auditing
+BOTTOM_MARGIN_MM = 20
+ARTICLE_SOURCE_MARGIN_MM = 15
 
-EXPECTED_PAGES = 50
+BOTTOM_LIMIT = PAGE_H - (BOTTOM_MARGIN_MM * PX_PER_MM)
 
+ARTICLE_LIMIT = PAGE_H - (
+    (BOTTOM_MARGIN_MM + ARTICLE_SOURCE_MARGIN_MM) * PX_PER_MM
+)
 
-# ============================================================================
-# PDF CSS
-# ============================================================================
-#
-# IMPORTANT:
-# This stylesheet is deliberately conservative.
-#
-# render_magazine.py already prepares the HTML and converts:
-#
-#   data/images/...  -> ../images/...
-#   data/charts/...  -> ../charts/...
-#
-# The PDF generator should therefore preserve the HTML magazine layout
-# instead of rebuilding or replacing its alignment.
-#
-# The main purpose of this CSS is:
-#   1. Define A4 physical pages.
-#   2. Preserve .magazine-page boundaries.
-#   3. Prevent accidental page splitting.
-#   4. Preserve the existing magazine margins/padding.
-#   5. Keep images and charts inside their containers.
-#   6. Hide elements marked .no-print.
-#
-# ============================================================================
+TOLERANCE_MM = 0.5
 
-PDF_CSS = """
-<style id="pdf-magazine-normalization">
 
-/* =========================================================================
-   A4 PAGE
-   ========================================================================= */
+# ============================================================
+# WEASYPRINT BOX HELPERS
+# ============================================================
 
-@page {
-    size: A4;
-    margin: 0;
-}
+def iter_boxes(box):
+    """
+    Recursively iterate through all WeasyPrint layout boxes.
+    """
+    yield box
 
+    for child in getattr(box, "children", None) or []:
+        yield from iter_boxes(child)
 
-/* =========================================================================
-   DOCUMENT ROOT
-   ========================================================================= */
 
-html,
-body {
-    margin: 0 !important;
-    padding: 0 !important;
+def classes_of(box) -> list[str]:
+    """
+    Return CSS classes associated with a WeasyPrint box.
+    """
+    element = getattr(box, "element", None)
 
-    width: 210mm !important;
+    if element is None:
+        return []
 
-    background: white !important;
-}
+    classes = element.get("class") or ""
 
+    return classes.split()
 
-/* =========================================================================
-   GLOBAL BOX MODEL
-   ========================================================================= */
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box !important;
-}
+def bottom_of(box) -> float:
+    """
+    Return the bottom coordinate of a box.
+    """
+    try:
+        return box.position_y + box.margin_height()
+    except Exception:
+        return 0.0
 
 
-/* =========================================================================
-   MAGAZINE PAGE
-   ========================================================================= */
+def element_text(element, limit: int = 120) -> str:
+    """
+    Extract a small amount of readable text from an HTML element.
+    Useful for diagnostics.
+    """
+    if element is None:
+        return ""
 
-/*
-   IMPORTANT:
+    try:
+        text = " ".join(element.itertext()).strip()
+        text = " ".join(text.split())
 
-   Do NOT set padding to zero here.
+        if len(text) > limit:
+            return text[:limit] + "..."
 
-   The actual magazine template is responsible for the visual alignment,
-   margins, typography and spacing.
+        return text
 
-   We only enforce the physical A4 dimensions and page breaking.
-*/
+    except Exception:
+        return ""
 
-.magazine-page {
 
-    width: 210mm !important;
-    min-width: 210mm !important;
-    max-width: 210mm !important;
-
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-
-    margin: 0 !important;
-
-    position: relative !important;
-
-    overflow: hidden !important;
-
-    box-sizing: border-box !important;
-
-    break-before: auto !important;
-    break-after: page !important;
-    break-inside: avoid !important;
-
-    page-break-before: auto !important;
-    page-break-after: always !important;
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   LAST PAGE
-   ========================================================================= */
-
-.magazine-page:last-child {
-
-    break-after: auto !important;
-
-    page-break-after: auto !important;
-}
-
-
-/* =========================================================================
-   COVER
-   ========================================================================= */
-
-.cover-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   INSIDE COVER
-   ========================================================================= */
-
-.inside-cover {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   SECTION PAGE
-   ========================================================================= */
-
-.section-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE PAGE
-   ========================================================================= */
-
-.article-page {
-
-    width: 210mm !important;
-
-    height: 297mm !important;
-
-    min-height: 297mm !important;
-
-    max-height: 297mm !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-
-    overflow: hidden !important;
-}
-
-
-/* =========================================================================
-   ARTICLE HEADER
-   ========================================================================= */
-
-.article-header {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE TITLE
-   ========================================================================= */
-
-.article-title {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE META
-   ========================================================================= */
-
-.article-meta {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE IMAGE
-   ========================================================================= */
-
-.article-image {
-
-    display: block !important;
-
-    max-width: 100% !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE BODY
-   ========================================================================= */
-
-/*
-   Do NOT give the article body an arbitrary fixed max-height.
-
-   The page builder already divides articles into page-sized body chunks.
-   render_magazine.py explicitly prepares:
-
-       prepared["content"] = prepared["body_chunk"]
-
-   Therefore the body chunk should be allowed to use the space allocated
-   by the magazine template.
-*/
-
-.article-body,
-.article-content,
-.article-text {
-
-    max-width: 100% !important;
-
-    box-sizing: border-box !important;
-}
-
-
-/* =========================================================================
-   ARTICLE PARAGRAPHS
-   ========================================================================= */
-
-.article-body p,
-.article-content p,
-.article-text p {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE HEADINGS
-   ========================================================================= */
-
-.article-body h1,
-.article-body h2,
-.article-body h3,
-.article-body h4,
-.article-content h1,
-.article-content h2,
-.article-content h3,
-.article-content h4,
-.article-text h1,
-.article-text h2,
-.article-text h3,
-.article-text h4 {
-
-    break-after: avoid !important;
-
-    page-break-after: avoid !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   SOURCE BOX
-   ========================================================================= */
-
-.source-box {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   IMAGES
-   ========================================================================= */
-
-.magazine-page img {
-
-    max-width: 100% !important;
-
-    box-sizing: border-box !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ARTICLE IMAGES
-   ========================================================================= */
-
-.article-image img {
-
-    max-width: 100% !important;
-
-    height: auto !important;
-
-    display: block !important;
-}
-
-
-/* =========================================================================
-   FIGURES
-   ========================================================================= */
-
-.magazine-page figure {
-
-    max-width: 100% !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   TABLES
-   ========================================================================= */
-
-.magazine-page table {
-
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    border-collapse: collapse !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   TABLE ROWS
-   ========================================================================= */
-
-.magazine-page tr {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   CHART PAGES
-   ========================================================================= */
-
-.chart-page {
-
-    width: 210mm !important;
-
-    height: 297mm !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   CHART IMAGES
-   ========================================================================= */
-
-.chart-page .chart-image {
-
-    display: block !important;
-
-    max-width: 100% !important;
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   ANALYTICS
-   ========================================================================= */
-
-.analytics-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   CONTENTS / TOC
-   ========================================================================= */
-
-.contents-page,
-.toc-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   SOURCE PAGE
-   ========================================================================= */
-
-.source-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   METHODOLOGY PAGE
-   ========================================================================= */
-
-.methodology-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   PIPELINE PAGE
-   ========================================================================= */
-
-.pipeline-page {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   BACK COVER
-   ========================================================================= */
-
-.back-cover {
-
-    break-inside: avoid !important;
-
-    page-break-inside: avoid !important;
-}
-
-
-/* =========================================================================
-   PRINT-ONLY CONTROL
-   ========================================================================= */
-
-.no-print {
-
-    display: none !important;
-}
-
-
-/* =========================================================================
-   LINKS
-   ========================================================================= */
-
-a {
-
-    text-decoration: none !important;
-}
-
-
-/* =========================================================================
-   TEXT SAFETY
-   ========================================================================= */
-
-.magazine-page {
-
-    overflow-wrap: break-word !important;
-
-    word-wrap: break-word !important;
-}
-
-
-/* =========================================================================
-   PREVENT HORIZONTAL OVERFLOW
-   ========================================================================= */
-
-.magazine-page > * {
-
-    max-width: 100% !important;
-}
-
-
-/* =========================================================================
-   PDF PAGE SAFETY
-   ========================================================================= */
-
-@media print {
-
-    html,
-    body {
-
-        width: 210mm !important;
-
-        margin: 0 !important;
-
-        padding: 0 !important;
-    }
-
-    .magazine-page {
-
-        width: 210mm !important;
-
-        height: 297mm !important;
-
-        margin: 0 !important;
-    }
-}
-
-</style>
-"""
-
-
-# ============================================================================
+# ============================================================
 # PDF GENERATOR
-# ============================================================================
-
+# ============================================================
 
 class PDFGenerator:
+    """
+    Phase 16 - HTML to PDF conversion using WeasyPrint.
+
+    Responsibilities:
+        1. Locate the generated HTML magazine.
+        2. Render HTML using WeasyPrint.
+        3. Audit pagination.
+        4. Detect overflowing content.
+        5. Detect blank/stray physical pages.
+        6. Compare logical HTML pages with physical PDF pages.
+        7. Write the final PDF.
+    """
 
     def __init__(
         self,
-        html_path: Path = HTML_PATH,
-        pdf_path: Path = PDF_PATH,
-        expected_pages: int = EXPECTED_PAGES,
+        html_path: Path | None = None,
+        pdf_path: Path | None = None,
+        expected_pages: int | None = None,
     ):
+        # ----------------------------------------------------
+        # Resolve output directory locally.
+        #
+        # Do NOT import resolve_path from page_builder.py.
+        # The current page_builder.py does not define it.
+        # ----------------------------------------------------
 
-        self.html_path = Path(html_path)
+        output_dir = Path(settings.OUTPUT_DIR)
 
-        self.pdf_path = Path(pdf_path)
+        if not output_dir.is_absolute():
+            output_dir = Path(__file__).resolve().parents[3] / output_dir
+
+        self.output_dir = output_dir
+
+        self.html_path = (
+            Path(html_path)
+            if html_path
+            else output_dir / "northeast_sentinel_magazine.html"
+        )
+
+        self.pdf_path = (
+            Path(pdf_path)
+            if pdf_path
+            else output_dir / "northeast_sentinel_magazine.pdf"
+        )
 
         self.expected_pages = expected_pages
 
-        self.html_content: Optional[str] = None
+        self.document = None
 
-        self.pdf_html: Optional[str] = None
-
-        self.soup: Optional[BeautifulSoup] = None
-
-
-    # =========================================================================
-    # LOGGING
-    # =========================================================================
+    # ========================================================
+    # HEADER
+    # ========================================================
 
     @staticmethod
     def header(title: str):
-
         print(
-            "\n" + "=" * 70,
-            flush=True,
+            "\n"
+            + "=" * 70
+            + f"\n{title}\n"
+            + "=" * 70
         )
 
-        print(
-            title,
-            flush=True,
-        )
+    # ========================================================
+    # LOGICAL HTML PAGES
+    # ========================================================
 
-        print(
-            "=" * 70,
-            flush=True,
-        )
-
-
-    # =========================================================================
-    # LOAD HTML
-    # =========================================================================
-
-    def load_html(self):
-
-        self.header(
-            "CHECKING HTML INPUT"
-        )
-
+    def logical_pages(self) -> list:
+        """
+        Read the generated HTML and count .magazine-page elements.
+        """
         if not self.html_path.exists():
-
             raise FileNotFoundError(
-                "HTML input not found:\n"
-                f"{self.html_path}"
+                f"HTML input not found: {self.html_path}"
             )
 
-        self.html_content = (
-            self.html_path.read_text(
-                encoding="utf-8"
-            )
+        html = self.html_path.read_text(
+            encoding="utf-8"
         )
 
-        size_kb = (
-            self.html_path.stat().st_size
-            / 1024
-        )
-
-        print(
-            f"HTML input : {self.html_path}",
-            flush=True,
-        )
-
-        print(
-            f"HTML size  : {size_kb:.2f} KB",
-            flush=True,
-        )
-
-
-    # =========================================================================
-    # HTML STRUCTURE
-    # =========================================================================
-
-    def validate_html_pages(self):
-
-        self.header(
-            "VALIDATING HTML PAGE STRUCTURE"
-        )
-
-        if self.html_content is None:
-
-            raise RuntimeError(
-                "HTML has not been loaded."
-            )
-
-        self.soup = BeautifulSoup(
-            self.html_content,
+        soup = BeautifulSoup(
+            html,
             "html.parser",
         )
 
-        pages = self.soup.select(
-            ".magazine-page"
-        )
+        return soup.select(".magazine-page")
 
-        count = len(pages)
+    # ========================================================
+    # HTML STRUCTURE AUDIT
+    # ========================================================
 
-        print(
-            f"HTML logical pages: {count}",
-            flush=True,
-        )
+    def inspect_logical_pages(self):
+        """
+        Print logical HTML page information.
 
-        if count != self.expected_pages:
+        This is useful before rendering the PDF.
+        """
 
-            raise ValueError(
-                "\n"
-                "HTML PAGE COUNT MISMATCH\n"
-                f"Expected : {self.expected_pages}\n"
-                f"Actual   : {count}\n"
+        pages = self.logical_pages()
+
+        self.header("HTML PAGE STRUCTURE")
+
+        print(f"HTML file       : {self.html_path}")
+        print(f"Logical pages   : {len(pages)}")
+
+        for index, page in enumerate(pages, start=1):
+
+            page_classes = page.get("class", [])
+
+            page_type = (
+                page.get("data-page-type")
+                or page.get("data-type")
+                or ""
             )
 
-        print(
-            "HTML page count: PASSED",
-            flush=True,
-        )
-
-
-    # =========================================================================
-    # ASSET HELPERS
-    # =========================================================================
-
-    @staticmethod
-    def is_external_asset(
-        asset: str,
-    ) -> bool:
-
-        value = asset.lower().strip()
-
-        return (
-            value.startswith("http://")
-            or value.startswith("https://")
-            or value.startswith("data:")
-            or value.startswith("//")
-        )
-
-
-    def resolve_asset(
-        self,
-        asset: str,
-    ) -> Optional[Path]:
-
-        if not asset:
-
-            return None
-
-        asset = asset.strip()
-
-        if self.is_external_asset(asset):
-
-            return None
-
-        asset = asset.split(
-            "#",
-            1,
-        )[0]
-
-        asset = asset.split(
-            "?",
-            1,
-        )[0]
-
-        asset = asset.replace(
-            "%20",
-            " ",
-        )
-
-        candidates = []
-
-        path = Path(asset)
-
-        if path.is_absolute():
-
-            candidates.append(
-                path
+            article_id = (
+                page.get("data-article-id")
+                or ""
             )
 
-        # ---------------------------------------------------------
-        # FIRST:
-        # Resolve relative to the generated HTML.
-        #
-        # Example:
-        #
-        # HTML:
-        # data/output/northeast_sentinel_magazine.html
-        #
-        # src:
-        # ../images/article_29/image.jpg
-        #
-        # resolves to:
-        # data/images/article_29/image.jpg
-        # ---------------------------------------------------------
-
-        candidates.append(
-            self.html_path.parent / asset
-        )
-
-        # ---------------------------------------------------------
-        # SECOND:
-        # Project-relative path.
-        # ---------------------------------------------------------
-
-        candidates.append(
-            BASE_DIR / asset
-        )
-
-        # ---------------------------------------------------------
-        # THIRD:
-        # Remove leading ./ if present.
-        # ---------------------------------------------------------
-
-        candidates.append(
-            BASE_DIR / asset.lstrip("./")
-        )
-
-        for candidate in candidates:
-
-            if candidate.exists():
-
-                return candidate.resolve()
-
-        return None
-
-
-    # =========================================================================
-    # ASSET VALIDATION
-    # =========================================================================
-
-    def validate_assets(self):
-
-        self.header(
-            "VALIDATING HTML ASSETS"
-        )
-
-        if self.soup is None:
-
-            raise RuntimeError(
-                "HTML has not been parsed."
+            text = element_text(
+                page,
+                limit=80,
             )
-
-        image_elements = (
-            self.soup.find_all("img")
-        )
-
-        local_assets = 0
-
-        external_assets = 0
-
-        missing_assets = []
-
-        for image in image_elements:
-
-            src = image.get("src")
-
-            if not src:
-
-                continue
-
-            if self.is_external_asset(src):
-
-                external_assets += 1
-
-                continue
-
-            local_assets += 1
-
-            resolved = self.resolve_asset(
-                src
-            )
-
-            if resolved is None:
-
-                missing_assets.append(
-                    src
-                )
-
-        print(
-            f"Image elements found : "
-            f"{len(image_elements)}",
-            flush=True,
-        )
-
-        print(
-            f"Local assets checked : "
-            f"{local_assets}",
-            flush=True,
-        )
-
-        print(
-            f"External/data assets : "
-            f"{external_assets}",
-            flush=True,
-        )
-
-        print(
-            f"Missing assets       : "
-            f"{len(missing_assets)}",
-            flush=True,
-        )
-
-        if missing_assets:
 
             print(
-                "\nMissing assets:",
-                flush=True,
+                f"  HTML {index:02d} | "
+                f"type={page_type or 'unknown':15} | "
+                f"article={article_id or '-':5} | "
+                f"class={' '.join(page_classes)} | "
+                f"{text}"
             )
 
-            for asset in missing_assets:
+    # ========================================================
+    # RENDER
+    # ========================================================
 
+    def render(self):
+        """
+        Render HTML using WeasyPrint.
+
+        filename= is important because image/chart paths in the
+        generated HTML are relative to data/output/.
+        """
+
+        if not self.html_path.exists():
+            raise FileNotFoundError(
+                f"HTML input not found: {self.html_path}"
+            )
+
+        print(
+            f"\nRendering HTML:\n"
+            f"{self.html_path}"
+        )
+
+        self.document = HTML(
+            filename=str(self.html_path)
+        ).render()
+
+        return self.document
+
+    # ========================================================
+    # PHYSICAL PAGE INSPECTION
+    # ========================================================
+
+    def inspect_physical_pages(self):
+        """
+        Inspect each physical page produced by WeasyPrint.
+
+        This specifically helps diagnose situations such as:
+
+            Logical HTML pages : 50
+            Physical PDF pages : 51
+
+        It reports how many .magazine-page elements exist on each
+        physical page and provides basic identification.
+        """
+
+        if self.document is None:
+            raise RuntimeError(
+                "Document has not been rendered yet."
+            )
+
+        self.header("PHYSICAL PAGE INSPECTION")
+
+        for physical_number, page in enumerate(
+            self.document.pages,
+            start=1,
+        ):
+
+            boxes = list(
+                iter_boxes(page._page_box)
+            )
+
+            sheets = [
+                box
+                for box in boxes
+                if "magazine-page" in classes_of(box)
+            ]
+
+            print(
+                f"\nPDF page {physical_number:02d}: "
+                f"{len(sheets)} magazine-page element(s)"
+            )
+
+            if not sheets:
                 print(
-                    f"  - {asset}",
-                    flush=True,
+                    "  WARNING: No .magazine-page element "
+                    "found on this physical page."
                 )
 
-            raise FileNotFoundError(
-                "Missing local HTML assets."
-            )
+                continue
 
-        print(
-            "Asset validation: PASSED",
-            flush=True,
-        )
+            for sheet_number, sheet in enumerate(
+                sheets,
+                start=1,
+            ):
 
+                element = getattr(
+                    sheet,
+                    "element",
+                    None,
+                )
 
-    # =========================================================================
-    # CSS INSPECTION
-    # =========================================================================
+                page_type = ""
 
-    def inspect_original_css(self):
+                article_id = ""
 
-        self.header(
-            "INSPECTING ORIGINAL HTML CSS"
-        )
+                if element is not None:
 
-        if self.html_content is None:
+                    page_type = (
+                        element.get(
+                            "data-page-type",
+                            "",
+                        )
+                        or element.get(
+                            "data-type",
+                            "",
+                        )
+                    )
 
+                    article_id = element.get(
+                        "data-article-id",
+                        "",
+                    )
+
+                text = element_text(
+                    element,
+                    limit=100,
+                )
+
+                print(
+                    f"  Sheet {sheet_number}: "
+                    f"type={page_type or 'unknown'}, "
+                    f"article={article_id or '-'}, "
+                    f"text={text}"
+                )
+
+    # ========================================================
+    # LAYOUT AUDIT
+    # ========================================================
+
+    def audit(self) -> list[dict]:
+        """
+        Return one audit record per physical PDF page.
+        """
+
+        if self.document is None:
             raise RuntimeError(
-                "HTML has not been loaded."
+                "Document has not been rendered yet."
             )
 
-        css = self.html_content.lower()
+        records = []
 
-        a4_found = (
-            "a4" in css
-            or "210mm" in css
-            or "297mm" in css
-        )
+        for number, page in enumerate(
+            self.document.pages,
+            start=1,
+        ):
 
-        page_break_found = (
-            "page-break" in css
-            or "break-after" in css
-            or "break-before" in css
+            boxes = list(
+                iter_boxes(page._page_box)
+            )
+
+            # ------------------------------------------------
+            # Find magazine sheet(s)
+            # ------------------------------------------------
+
+            sheets = [
+                box
+                for box in boxes
+                if "magazine-page" in classes_of(box)
+            ]
+
+            rec = {
+                "page": number,
+                "sheets": len(sheets),
+                "type": "",
+                "article_id": "",
+                "overflow_mm": 0.0,
+                "height_mm": 0.0,
+                "width_mm": 0.0,
+                "text": "",
+            }
+
+            # ------------------------------------------------
+            # Sheet metadata
+            # ------------------------------------------------
+
+            if sheets:
+
+                sheet = sheets[0]
+
+                element = getattr(
+                    sheet,
+                    "element",
+                    None,
+                )
+
+                if element is not None:
+
+                    rec["type"] = (
+                        element.get(
+                            "data-page-type",
+                            "",
+                        )
+                        or element.get(
+                            "data-type",
+                            "",
+                        )
+                    )
+
+                    rec["article_id"] = element.get(
+                        "data-article-id",
+                        "",
+                    )
+
+                    rec["text"] = element_text(
+                        element,
+                        limit=120,
+                    )
+
+                # --------------------------------------------
+                # Physical sheet dimensions
+                # --------------------------------------------
+
+                try:
+                    rec["width_mm"] = round(
+                        sheet.width / PX_PER_MM,
+                        2,
+                    )
+
+                    rec["height_mm"] = round(
+                        sheet.height / PX_PER_MM,
+                        2,
+                    )
+
+                except Exception:
+                    pass
+
+            # ------------------------------------------------
+            # Determine overflow limit
+            # ------------------------------------------------
+
+            if rec["type"] == "article":
+                limit = ARTICLE_LIMIT
+            else:
+                limit = BOTTOM_LIMIT
+
+            # ------------------------------------------------
+            # Check .fit elements
+            # ------------------------------------------------
+
+            worst = 0.0
+
+            for box in boxes:
+
+                if "fit" not in classes_of(box):
+                    continue
+
+                overflow_px = (
+                    bottom_of(box) - limit
+                )
+
+                overflow_mm = (
+                    overflow_px / PX_PER_MM
+                )
+
+                worst = max(
+                    worst,
+                    overflow_mm,
+                )
+
+            rec["overflow_mm"] = round(
+                worst,
+                1,
+            )
+
+            records.append(rec)
+
+        return records
+
+    # ========================================================
+    # DIAGNOSE
+    # ========================================================
+
+    def diagnose(
+        self,
+        records: list[dict],
+        logical_count: int,
+    ) -> bool:
+
+        self.header("PDF LAYOUT AUDIT")
+
+        physical_count = len(records)
+
+        print(
+            f"Logical HTML pages : {logical_count}"
         )
 
         print(
-            "Original A4 declaration: "
-            f"{'FOUND' if a4_found else 'NOT FOUND'}",
-            flush=True,
+            f"Physical PDF pages : {physical_count}"
         )
 
         print(
-            "Original page-break CSS: "
-            f"{'FOUND' if page_break_found else 'NOT FOUND'}",
-            flush=True,
+            f"Expected pages     : "
+            f"{self.expected_pages or logical_count}"
         )
 
+        print()
 
-    # =========================================================================
-    # PREPARE PDF HTML
-    # =========================================================================
+        # ----------------------------------------------------
+        # Basic page-count check
+        # ----------------------------------------------------
 
-    def prepare_pdf_html(self):
-
-        self.header(
-            "PREPARING PDF HTML"
+        ok = (
+            physical_count
+            == (self.expected_pages or logical_count)
         )
 
-        if self.html_content is None:
+        # ----------------------------------------------------
+        # Check every physical page
+        # ----------------------------------------------------
 
-            raise RuntimeError(
-                "HTML has not been loaded."
+        for record in records:
+
+            problems = []
+
+            # -----------------------------------------------
+            # Missing or duplicate sheet
+            # -----------------------------------------------
+
+            if record["sheets"] == 0:
+
+                problems.append(
+                    "NO magazine-page element"
+                )
+
+            elif record["sheets"] > 1:
+
+                problems.append(
+                    f"{record['sheets']} magazine-page "
+                    f"elements on this physical page"
+                )
+
+            # -----------------------------------------------
+            # Overflow
+            # -----------------------------------------------
+
+            if (
+                record["overflow_mm"]
+                > TOLERANCE_MM
+            ):
+
+                problems.append(
+                    "content overflows by "
+                    f"{record['overflow_mm']} mm"
+                )
+
+            # -----------------------------------------------
+            # Unusual sheet size
+            # -----------------------------------------------
+
+            width = record["width_mm"]
+            height = record["height_mm"]
+
+            if width and height:
+
+                width_ok = (
+                    abs(width - A4_WIDTH_MM)
+                    <= 2
+                )
+
+                height_ok = (
+                    abs(height - A4_HEIGHT_MM)
+                    <= 2
+                )
+
+                # WeasyPrint may represent dimensions
+                # slightly differently, so only report
+                # clearly abnormal values.
+
+                if not width_ok or not height_ok:
+
+                    problems.append(
+                        f"sheet size is "
+                        f"{width}mm x {height}mm"
+                    )
+
+            # -----------------------------------------------
+            # Print problems
+            # -----------------------------------------------
+
+            if problems:
+
+                ok = False
+
+                article_text = ""
+
+                if record["article_id"]:
+
+                    article_text = (
+                        f" article={record['article_id']}"
+                    )
+
+                print(
+                    f"  PDF page "
+                    f"{record['page']:02d}"
+                    f"{article_text}: "
+                    + "; ".join(problems)
+                )
+
+        # ----------------------------------------------------
+        # Page-count mismatch
+        # ----------------------------------------------------
+
+        if physical_count != (
+            self.expected_pages
+            or logical_count
+        ):
+
+            ok = False
+
+            print()
+            print(
+                "PAGE COUNT MISMATCH DETECTED."
             )
 
-        html = self.html_content
+            if physical_count > logical_count:
 
-        # ---------------------------------------------------------------------
-        # Remove an older PDF stylesheet if the HTML already contains one.
-        # This prevents multiple PDF normalization blocks from accumulating.
-        # ---------------------------------------------------------------------
+                print(
+                    "There are more physical PDF pages "
+                    "than logical HTML pages."
+                )
 
-        html = re.sub(
-            r'<style[^>]*id=["\']pdf-normalization["\'][^>]*>'
-            r'.*?</style>',
-            "",
-            html,
-            flags=(
-                re.IGNORECASE
-                | re.DOTALL
-            ),
-        )
+                print(
+                    "This usually means a magazine page "
+                    "is being fragmented or an extra "
+                    "blank/overflow page is being created."
+                )
 
-        html = re.sub(
-            r'<style[^>]*id=["\']pdf-magazine-normalization["\'][^>]*>'
-            r'.*?</style>',
-            "",
-            html,
-            flags=(
-                re.IGNORECASE
-                | re.DOTALL
-            ),
-        )
+            else:
 
-        # ---------------------------------------------------------------------
-        # Add PDF CSS at the end of the document.
-        #
-        # It is deliberately limited so that the magazine template remains
-        # responsible for the visual formatting.
-        # ---------------------------------------------------------------------
+                print(
+                    "There are fewer physical PDF pages "
+                    "than logical HTML pages."
+                )
 
-        lower = html.lower()
+                print(
+                    "Some logical pages may be missing "
+                    "during PDF rendering."
+                )
 
-        body_index = lower.rfind(
-            "</body>"
-        )
+        # ----------------------------------------------------
+        # Final status
+        # ----------------------------------------------------
 
-        if body_index != -1:
+        if ok:
 
-            html = (
-                html[:body_index]
-                + PDF_CSS
-                + html[body_index:]
+            print()
+            print(
+                "No pagination or overflow problems detected."
             )
 
         else:
 
-            html += PDF_CSS
+            print()
+            print(
+                "Layout audit FAILED."
+            )
 
-        self.pdf_html = html
+            print()
+            print(
+                "Recommended debugging steps:"
+            )
 
-        print(
-            "PDF CSS normalization: APPLIED",
-            flush=True,
-        )
+            print(
+                "1. Check the physical page inspection "
+                "above."
+            )
 
+            print(
+                "2. Look for a PDF page with "
+                "'NO magazine-page element'."
+            )
 
-    # =========================================================================
+            print(
+                "3. Look for an article page with "
+                "overflow."
+            )
+
+            print(
+                "4. If an article overflows, reduce "
+                "its word budget in page_builder.py."
+            )
+
+            print(
+                "5. Re-run the magazine rendering "
+                "before generating the PDF again."
+            )
+
+        return ok
+
+    # ========================================================
     # GENERATE PDF
-    # =========================================================================
+    # ========================================================
 
-    def generate_pdf(self):
+    def run(
+        self,
+        strict: bool = False,
+    ) -> Path:
 
         self.header(
-            "GENERATING PDF WITH WEASYPRINT"
+            "PHASE 16 - PDF GENERATION"
         )
 
-        if self.pdf_html is None:
+        # ----------------------------------------------------
+        # Verify HTML
+        # ----------------------------------------------------
+
+        if not self.html_path.exists():
+
+            raise FileNotFoundError(
+                f"HTML input not found:\n"
+                f"{self.html_path}"
+            )
+
+        # ----------------------------------------------------
+        # Count logical pages
+        # ----------------------------------------------------
+
+        logical_pages = self.logical_pages()
+
+        logical_count = len(
+            logical_pages
+        )
+
+        expected = (
+            self.expected_pages
+            or logical_count
+        )
+
+        print(
+            f"HTML:\n{self.html_path}"
+        )
+
+        print(
+            f"\nLogical pages: {logical_count}"
+        )
+
+        print(
+            f"Expected pages: {expected}"
+        )
+
+        # ----------------------------------------------------
+        # Render
+        # ----------------------------------------------------
+
+        self.render()
+
+        # ----------------------------------------------------
+        # Physical-page diagnostic
+        # ----------------------------------------------------
+
+        self.inspect_physical_pages()
+
+        # ----------------------------------------------------
+        # Layout audit
+        # ----------------------------------------------------
+
+        records = self.audit()
+
+        ok = self.diagnose(
+            records,
+            expected,
+        )
+
+        # ----------------------------------------------------
+        # Strict mode
+        # ----------------------------------------------------
+
+        if not ok and strict:
+
+            print()
+            print(
+                "STRICT MODE ENABLED."
+            )
+
+            print(
+                "PDF will NOT be written because "
+                "the layout audit failed."
+            )
 
             raise RuntimeError(
-                "PDF HTML is not prepared."
+                "Layout audit failed "
+                "(strict mode); PDF not written."
             )
+
+        # ----------------------------------------------------
+        # Write PDF
+        # ----------------------------------------------------
 
         self.pdf_path.parent.mkdir(
             parents=True,
             exist_ok=True,
         )
 
+        print()
         print(
-            f"Input HTML : {self.html_path}",
-            flush=True,
+            "Writing PDF..."
         )
 
-        print(
-            f"Output PDF : {self.pdf_path}",
-            flush=True,
+        self.document.write_pdf(
+            str(self.pdf_path)
         )
 
-        print(
-            "Creating WeasyPrint document...",
-            flush=True,
-        )
+        # ----------------------------------------------------
+        # File information
+        # ----------------------------------------------------
 
-        try:
-
-            # -------------------------------------------------------------
-            # IMPORTANT:
-            #
-            # render_magazine.py converts:
-            #
-            # data/images/example.jpg
-            #
-            # into:
-            #
-            # ../images/example.jpg
-            #
-            # because the final HTML is stored in:
-            #
-            # data/output/
-            #
-            # Therefore the correct base_url is the HTML directory:
-            #
-            # data/output/
-            # -------------------------------------------------------------
-
-            document = HTML(
-                string=self.pdf_html,
-                base_url=str(
-                    self.html_path.parent
-                ),
-            )
-
-            print(
-                "WeasyPrint document created.",
-                flush=True,
-            )
-
-            print(
-                "Writing PDF...",
-                flush=True,
-            )
-
-            document.write_pdf(
-                target=str(
-                    self.pdf_path
-                )
-            )
-
-            print(
-                "WeasyPrint finished.",
-                flush=True,
-            )
-
-        except Exception as exc:
-
-            print(
-                "\nWEASYPRINT ERROR",
-                flush=True,
-            )
-
-            print(
-                f"Error type: {type(exc).__name__}",
-                flush=True,
-            )
-
-            print(
-                f"Error     : {exc}",
-                flush=True,
-            )
-
-            raise
-
-        if not self.pdf_path.exists():
-
-            raise RuntimeError(
-                "PDF was not created:\n"
-                f"{self.pdf_path}"
-            )
-
-        file_size_mb = (
+        size_mb = (
             self.pdf_path.stat().st_size
             / (1024 * 1024)
         )
 
-        if self.pdf_path.stat().st_size == 0:
-
-            raise RuntimeError(
-                "PDF file was created but is empty."
-            )
-
-        print(
-            "\nPDF generated successfully.",
-            flush=True,
-        )
-
-        print(
-            f"PDF path : {self.pdf_path}",
-            flush=True,
-        )
-
-        print(
-            f"PDF size : {file_size_mb:.2f} MB",
-            flush=True,
-        )
-
-
-    # =========================================================================
-    # PDF FILE VALIDATION
-    # =========================================================================
-
-    def validate_pdf_file(self):
+        # ----------------------------------------------------
+        # Final status
+        # ----------------------------------------------------
 
         self.header(
-            "VALIDATING PDF FILE"
-        )
-
-        if not self.pdf_path.exists():
-
-            raise FileNotFoundError(
-                self.pdf_path
-            )
-
-        file_size = (
-            self.pdf_path.stat().st_size
+            "PHASE 16 COMPLETE"
         )
 
         print(
-            f"PDF file size: "
-            f"{file_size / (1024 * 1024):.2f} MB",
-            flush=True,
-        )
-
-        if file_size == 0:
-
-            raise ValueError(
-                "PDF file is empty."
-            )
-
-        with self.pdf_path.open(
-            "rb"
-        ) as file:
-
-            header = file.read(5)
-
-        if header != b"%PDF-":
-
-            raise ValueError(
-                "Invalid PDF header."
-            )
-
-        print(
-            "PDF header: PASSED",
-            flush=True,
-        )
-
-
-    # =========================================================================
-    # PDF PAGE COUNT
-    # =========================================================================
-
-    def get_pdf_page_count(self):
-
-        if PdfReader is None:
-
-            raise RuntimeError(
-                "pypdf is required for PDF validation."
-            )
-
-        reader = PdfReader(
-            str(self.pdf_path)
-        )
-
-        return len(
-            reader.pages
-        )
-
-
-    # =========================================================================
-    # PAGE VALIDATION
-    # =========================================================================
-
-    def validate_pdf_pages(self):
-
-        self.header(
-            "VALIDATING PHYSICAL PDF PAGE COUNT"
-        )
-
-        page_count = (
-            self.get_pdf_page_count()
+            f"PDF:\n{self.pdf_path}"
         )
 
         print(
-            "Page-count method: pypdf",
-            flush=True,
-        )
-
-        print(
-            f"Expected pages   : "
-            f"{self.expected_pages}",
-            flush=True,
-        )
-
-        print(
-            f"Physical pages   : "
-            f"{page_count}",
-            flush=True,
-        )
-
-        if page_count != self.expected_pages:
-
-            raise ValueError(
-                "\n"
-                "PDF PAGE COUNT MISMATCH\n"
-                f"Expected : "
-                f"{self.expected_pages}\n"
-                f"Actual   : "
-                f"{page_count}\n"
-            )
-
-        print(
-            "PDF page count: PASSED",
-            flush=True,
-        )
-
-
-    # =========================================================================
-    # PDF DIAGNOSTIC
-    # =========================================================================
-
-    def diagnose_pdf(self):
-
-        self.header(
-            "PDF PAGE DIAGNOSTIC"
-        )
-
-        if PdfReader is None:
-
-            print(
-                "pypdf unavailable.",
-                flush=True,
-            )
-
-            return
-
-        reader = PdfReader(
-            str(self.pdf_path)
-        )
-
-        actual_pages = len(
-            reader.pages
+            f"Size: {size_mb:.2f} MB"
         )
 
         print(
             f"Physical pages: "
-            f"{actual_pages}",
-            flush=True,
+            f"{len(self.document.pages)}"
         )
 
         print(
-            f"Expected pages : "
-            f"{self.expected_pages}",
-            flush=True,
+            f"Logical HTML pages: "
+            f"{logical_count}"
         )
 
-        print(
-            "\nPhysical page mapping:",
-            flush=True,
-        )
-
-        for number, page in enumerate(
-            reader.pages,
-            start=1,
-        ):
-
-            try:
-
-                text = (
-                    page.extract_text()
-                    or ""
-                )
-
-                text = " ".join(
-                    text.split()
-                )
-
-                preview = text[:180]
-
-            except Exception as exc:
-
-                preview = (
-                    "<extraction error: "
-                    f"{exc}>"
-                )
+        if len(self.document.pages) == expected:
 
             print(
-                f"{number:03d} | "
-                f"{preview}",
-                flush=True,
+                "\nSUCCESS: PDF page count matches "
+                "the expected page count."
             )
 
-
-    # =========================================================================
-    # OUTPUT INFORMATION
-    # =========================================================================
-
-    def print_output_information(self):
-
-        self.header(
-            "PDF OUTPUT"
-        )
-
-        print(
-            f"HTML : {self.html_path}",
-            flush=True,
-        )
-
-        print(
-            f"PDF  : {self.pdf_path}",
-            flush=True,
-        )
-
-        if self.pdf_path.exists():
-
-            size_mb = (
-                self.pdf_path.stat().st_size
-                / (1024 * 1024)
-            )
+        else:
 
             print(
-                f"Size : {size_mb:.2f} MB",
-                flush=True,
+                "\nWARNING: PDF page count does not "
+                "match the expected page count."
             )
 
-
-    # =========================================================================
-    # COMPLETE PIPELINE
-    # =========================================================================
-
-    def run(self):
-
-        self.header(
-            "PHASE 16 — PDF GENERATION"
-        )
-
-        try:
-
-            # -------------------------------------------------------------
-            # 1. Load the HTML generated by render_magazine.py
-            # -------------------------------------------------------------
-
-            self.load_html()
-
-            # -------------------------------------------------------------
-            # 2. Verify that render_magazine.py produced 50 logical pages
-            # -------------------------------------------------------------
-
-            self.validate_html_pages()
-
-            # -------------------------------------------------------------
-            # 3. Verify all local image assets
-            # -------------------------------------------------------------
-
-            self.validate_assets()
-
-            # -------------------------------------------------------------
-            # 4. Inspect the existing HTML CSS
-            # -------------------------------------------------------------
-
-            self.inspect_original_css()
-
-            # -------------------------------------------------------------
-            # 5. Add minimal PDF-specific rules
-            # -------------------------------------------------------------
-
-            self.prepare_pdf_html()
-
-            # -------------------------------------------------------------
-            # 6. Generate physical PDF
-            # -------------------------------------------------------------
-
-            self.generate_pdf()
-
-            # -------------------------------------------------------------
-            # 7. Validate PDF header/file
-            # -------------------------------------------------------------
-
-            self.validate_pdf_file()
-
-            # -------------------------------------------------------------
-            # 8. Validate physical page count
-            # -------------------------------------------------------------
-
-            try:
-
-                self.validate_pdf_pages()
-
-            except ValueError:
-
-                self.diagnose_pdf()
-
-                raise
-
-            # -------------------------------------------------------------
-            # SUCCESS
-            # -------------------------------------------------------------
-
-            self.header(
-                "PHASE 16 COMPLETE"
-            )
-
-            print(
-                "PDF generation: SUCCESS",
-                flush=True,
-            )
-
-            print(
-                f"Logical pages : "
-                f"{self.expected_pages}",
-                flush=True,
-            )
-
-            print(
-                f"Physical pages: "
-                f"{self.expected_pages}",
-                flush=True,
-            )
-
-            print(
-                f"PDF output    : "
-                f"{self.pdf_path}",
-                flush=True,
-            )
-
-            self.print_output_information()
-
-            return self.pdf_path
-
-        except Exception as exc:
-
-            print(
-                "\n" + "=" * 70,
-                flush=True,
-            )
-
-            print(
-                "PHASE 16 FAILED",
-                flush=True,
-            )
-
-            print(
-                "=" * 70,
-                flush=True,
-            )
-
-            print(
-                f"Error type: "
-                f"{type(exc).__name__}",
-                flush=True,
-            )
-
-            print(
-                f"Error: {exc}",
-                flush=True,
-            )
-
-            raise
+        return self.pdf_path
 
 
-# ============================================================================
-# ENTRY POINT
-# ============================================================================
-
-def main():
-
-    print(
-        "\nStarting PDF generator...",
-        flush=True,
-    )
-
-    print(
-        f"Project root: {BASE_DIR}",
-        flush=True,
-    )
-
-    print(
-        f"HTML input  : {HTML_PATH}",
-        flush=True,
-    )
-
-    print(
-        f"PDF output  : {PDF_PATH}",
-        flush=True,
-    )
-
-    generator = PDFGenerator()
-
-    generator.run()
-
+# ============================================================
+# COMMAND LINE ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
 
-    main()
+    strict_mode = (
+        "--strict"
+        in sys.argv
+    )
+
+    try:
+
+        PDFGenerator().run(
+            strict=strict_mode
+        )
+
+    except Exception as exc:
+
+        print()
+        print(
+            "=" * 70
+        )
+
+        print(
+            "PDF GENERATION FAILED"
+        )
+
+        print(
+            "=" * 70
+        )
+
+        print(
+            f"\nError: {exc}"
+        )
+
+        raise

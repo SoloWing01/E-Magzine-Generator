@@ -15,7 +15,7 @@
     <style>
 
         /* ============================================================
-           A4 PAGE FOUNDATION
+           PAGE SETUP
         ============================================================ */
 
         @page {
@@ -23,9 +23,7 @@
             margin: 0;
         }
 
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
         }
 
@@ -33,12 +31,12 @@
         body {
             margin: 0;
             padding: 0;
-            background: #e5e7eb;
-            color: #1f2933;
+            background: #e5e5e5;
             font-family:
                 Georgia,
                 "Times New Roman",
                 serif;
+            color: #1f2933;
         }
 
         body {
@@ -46,19 +44,21 @@
         }
 
         /* ============================================================
-           MAGAZINE PAGE
+           EVERY LOGICAL PAGE BECOMES ONE PHYSICAL PAGE
         ============================================================ */
 
         .magazine-page {
-            position: relative;
-
             width: 210mm;
             height: 297mm;
+
             min-height: 297mm;
             max-height: 297mm;
 
             margin: 0 auto;
-            padding: 18mm 17mm 17mm 17mm;
+
+            padding: 18mm 17mm 16mm 17mm;
+
+            position: relative;
 
             overflow: hidden;
 
@@ -74,51 +74,14 @@
         }
 
         /* ============================================================
-           COMMON TYPOGRAPHY
+           COMMON ELEMENTS
         ============================================================ */
-
-        h1,
-        h2,
-        h3,
-        p {
-            margin-top: 0;
-        }
-
-        p {
-            font-size: 10.2pt;
-            line-height: 1.52;
-            margin-bottom: 4mm;
-        }
-
-        .small-text {
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 8pt;
-            line-height: 1.45;
-            color: #6b7280;
-        }
-
-        .muted {
-            color: #6b7280;
-        }
-
-        .rule {
-            width: 100%;
-            height: 1px;
-
-            background: #d1d5db;
-
-            margin: 5mm 0;
-        }
 
         .page-number {
             position: absolute;
 
-            right: 14mm;
             bottom: 7mm;
+            right: 14mm;
 
             font-family:
                 Arial,
@@ -126,6 +89,7 @@
                 sans-serif;
 
             font-size: 8pt;
+
             color: #6b7280;
         }
 
@@ -136,10 +100,10 @@
                 sans-serif;
 
             font-size: 7pt;
-            font-weight: bold;
+
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
-            letter-spacing: 1.7px;
 
             color: #6b7280;
 
@@ -153,14 +117,53 @@
                 sans-serif;
 
             font-size: 8pt;
+
             font-weight: bold;
 
-            text-transform: uppercase;
             letter-spacing: 1.8px;
+
+            text-transform: uppercase;
 
             color: #7f1d1d;
 
             margin-bottom: 4mm;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 4mm;
+
+            line-height: 1.55;
+
+            font-size: 10.5pt;
+        }
+
+        .small-text {
+            font-size: 8.5pt;
+
+            line-height: 1.45;
+
+            color: #4b5563;
+        }
+
+        .muted {
+            color: #6b7280;
+        }
+
+        .rule {
+            width: 100%;
+
+            height: 1px;
+
+            background: #d1d5db;
+
+            margin: 5mm 0;
         }
 
         /* ============================================================
@@ -168,14 +171,6 @@
         ============================================================ */
 
         .cover-page {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            padding: 24mm 20mm;
-
-            color: #ffffff;
-
             background:
                 linear-gradient(
                     135deg,
@@ -183,6 +178,16 @@
                     #1f2937 55%,
                     #7f1d1d 100%
                 );
+
+            color: white;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 24mm 20mm;
         }
 
         .cover-kicker {
@@ -192,30 +197,30 @@
                 sans-serif;
 
             font-size: 9pt;
-            font-weight: bold;
 
-            text-transform: uppercase;
             letter-spacing: 3px;
 
-            color: #e5e7eb;
+            text-transform: uppercase;
+
+            opacity: 0.8;
         }
 
         .cover-title {
-            max-width: 170mm;
+            font-size: 34pt;
 
-            font-size: 35pt;
             line-height: 1.04;
 
             margin: 0;
+
+            max-width: 170mm;
         }
 
         .cover-subtitle {
-            max-width: 155mm;
-
-            margin-top: 7mm;
-
             font-size: 15pt;
+
             line-height: 1.4;
+
+            max-width: 155mm;
 
             color: #e5e7eb;
         }
@@ -226,7 +231,8 @@
                 Helvetica,
                 sans-serif;
 
-            font-size: 8.5pt;
+            font-size: 9pt;
+
             line-height: 1.7;
 
             color: #d1d5db;
@@ -234,11 +240,12 @@
 
         .cover-accent {
             width: 35mm;
+
             height: 3px;
 
-            margin: 8mm 0;
-
             background: #fca5a5;
+
+            margin: 8mm 0;
         }
 
         /* ============================================================
@@ -249,6 +256,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -259,16 +267,16 @@
         }
 
         .inside-cover-box h1 {
-            font-size: 28pt;
-            line-height: 1.08;
+            font-size: 27pt;
         }
 
         /* ============================================================
-           EDITORIAL PAGE
+           EDITORIAL
         ============================================================ */
 
         .editorial-title {
-            font-size: 28pt;
+            font-size: 27pt;
+
             line-height: 1.1;
 
             margin-bottom: 7mm;
@@ -283,8 +291,7 @@
         ============================================================ */
 
         .toc-title {
-            font-size: 29pt;
-            line-height: 1.05;
+            font-size: 28pt;
 
             margin-bottom: 8mm;
         }
@@ -292,34 +299,32 @@
         .toc-item {
             display: flex;
 
+            justify-content: space-between;
+
             align-items: baseline;
 
-            gap: 4mm;
-
-            padding: 3.5mm 0;
+            padding: 3mm 0;
 
             border-bottom: 1px dotted #cbd5e1;
+
+            font-size: 11pt;
         }
 
         .toc-number {
-            min-width: 12mm;
-
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 9pt;
             font-weight: bold;
 
             color: #7f1d1d;
+
+            width: 15mm;
         }
 
         .toc-label {
             flex: 1;
-
-            font-size: 11pt;
-            font-weight: bold;
         }
 
         /* ============================================================
@@ -328,15 +333,12 @@
 
         .section-page {
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #f8fafc 0%,
-                    #eef2f7 100%
-                );
+            background: #f8fafc;
         }
 
         .section-number {
@@ -345,10 +347,8 @@
                 Helvetica,
                 sans-serif;
 
-            font-size: 9pt;
-            font-weight: bold;
+            font-size: 10pt;
 
-            text-transform: uppercase;
             letter-spacing: 3px;
 
             color: #7f1d1d;
@@ -357,10 +357,9 @@
         }
 
         .section-title {
-            max-width: 160mm;
+            font-size: 32pt;
 
-            font-size: 34pt;
-            line-height: 1.03;
+            line-height: 1.05;
 
             margin-bottom: 7mm;
         }
@@ -369,23 +368,24 @@
             max-width: 145mm;
 
             font-size: 13pt;
+
             line-height: 1.55;
 
             color: #4b5563;
         }
 
         .section-count {
-            margin-top: 9mm;
+            margin-top: 10mm;
 
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 8pt;
-            font-weight: bold;
+            font-size: 9pt;
 
             text-transform: uppercase;
+
             letter-spacing: 1.5px;
 
             color: #6b7280;
@@ -396,15 +396,13 @@
         ============================================================ */
 
         .article-page {
-    display: flex;
+            display: flex;
 
-    flex-direction: column;
-
-    padding-bottom: 30mm;
-}
+            flex-direction: column;
+        }
 
         .article-header {
-            margin-bottom: 4mm;
+            margin-bottom: 5mm;
         }
 
         .article-category {
@@ -414,44 +412,21 @@
                 sans-serif;
 
             font-size: 7.5pt;
+
             font-weight: bold;
 
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+
+            letter-spacing: 1.6px;
 
             color: #7f1d1d;
 
             margin-bottom: 3mm;
-        }
-
-        .continuation-label {
-            display: flex;
-            justify-content: space-between;
-
-            margin-bottom: 3mm;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 7pt;
-            font-weight: bold;
-
-            text-transform: uppercase;
-            letter-spacing: 1.3px;
-
-            color: #6b7280;
-        }
-
-        .part-indicator {
-            color: #7f1d1d;
         }
 
         .article-title {
-            max-width: 175mm;
-
             font-size: 23pt;
+
             line-height: 1.08;
 
             margin-bottom: 4mm;
@@ -459,128 +434,189 @@
 
         .article-meta {
             display: flex;
-            flex-wrap: wrap;
 
-            gap: 4mm;
+            gap: 5mm;
+
+            flex-wrap: wrap;
 
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 7.3pt;
+            font-size: 7.5pt;
 
             color: #6b7280;
         }
 
         .article-image {
-            display: block;
-
             width: 100%;
-            height: 68mm;
 
-            margin: 3mm 0 6mm 0;
+            height: 72mm;
 
             object-fit: cover;
+
+            margin: 3mm 0 6mm 0;
 
             background: #e5e7eb;
         }
 
         .article-image-small {
-            display: block;
-
             width: 100%;
-            height: 50mm;
 
-            margin: 3mm 0 5mm 0;
+            height: 55mm;
 
             object-fit: cover;
+
+            margin: 3mm 0 6mm 0;
 
             background: #e5e7eb;
         }
 
         .article-body {
-            width: 100%;
+            column-count: 1;
+
+            column-gap: 8mm;
+
+            /* Reserve space for the fixed source footer. */
+            padding-bottom: 16mm;
         }
 
         .article-body p {
-            font-size: 10.1pt;
+            font-size: 10.2pt;
+
             line-height: 1.52;
 
-            margin-bottom: 3.2mm;
+            margin-bottom: 3.5mm;
         }
 
         .article-lead {
-            font-size: 11.5pt !important;
+            font-size: 12pt !important;
+
             line-height: 1.45 !important;
 
             font-weight: bold;
         }
 
+        .continuation-label {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 7.5pt;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            color: #6b7280;
+
+            margin-bottom: 4mm;
+        }
+
         .source-box {
-    position: absolute;
+            position: absolute;
 
-    left: 17mm;
-    right: 17mm;
-    bottom: 10mm;
+            left: 17mm;
+            right: 17mm;
+            bottom: 13mm;
 
-    padding-top: 3mm;
+            margin: 0;
+            padding-top: 3mm;
 
-    border-top: 1px solid #d1d5db;
+            border-top: 1px solid #d1d5db;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    font-size: 7pt;
+            font-size: 6.5pt;
 
-    line-height: 1.35;
+            line-height: 1.3;
 
-    color: #6b7280;
+            color: #6b7280;
 
-    margin: 0;
-
-    background: #ffffff;
-}
-
-.source-url {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
-
-        .source-box strong {
-            color: #374151;
+            max-height: 11mm;
+            overflow: hidden;
         }
 
         .source-url {
             overflow-wrap: anywhere;
-            word-break: break-word;
         }
 
         /* ============================================================
-           GENERAL CONTENT
+           GENERIC CONTENT PAGE
         ============================================================ */
 
         .content-title {
-            max-width: 175mm;
+            font-size: 27pt;
 
-            font-size: 28pt;
-            line-height: 1.08;
+            line-height: 1.1;
 
             margin-bottom: 7mm;
         }
 
         .content-body {
-            max-width: 172mm;
+            max-width: 170mm;
+        }
+
+        .appendix-intro {
+            font-size: 9.5pt;
+            line-height: 1.45;
+            color: #4b5563;
+            margin-bottom: 6mm;
+        }
+
+        .appendix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 7.5pt;
+        }
+
+        .appendix-table th {
+            text-align: left;
+            font-weight: 700;
+            padding: 2.5mm 2mm;
+            border-bottom: 1px solid #111827;
+            background: #f3f4f6;
+        }
+
+        .appendix-table td {
+            vertical-align: top;
+            padding: 2.5mm 2mm;
+            border-bottom: 1px solid #e5e7eb;
+            line-height: 1.35;
+        }
+
+        .appendix-number {
+            width: 9mm;
+            font-weight: 700;
+        }
+
+        .appendix-score {
+            white-space: nowrap;
+            font-weight: 700;
+        }
+
+        .appendix-reason {
+            font-size: 7pt;
+            color: #374151;
         }
 
         .content-body ul {
+            margin-top: 2mm;
+
+            margin-bottom: 5mm;
+
             padding-left: 7mm;
         }
 
         .content-body li {
             margin-bottom: 2.5mm;
+
             line-height: 1.45;
         }
 
@@ -589,8 +625,7 @@
         ============================================================ */
 
         .analytics-title {
-            font-size: 28pt;
-            line-height: 1.05;
+            font-size: 26pt;
 
             margin-bottom: 5mm;
         }
@@ -603,7 +638,7 @@
 
             gap: 4mm;
 
-            margin-bottom: 7mm;
+            margin-bottom: 6mm;
         }
 
         .metric-card {
@@ -621,12 +656,11 @@
                 sans-serif;
 
             font-size: 20pt;
+
             font-weight: bold;
         }
 
         .metric-label {
-            margin-top: 1mm;
-
             font-family:
                 Arial,
                 Helvetica,
@@ -635,35 +669,36 @@
             font-size: 7pt;
 
             text-transform: uppercase;
+
             letter-spacing: 1px;
 
             color: #6b7280;
-        }
 
-        /* ============================================================
-           CHARTS
-        ============================================================ */
+            margin-top: 1mm;
+        }
 
         .chart-page {
             display: flex;
+
             flex-direction: column;
+
+            justify-content: flex-start;
         }
 
         .chart-image {
             display: block;
 
             width: 100%;
-            height: auto;
 
-            max-height: 215mm;
-
-            margin-top: 5mm;
+            max-height: 210mm;
 
             object-fit: contain;
+
+            margin-top: 5mm;
         }
 
         /* ============================================================
-           PIPELINE / METHODOLOGY
+           METHODOLOGY / PIPELINE
         ============================================================ */
 
         .pipeline-step {
@@ -677,17 +712,16 @@
         }
 
         .pipeline-number {
-            min-width: 9mm;
-
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 9pt;
             font-weight: bold;
 
             color: #7f1d1d;
+
+            min-width: 9mm;
         }
 
         .pipeline-name {
@@ -697,83 +731,21 @@
         }
 
         /* ============================================================
-           DATA TABLE
-        ============================================================ */
-
-        .data-table {
-            width: 100%;
-
-            border-collapse: collapse;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 8pt;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 2.5mm;
-
-            border-bottom: 1px solid #e5e7eb;
-
-            text-align: left;
-        }
-
-        .data-table th {
-            font-size: 7pt;
-
-            text-transform: uppercase;
-            letter-spacing: 1px;
-
-            color: #6b7280;
-        }
-
-        .data-table .num {
-            text-align: right;
-        }
-
-        /* ============================================================
-           INFO / NOTE
-        ============================================================ */
-
-        .info-note {
-            margin-top: 6mm;
-
-            padding: 5mm;
-
-            background: #f8fafc;
-
-            border-left: 3px solid #7f1d1d;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 8pt;
-            line-height: 1.5;
-
-            color: #4b5563;
-        }
-
-        /* ============================================================
            BACK COVER
         ============================================================ */
 
         .back-cover {
+            background: #111827;
+
+            color: white;
+
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
-
-            background: #111827;
-
-            color: #ffffff;
         }
 
         .back-cover-content {
@@ -781,8 +753,7 @@
         }
 
         .back-cover h1 {
-            font-size: 30pt;
-            line-height: 1.05;
+            font-size: 28pt;
 
             margin-bottom: 7mm;
         }
@@ -792,32 +763,14 @@
         }
 
         /* ============================================================
-           SCREEN PREVIEW
-        ============================================================ */
-
-        @media screen {
-
-            body {
-                padding: 15mm 0;
-            }
-
-            .magazine-page {
-                margin: 0 auto 10mm auto;
-
-                box-shadow:
-                    0 8px 30px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        /* ============================================================
-           PRINT
+           PRINT SAFETY
         ============================================================ */
 
         @media print {
 
             html,
             body {
-                background: #ffffff;
+                background: white;
             }
 
             .magazine-page {
@@ -835,6 +788,7 @@
 
 
 
+    
 
     
 
@@ -853,7 +807,6 @@
 
         </div>
 
-
         <div>
 
             <div class="cover-accent"></div>
@@ -863,11 +816,11 @@
             </h1>
 
             <p class="cover-subtitle">
-                Indian Army’s Role in Stability, Peace &amp; National Security
+                Indian Army's Role in Stability,
+                Peace &amp; National Security
             </p>
 
         </div>
-
 
         <div class="cover-meta">
 
@@ -877,7 +830,8 @@
 
             <div>
                 Coverage period:
-                10 September 2026 – 04 October 2026
+                5 September 2026 —
+                5 October 2026
             </div>
 
             <div>
@@ -886,7 +840,6 @@
             </div>
 
         </div>
-
 
         <div class="page-number">
             1
@@ -900,6 +853,8 @@
     
 
 
+
+    
 
     
 
@@ -930,7 +885,8 @@
 
             <p class="small-text">
                 Coverage period:
-                10 September 2026 – 04 October 2026
+                5 September 2026 to
+                5 October 2026
             </p>
 
         </div>
@@ -947,6 +903,8 @@
     
 
 
+
+    
 
     
 
@@ -1016,6 +974,8 @@
 
     
 
+    
+
 
     
 
@@ -1033,27 +993,21 @@
 
         <div class="rule"></div>
 
-
         
 
         <div class="toc-item">
 
             <div class="toc-number">
-                01
+                1
             </div>
 
             <div class="toc-label">
-
                 Security &amp; Strategic Affairs
-
             </div>
 
             <div class="muted">
-
                 1
-
                 article
-
             </div>
 
         </div>
@@ -1063,45 +1017,16 @@
         <div class="toc-item">
 
             <div class="toc-number">
-                02
-            </div>
-
-            <div class="toc-label">
-
-                Development
-
-            </div>
-
-            <div class="muted">
-
-                4
-
-                articles
-
-            </div>
-
-        </div>
-
-        
-
-        <div class="toc-item">
-
-            <div class="toc-number">
-                03
-            </div>
-
-            <div class="toc-label">
-
-                Regional News
-
-            </div>
-
-            <div class="muted">
-
                 2
+            </div>
 
+            <div class="toc-label">
+                Development
+            </div>
+
+            <div class="muted">
+                4
                 articles
-
             </div>
 
         </div>
@@ -1111,21 +1036,16 @@
         <div class="toc-item">
 
             <div class="toc-number">
-                04
-            </div>
-
-            <div class="toc-label">
-
-                Society &amp; Youth
-
-            </div>
-
-            <div class="muted">
-
                 3
+            </div>
 
+            <div class="toc-label">
+                Regional News
+            </div>
+
+            <div class="muted">
+                2
                 articles
-
             </div>
 
         </div>
@@ -1135,27 +1055,40 @@
         <div class="toc-item">
 
             <div class="toc-number">
-                05
+                4
             </div>
 
             <div class="toc-label">
-
-                Sports &amp; Achievements
-
+                Society &amp; Youth
             </div>
 
             <div class="muted">
-
-                1
-
-                article
-
+                3
+                articles
             </div>
 
         </div>
 
         
 
+        <div class="toc-item">
+
+            <div class="toc-number">
+                5
+            </div>
+
+            <div class="toc-label">
+                Sports &amp; Achievements
+            </div>
+
+            <div class="muted">
+                1
+                article
+            </div>
+
+        </div>
+
+        
 
         <div class="page-number">
             4
@@ -1172,6 +1105,8 @@
 
     
 
+    
+
 
     
 
@@ -1183,16 +1118,11 @@
             Methodology
         </div>
 
-
         <h1 class="content-title">
-
             Reading the Edition
-
         </h1>
 
-
         <div class="content-body">
-
 
             <div class="pipeline-step">
 
@@ -1309,7 +1239,6 @@
 
         </div>
 
-
         <div class="page-number">
             5
         </div>
@@ -1325,6 +1254,8 @@
 
     
 
+    
+
 
     
 
@@ -1337,11 +1268,8 @@
         </div>
 
         <h1 class="section-title">
-
             Security &amp; Strategic Affairs
-
         </h1>
-
 
         
 
@@ -1351,19 +1279,14 @@
 
         
 
-
         
 
         <div class="section-count">
-
             1
-
             article
-
         </div>
 
         
-
 
         <div class="page-number">
             6
@@ -1380,8 +1303,8 @@
 
     
 
-
     
+
 
     
 
@@ -1389,59 +1312,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Security &amp; Strategic Affairs
-
             </div>
 
-
             <h1 class="article-title">
-
                 Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T06:59:55
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    29
-
-                </span>
 
                 
 
@@ -1466,6 +1367,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -1502,7 +1405,6 @@
 
             
 
-
             
 
             <br>
@@ -1531,8 +1433,8 @@
 
     
 
-
     
+
 
     
 
@@ -1540,76 +1442,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Security &amp; Strategic Affairs
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Security &amp; Strategic Affairs
-
             </div>
 
-
             <h1 class="article-title">
-
                 Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T06:59:55
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    29
-
-                </span>
 
                 
 
@@ -1626,6 +1498,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -1708,7 +1582,6 @@
 
             
 
-
             
 
             <br>
@@ -1737,6 +1610,8 @@
 
     
 
+    
+
 
     
 
@@ -1749,11 +1624,8 @@
         </div>
 
         <h1 class="section-title">
-
             Development
-
         </h1>
-
 
         
 
@@ -1763,19 +1635,14 @@
 
         
 
-
         
 
         <div class="section-count">
-
             4
-
             articles
-
         </div>
 
         
-
 
         <div class="page-number">
             9
@@ -1792,8 +1659,8 @@
 
     
 
-
     
+
 
     
 
@@ -1801,59 +1668,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T07:25:14
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    15
-
-                </span>
 
                 
 
@@ -1878,6 +1723,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -1914,7 +1761,6 @@
 
             
 
-
             
 
             <br>
@@ -1943,8 +1789,8 @@
 
     
 
-
     
+
 
     
 
@@ -1952,76 +1798,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Development
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T07:25:14
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    15
-
-                </span>
 
                 
 
@@ -2038,6 +1854,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -2144,7 +1962,6 @@
 
             
 
-
             
 
             <br>
@@ -2173,8 +1990,8 @@
 
     
 
-
     
+
 
     
 
@@ -2182,59 +1999,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-09-10T09:09:06
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    3
-
-                </span>
 
                 
 
@@ -2259,6 +2054,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -2295,7 +2092,6 @@
 
             
 
-
             
 
             <br>
@@ -2324,8 +2120,8 @@
 
     
 
-
     
+
 
     
 
@@ -2333,76 +2129,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Development
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-09-10T09:09:06
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    3
-
-                </span>
 
                 
 
@@ -2419,6 +2185,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -2515,7 +2283,6 @@
 
             
 
-
             
 
             <br>
@@ -2544,8 +2311,8 @@
 
     
 
-
     
+
 
     
 
@@ -2553,59 +2320,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T05:49:20
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    30
-
-                </span>
 
                 
 
@@ -2630,6 +2375,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -2666,7 +2413,6 @@
 
             
 
-
             
 
             <br>
@@ -2695,8 +2441,8 @@
 
     
 
-
     
+
 
     
 
@@ -2704,76 +2450,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Development
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T05:49:20
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    30
-
-                </span>
 
                 
 
@@ -2790,6 +2506,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -2872,7 +2590,6 @@
 
             
 
-
             
 
             <br>
@@ -2901,8 +2618,8 @@
 
     
 
-
     
+
 
     
 
@@ -2910,59 +2627,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T05:36:04
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    32
-
-                </span>
 
                 
 
@@ -2987,6 +2682,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -3023,7 +2720,6 @@
 
             
 
-
             
 
             <br>
@@ -3052,8 +2748,8 @@
 
     
 
-
     
+
 
     
 
@@ -3061,76 +2757,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Development
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Development
-
             </div>
 
-
             <h1 class="article-title">
-
                 NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T05:36:04
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    32
-
-                </span>
 
                 
 
@@ -3147,6 +2813,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -3229,7 +2897,6 @@
 
             
 
-
             
 
             <br>
@@ -3258,6 +2925,8 @@
 
     
 
+    
+
 
     
 
@@ -3270,11 +2939,8 @@
         </div>
 
         <h1 class="section-title">
-
             Regional News
-
         </h1>
-
 
         
 
@@ -3284,19 +2950,14 @@
 
         
 
-
         
 
         <div class="section-count">
-
             2
-
             articles
-
         </div>
 
         
-
 
         <div class="page-number">
             18
@@ -3313,8 +2974,8 @@
 
     
 
-
     
+
 
     
 
@@ -3322,59 +2983,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Regional News
-
             </div>
 
-
             <h1 class="article-title">
-
                 Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T12:21:04
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    11
-
-                </span>
 
                 
 
@@ -3399,6 +3038,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -3435,7 +3076,6 @@
 
             
 
-
             
 
             <br>
@@ -3464,8 +3104,8 @@
 
     
 
-
     
+
 
     
 
@@ -3473,76 +3113,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Regional News
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Regional News
-
             </div>
 
-
             <h1 class="article-title">
-
                 Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T12:21:04
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    11
-
-                </span>
 
                 
 
@@ -3559,6 +3169,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -3627,7 +3239,6 @@
 
             
 
-
             
 
             <br>
@@ -3656,8 +3267,8 @@
 
     
 
-
     
+
 
     
 
@@ -3665,59 +3276,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Regional News
-
             </div>
 
-
             <h1 class="article-title">
-
                 71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T12:00:08
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    31
-
-                </span>
 
                 
 
@@ -3742,6 +3331,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -3778,7 +3369,6 @@
 
             
 
-
             
 
             <br>
@@ -3807,8 +3397,8 @@
 
     
 
-
     
+
 
     
 
@@ -3816,76 +3406,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Regional News
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Regional News
-
             </div>
 
-
             <h1 class="article-title">
-
                 71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T12:00:08
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    31
-
-                </span>
 
                 
 
@@ -3902,6 +3462,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -3980,7 +3542,6 @@
 
             
 
-
             
 
             <br>
@@ -4009,6 +3570,8 @@
 
     
 
+    
+
 
     
 
@@ -4021,11 +3584,8 @@
         </div>
 
         <h1 class="section-title">
-
             Society &amp; Youth
-
         </h1>
-
 
         
 
@@ -4035,19 +3595,14 @@
 
         
 
-
         
 
         <div class="section-count">
-
             3
-
             articles
-
         </div>
 
         
-
 
         <div class="page-number">
             23
@@ -4064,8 +3619,8 @@
 
     
 
-
     
+
 
     
 
@@ -4073,59 +3628,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T09:38:43
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    12
-
-                </span>
 
                 
 
@@ -4150,6 +3683,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -4186,7 +3721,6 @@
 
             
 
-
             
 
             <br>
@@ -4215,8 +3749,8 @@
 
     
 
-
     
+
 
     
 
@@ -4224,76 +3758,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Society &amp; Youth
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T09:38:43
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    12
-
-                </span>
 
                 
 
@@ -4310,6 +3814,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -4416,7 +3922,6 @@
 
             
 
-
             
 
             <br>
@@ -4445,8 +3950,8 @@
 
     
 
-
     
+
 
     
 
@@ -4454,76 +3959,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 3
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Society &amp; Youth
-                </span>
-
+                Continued
+                
+                    — Part 3
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T09:38:43
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    12
-
-                </span>
 
                 
 
@@ -4540,6 +4015,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -4590,7 +4067,6 @@
 
             
 
-
             
 
             <br>
@@ -4619,8 +4095,8 @@
 
     
 
-
     
+
 
     
 
@@ -4628,59 +4104,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T06:06:13
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    13
-
-                </span>
 
                 
 
@@ -4705,6 +4159,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -4741,7 +4197,6 @@
 
             
 
-
             
 
             <br>
@@ -4770,8 +4225,8 @@
 
     
 
-
     
+
 
     
 
@@ -4779,76 +4234,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Society &amp; Youth
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T06:06:13
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    13
-
-                </span>
 
                 
 
@@ -4865,6 +4290,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -4933,7 +4360,6 @@
 
             
 
-
             
 
             <br>
@@ -4962,8 +4388,8 @@
 
     
 
-
     
+
 
     
 
@@ -4971,59 +4397,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 AASU Accuses CJP of Political Motives Behind School Visits in Assam
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T08:18:13
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    9
-
-                </span>
 
                 
 
@@ -5048,6 +4452,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -5084,7 +4490,6 @@
 
             
 
-
             
 
             <br>
@@ -5113,8 +4518,8 @@
 
     
 
-
     
+
 
     
 
@@ -5122,76 +4527,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Society &amp; Youth
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Society &amp; Youth
-
             </div>
 
-
             <h1 class="article-title">
-
                 AASU Accuses CJP of Political Motives Behind School Visits in Assam
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-04T08:18:13
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    9
-
-                </span>
 
                 
 
@@ -5208,6 +4583,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -5286,7 +4663,6 @@
 
             
 
-
             
 
             <br>
@@ -5315,6 +4691,8 @@
 
     
 
+    
+
 
     
 
@@ -5327,11 +4705,8 @@
         </div>
 
         <h1 class="section-title">
-
             Sports &amp; Achievements
-
         </h1>
-
 
         
 
@@ -5341,19 +4716,14 @@
 
         
 
-
         
 
         <div class="section-count">
-
             1
-
             article
-
         </div>
 
         
-
 
         <div class="page-number">
             31
@@ -5370,8 +4740,8 @@
 
     
 
-
     
+
 
     
 
@@ -5379,59 +4749,37 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
 
-
             
 
-
             <div class="article-category">
-
                 Sports &amp; Achievements
-
             </div>
 
-
             <h1 class="article-title">
-
                 Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-01T12:34:04
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    34
-
-                </span>
 
                 
 
@@ -5456,6 +4804,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -5492,7 +4842,6 @@
 
             
 
-
             
 
             <br>
@@ -5521,8 +4870,8 @@
 
     
 
-
     
+
 
     
 
@@ -5530,76 +4879,46 @@
 
     <section class="magazine-page article-page">
 
+        
 
         <div class="article-header">
-
 
             
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    
-                        — Part 2
-                    
-                </span>
-
-                <span class="part-indicator">
-                    Sports &amp; Achievements
-                </span>
-
+                Continued
+                
+                    — Part 2
+                
             </div>
 
             
 
-
             <div class="article-category">
-
                 Sports &amp; Achievements
-
             </div>
 
-
             <h1 class="article-title">
-
                 Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?
-
             </h1>
-
 
             <div class="article-meta">
 
                 
 
                 <span>
-
                     The Assam Tribune
-
                 </span>
 
                 
 
-
                 
 
                 <span>
-
                     2026-10-01T12:34:04
-
                 </span>
 
                 
-
-
-                
-
-                <span>
-
-                    Article
-                    34
-
-                </span>
 
                 
 
@@ -5616,6 +4935,8 @@
         
 
         <div class="article-body">
+
+            
 
             
 
@@ -5712,7 +5033,6 @@
 
             
 
-
             
 
             <br>
@@ -5741,6 +5061,8 @@
 
     
 
+    
+
 
     
 
@@ -5753,16 +5075,12 @@
         </div>
 
         <h1 class="analytics-title">
-
             Northeast Coverage Analytics
-
         </h1>
 
         <div class="rule"></div>
 
-
         <div class="analytics-summary">
-
 
             <div class="metric-card">
 
@@ -5816,7 +5134,6 @@
 
         </div>
 
-
         <div class="page-number">
             34
         </div>
@@ -5832,6 +5149,8 @@
 
     
 
+    
+
 
     
 
@@ -5843,13 +5162,9 @@
             Data Visualization
         </div>
 
-
         <h1 class="content-title">
-
             Articles By Category
-
         </h1>
-
 
         
 
@@ -5860,7 +5175,6 @@
         >
 
         
-
 
         <div class="page-number">
             35
@@ -5877,6 +5191,8 @@
 
     
 
+    
+
 
     
 
@@ -5888,13 +5204,9 @@
             Data Visualization
         </div>
 
-
         <h1 class="content-title">
-
             Articles By Source
-
         </h1>
-
 
         
 
@@ -5905,7 +5217,6 @@
         >
 
         
-
 
         <div class="page-number">
             36
@@ -5922,6 +5233,8 @@
 
     
 
+    
+
 
     
 
@@ -5933,13 +5246,9 @@
             Data Visualization
         </div>
 
-
         <h1 class="content-title">
-
             Articles Over Time
-
         </h1>
-
 
         
 
@@ -5950,7 +5259,6 @@
         >
 
         
-
 
         <div class="page-number">
             37
@@ -5967,6 +5275,8 @@
 
     
 
+    
+
 
     
 
@@ -5978,13 +5288,9 @@
             Data Visualization
         </div>
 
-
         <h1 class="content-title">
-
             Northeast State Coverage
-
         </h1>
-
 
         
 
@@ -5995,7 +5301,6 @@
         >
 
         
-
 
         <div class="page-number">
             38
@@ -6012,6 +5317,284 @@
 
     
 
+    
+
+
+    
+
+    
+
+    <section class="magazine-page">
+
+        <div class="running-label">
+            Appendix A
+        </div>
+
+        <h1 class="content-title">
+            Appendix A — Sources &amp; Article Count
+        </h1>
+
+        <div class="appendix-intro">
+            This appendix lists every source represented in the final selected article set and the number of articles contributed by each source. Counts are calculated directly from the Phase 14 editorial records used to compose this edition.
+        </div>
+
+        <table class="appendix-table">
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Articles</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>The Assam Tribune</td>
+                    <td class="appendix-score">11</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Total selected articles</strong></td>
+                    <td class="appendix-score"><strong>11</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="small-text" style="margin-top:5mm;">
+            Counts are generated from the same article records used by the magazine composition engine; no manual source count is maintained separately.
+        </div>
+
+        <div class="page-number">
+            39
+        </div>
+
+    </section>
+
+
+    
+
+    
+
+
+
+    
+
+    
+
+
+    
+
+    
+
+    <section class="magazine-page">
+
+        <div class="running-label">
+            Appendix B
+        </div>
+
+        <h1 class="content-title">
+            Appendix B — Article Selection Reasoning
+        </h1>
+
+        <div class="appendix-intro">
+            Each selected article is accompanied by an auditable explanation derived from the pipeline&#39;s relevance, classification and scoring metadata. The reasoning explains the article&#39;s Northeast connection, editorial category, security relevance where applicable, overall score, date eligibility and source traceability.
+        </div>
+
+        <table class="appendix-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Article</th>
+                    <th>Score</th>
+                    <th>Why Selected</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="appendix-number">1</td>
+                    <td>
+                        <strong>Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near</strong><br>
+                        <span class="small-text">Regional News · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        39/100
+                        
+                        <br><span class="small-text">NE: 26</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 26/100; category: Regional News; overall score: 39/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">2</td>
+                    <td>
+                        <strong>Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate</strong><br>
+                        <span class="small-text">Society &amp; Youth · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        44/100
+                        
+                        <br><span class="small-text">NE: 41</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 41/100; category: Society &amp; Youth; overall score: 44/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">3</td>
+                    <td>
+                        <strong>Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding</strong><br>
+                        <span class="small-text">Society &amp; Youth · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        40/100
+                        
+                        <br><span class="small-text">NE: 18</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 18/100; category: Society &amp; Youth; overall score: 40/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">4</td>
+                    <td>
+                        <strong>Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades</strong><br>
+                        <span class="small-text">Development · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        43/100
+                        
+                        <br><span class="small-text">NE: 25</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 25/100; category: Development; overall score: 43/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">5</td>
+                    <td>
+                        <strong>Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested</strong><br>
+                        <span class="small-text">Security &amp; Strategic Affairs · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        96/100
+                        
+                        <br><span class="small-text">NE: 100</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 100/100; category: Security &amp; Strategic Affairs; security relevance: 54/100; overall score: 96/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">6</td>
+                    <td>
+                        <strong>Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates</strong><br>
+                        <span class="small-text">Development · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        48/100
+                        
+                        <br><span class="small-text">NE: 24</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 24/100; category: Development; overall score: 48/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">7</td>
+                    <td>
+                        <strong>Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma</strong><br>
+                        <span class="small-text">Development · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        65/100
+                        
+                        <br><span class="small-text">NE: 100</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 100/100; category: Development; overall score: 65/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">8</td>
+                    <td>
+                        <strong>71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction</strong><br>
+                        <span class="small-text">Regional News · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        45/100
+                        
+                        <br><span class="small-text">NE: 44</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 44/100; category: Regional News; overall score: 45/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">9</td>
+                    <td>
+                        <strong>NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development</strong><br>
+                        <span class="small-text">Development · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        67/100
+                        
+                        <br><span class="small-text">NE: 59</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 59/100; category: Development; overall score: 67/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">10</td>
+                    <td>
+                        <strong>Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?</strong><br>
+                        <span class="small-text">Sports &amp; Achievements · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        37/100
+                        
+                        <br><span class="small-text">NE: 18</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 18/100; category: Sports &amp; Achievements; overall score: 37/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+                <tr>
+                    <td class="appendix-number">11</td>
+                    <td>
+                        <strong>AASU Accuses CJP of Political Motives Behind School Visits in Assam</strong><br>
+                        <span class="small-text">Society &amp; Youth · The Assam Tribune</span>
+                    </td>
+                    <td class="appendix-score">
+                        43/100
+                        
+                        <br><span class="small-text">NE: 37</span>
+                        
+                    </td>
+                    <td class="appendix-reason">Northeast relevance: 37/100; category: Society &amp; Youth; overall score: 43/100; publication-window eligible; source: The Assam Tribune.</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <div class="page-number">
+            40
+        </div>
+
+    </section>
+
+
+    
+
+    
+
+
+
+    
+
+    
+
 
     
 
@@ -6023,16 +5606,11 @@
             Northeast Sentinel AI
         </div>
 
-
         <h1 class="content-title">
-
             How This Edition Was Selected
-
         </h1>
 
-
         <div class="rule"></div>
-
 
         <div class="content-body">
 
@@ -6084,9 +5662,8 @@
 
         </div>
 
-
         <div class="page-number">
-            39
+            41
         </div>
 
     </section>
@@ -6096,69 +5673,6 @@
 
 
     
-
-
-    
-
-    
-
-    <section class="magazine-page cover-page">
-
-        <div>
-
-            <div class="cover-kicker">
-                Northeast Sentinel AI
-            </div>
-
-        </div>
-
-
-        <div>
-
-            <div class="cover-accent"></div>
-
-            <h1 class="cover-title">
-                Northeast State Coverage
-            </h1>
-
-            <p class="cover-subtitle">
-                Indian Army’s Role in Stability, Peace &amp; National Security
-            </p>
-
-        </div>
-
-
-        <div class="cover-meta">
-
-            <div>
-                E-MAGAZINE
-            </div>
-
-            <div>
-                Coverage period:
-                10 September 2026 – 04 October 2026
-            </div>
-
-            <div>
-                AI-assisted research,
-                retrieval, analysis and editorial generation
-            </div>
-
-        </div>
-
-
-        <div class="page-number">
-            40
-        </div>
-
-    </section>
-
-
-    
-
-    
-
-
 
     
 
@@ -6173,16 +5687,11 @@
             Northeast Sentinel AI
         </div>
 
-
         <h1 class="content-title">
-
             Editorial Mix by Section
-
         </h1>
 
-
         <div class="rule"></div>
-
 
         <div class="content-body">
 
@@ -6268,9 +5777,8 @@
 
         </div>
 
-
         <div class="page-number">
-            41
+            42
         </div>
 
     </section>
@@ -6278,6 +5786,8 @@
     
 
 
+
+    
 
     
 
@@ -6289,196 +5799,64 @@
     <section class="magazine-page">
 
         <div class="running-label">
-            Sources
+            Northeast Sentinel AI
         </div>
 
-
         <h1 class="content-title">
-
-            Source Distribution
-
+            Coverage Window
         </h1>
 
+        <div class="rule"></div>
 
         <div class="content-body">
 
             
 
-
-            
-
                 
 
+                    
+
+                    <p>
+                        Selected reporting spans 10 September 2026 to 04 October 2026.
+                    </p>
+
+                    
 
                 
 
                     
 
+                    <p>
+                        Configured assignment window: 2026-09-05 to 2026-10-04.
+                    </p>
 
-                    <div class="pipeline-step">
-
-                        <div class="pipeline-number">
-                            1
-                        </div>
-
-                        <div>
-
-                            <div class="pipeline-name">
-                                The Assam Tribune
-                            </div>
-
-                            <div class="small-text">
-
-                                Articles included:
-                                11
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    
 
                 
 
-            
+                    
+
+                    <p>
+                        Final editorial records: 11.
+                    </p>
+
+                    
 
                 
 
+                    
 
-                
+                    <p>
+                        The date filter is applied before final editorial composition.
+                    </p>
 
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
+                    
 
                 
 
             
 
         </div>
-
-
-        <div class="page-number">
-            42
-        </div>
-
-    </section>
-
-
-    
-
-    
-
-
-
-    
-
-
-    
-
-    
-
-    <section class="magazine-page cover-page">
-
-        <div>
-
-            <div class="cover-kicker">
-                Northeast Sentinel AI
-            </div>
-
-        </div>
-
-
-        <div>
-
-            <div class="cover-accent"></div>
-
-            <h1 class="cover-title">
-                Coverage Window
-            </h1>
-
-            <p class="cover-subtitle">
-                Indian Army’s Role in Stability, Peace &amp; National Security
-            </p>
-
-        </div>
-
-
-        <div class="cover-meta">
-
-            <div>
-                E-MAGAZINE
-            </div>
-
-            <div>
-                Coverage period:
-                10 September 2026 – 04 October 2026
-            </div>
-
-            <div>
-                AI-assisted research,
-                retrieval, analysis and editorial generation
-            </div>
-
-        </div>
-
 
         <div class="page-number">
             43
@@ -6486,12 +5864,11 @@
 
     </section>
 
-
-    
-
     
 
 
+
+    
 
     
 
@@ -6617,6 +5994,8 @@
 
     
 
+    
+
 
     
 
@@ -6628,16 +6007,11 @@
             Methodology
         </div>
 
-
         <h1 class="content-title">
-
             Grounded AI Editorial Generation
-
         </h1>
 
-
         <div class="content-body">
-
 
             <div class="pipeline-step">
 
@@ -6753,7 +6127,6 @@
             </div>
 
         </div>
-
 
         <div class="page-number">
             45
@@ -6770,6 +6143,8 @@
 
     
 
+    
+
 
     
 
@@ -6781,16 +6156,11 @@
             Methodology
         </div>
 
-
         <h1 class="content-title">
-
             Image Selection
-
         </h1>
 
-
         <div class="content-body">
-
 
             <div class="pipeline-step">
 
@@ -6907,7 +6277,6 @@
 
         </div>
 
-
         <div class="page-number">
             46
         </div>
@@ -6923,6 +6292,8 @@
 
     
 
+    
+
 
     
 
@@ -6934,28 +6305,21 @@
             Sources
         </div>
 
-
         <h1 class="content-title">
-
             Source Index
-
         </h1>
-
 
         <div class="content-body">
 
             
 
-
             
 
                 
 
-
                 
 
                     
-
 
                     <div class="pipeline-step">
 
@@ -6986,6 +6350,11 @@
 
                 
 
+                
+
+            
+
+                
 
                 
 
@@ -6993,6 +6362,11 @@
 
                 
 
+                
+
+            
+
+                
 
                 
 
@@ -7000,6 +6374,11 @@
 
                 
 
+                
+
+            
+
+                
 
                 
 
@@ -7007,6 +6386,11 @@
 
                 
 
+                
+
+            
+
+                
 
                 
 
@@ -7014,48 +6398,17 @@
 
                 
 
-
                 
 
             
 
                 
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
-
-                
-
-            
-
-                
-
 
                 
 
             
 
         </div>
-
 
         <div class="page-number">
             47
@@ -7072,6 +6425,8 @@
 
     
 
+    
+
 
     
 
@@ -7083,16 +6438,11 @@
             Methodology
         </div>
 
-
         <h1 class="content-title">
-
             Research Methodology
-
         </h1>
 
-
         <div class="content-body">
-
 
             <div class="pipeline-step">
 
@@ -7209,7 +6559,6 @@
 
         </div>
 
-
         <div class="page-number">
             48
         </div>
@@ -7225,6 +6574,8 @@
 
     
 
+    
+
 
     
 
@@ -7236,130 +6587,102 @@
             AI Editorial Pipeline
         </div>
 
-
         <h1 class="content-title">
-
             AI Editorial Pipeline
-
         </h1>
-
 
         <div class="content-body">
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">01</div>
-
                 <div>
                     <div class="pipeline-name">
                         Scrapling
                     </div>
-
                     <div class="small-text">
                         Web article discovery and extraction.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">02</div>
-
                 <div>
                     <div class="pipeline-name">
                         SQLite
                     </div>
-
                     <div class="small-text">
                         Structured article storage and metadata.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">03</div>
-
                 <div>
                     <div class="pipeline-name">
                         NLP Classification
                     </div>
-
                     <div class="small-text">
                         Northeast relevance, themes and entities.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">04</div>
-
                 <div>
                     <div class="pipeline-name">
                         Article Scoring
                     </div>
-
                     <div class="small-text">
                         Multi-factor ranking of candidate articles.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">05</div>
-
                 <div>
                     <div class="pipeline-name">
                         Sentence Transformers
                     </div>
-
                     <div class="small-text">
                         Semantic embeddings for retrieval.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">06</div>
-
                 <div>
                     <div class="pipeline-name">
                         Chroma
                     </div>
-
                     <div class="small-text">
                         Local vector storage and semantic search.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">07</div>
-
                 <div>
                     <div class="pipeline-name">
                         Mistral RAG
                     </div>
-
                     <div class="small-text">
                         Evidence-grounded editorial generation.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">08</div>
-
                 <div>
                     <div class="pipeline-name">
                         Magazine Composition
                     </div>
-
                     <div class="small-text">
                         Automated page planning and HTML composition.
                     </div>
@@ -7367,7 +6690,6 @@
             </div>
 
         </div>
-
 
         <div class="page-number">
             49
@@ -7381,6 +6703,8 @@
     
 
 
+
+    
 
     
 
@@ -7410,11 +6734,12 @@
             <div class="cover-accent"></div>
 
             <p class="small-text">
-                10 September 2026 – 04 October 2026
+                Coverage period:
+                5 September 2026 —
+                5 October 2026
             </p>
 
         </div>
-
 
         <div class="page-number">
             50
@@ -7426,7 +6751,6 @@
     
 
     
-
 
 
 

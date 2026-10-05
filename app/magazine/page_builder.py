@@ -142,6 +142,40 @@ class MagazinePageBuilder:
             raise ValueError("Editorial articles must be stored as a list.")
         return articles
 
+    @staticmethod
+    def _selection_reason(article: dict, category: str, source: str) -> str:
+        """Build a compact, auditable explanation for Appendix B."""
+        explicit = article.get("selection_reason") or article.get("reason")
+        if explicit:
+            return str(explicit).strip()
+
+        def score(value):
+            try:
+                return f"{float(value):.0f}/100"
+            except (TypeError, ValueError):
+                return "n/a"
+
+        parts = [
+            f"Northeast relevance: {score(article.get('northeast_score'))}",
+            f"category: {category or 'Regional News'}",
+        ]
+
+        try:
+            if article.get("security_score") is not None and float(article["security_score"]) >= 20:
+                parts.append(f"security relevance: {score(article['security_score'])}")
+        except (TypeError, ValueError):
+            pass
+
+        parts.extend([
+            f"overall score: {score(article.get('article_score'))}",
+            "publication-window eligible",
+        ])
+
+        if source:
+            parts.append(f"source: {source}")
+
+        return "; ".join(parts) + "."
+
     def normalize_article(self, article: dict) -> dict:
         article_id = self._first(article, "article_id", "id", "source_id")
         title = self._first(article, "headline", "title", "article_title", default="Untitled Article")
@@ -421,6 +455,39 @@ class MagazinePageBuilder:
         counts = Counter(a.get("source", "Unknown Source") for a in articles)
         return [f"{source}: {count} article(s)" for source, count in counts.most_common()]
 
+    def _source_appendix_rows(self, articles: list[dict]) -> list[dict]:
+        """Build Appendix A directly from the selected article records."""
+        counts = Counter(
+            (a.get("source") or "Unknown Source").strip()
+            for a in articles
+        )
+        return [
+            {"source": source, "article_count": count}
+            for source, count in counts.most_common()
+        ]
+
+    def _selection_appendix_rows(self, articles: list[dict]) -> list[dict]:
+        """Build Appendix B with auditable selection metadata for every article."""
+        rows = []
+        for index, article in enumerate(articles, start=1):
+            rows.append({
+                "number": index,
+                "article_id": article.get("article_id"),
+                "title": article.get("title", "Untitled Article"),
+                "category": article.get("category", "Regional News"),
+                "source": article.get("source", "Unknown Source"),
+                "published_date": article.get("published_date", ""),
+                "article_score": article.get("article_score"),
+                "northeast_score": article.get("northeast_score"),
+                "security_score": article.get("security_score"),
+                "reason": article.get("selection_reason") or self._selection_reason(
+                    article,
+                    article.get("category", "Regional News"),
+                    article.get("source", "Unknown Source"),
+                ),
+            })
+        return rows
+
     def build_support_pages(self, articles: list[dict], sections: list[dict], charts: list[dict]) -> list[dict]:
         states = self._state_mentions(articles)
         categories = self._category_stats(articles)
@@ -441,7 +508,33 @@ class MagazinePageBuilder:
             "claim-level grounding → image selection → analytics → magazine composition → PDF."
         )
 
+        source_rows = self._source_appendix_rows(articles)
+        selection_rows = self._selection_appendix_rows(articles)
+
         return [
+            {
+                "type": "appendix_sources",
+                "title": "Appendix A — Sources & Article Count",
+                "source_rows": source_rows,
+                "content": (
+                    "This appendix lists every source represented in the final selected "
+                    "article set and the number of articles contributed by each source. "
+                    "Counts are calculated directly from the Phase 14 editorial records "
+                    "used to compose this edition."
+                ),
+            },
+            {
+                "type": "appendix_selection",
+                "title": "Appendix B — Article Selection Reasoning",
+                "selection_rows": selection_rows,
+                "content": (
+                    "Each selected article is accompanied by an auditable explanation "
+                    "derived from the pipeline's relevance, classification and scoring "
+                    "metadata. The reasoning explains the article's Northeast connection, "
+                    "editorial category, security relevance where applicable, overall score, "
+                    "date eligibility and source traceability."
+                ),
+            },
             {
                 "type": "overview",
                 "title": "How This Edition Was Selected",
@@ -453,16 +546,6 @@ class MagazinePageBuilder:
                 ]),
             },
             {
-                "type": "state_coverage",
-                "title": "Northeast State Coverage",
-                "content": "\n".join([
-                    "State mentions detected in the selected editorial corpus:",
-                    *[f"{state}: {count} article(s)" for state, count in states.most_common()],
-                    "",
-                    "A state is counted when its name appears in the article title or editorial body. This is a coverage indicator, not a claim of exclusive geographic focus.",
-                ]) if states else "No Northeast state names were detected in the selected text.",
-            },
-            {
                 "type": "category_overview",
                 "title": "Editorial Mix by Section",
                 "content": "\n".join([
@@ -470,16 +553,6 @@ class MagazinePageBuilder:
                     *categories,
                     "",
                     "The section structure is inherited from the classifier output used by the magazine composition stage.",
-                ]),
-            },
-            {
-                "type": "source_distribution",
-                "title": "Source Distribution",
-                "content": "\n".join([
-                    "Sources represented in the final article set:",
-                    *sources,
-                    "",
-                    "Source counts describe inclusion in this edition; they do not constitute a quality ranking by themselves.",
                 ]),
             },
             {

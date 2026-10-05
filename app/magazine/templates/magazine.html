@@ -15,7 +15,7 @@
     <style>
 
         /* ============================================================
-           A4 PAGE FOUNDATION
+           PAGE SETUP
         ============================================================ */
 
         @page {
@@ -23,9 +23,7 @@
             margin: 0;
         }
 
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
         }
 
@@ -33,12 +31,12 @@
         body {
             margin: 0;
             padding: 0;
-            background: #e5e7eb;
-            color: #1f2933;
+            background: #e5e5e5;
             font-family:
                 Georgia,
                 "Times New Roman",
                 serif;
+            color: #1f2933;
         }
 
         body {
@@ -46,19 +44,21 @@
         }
 
         /* ============================================================
-           MAGAZINE PAGE
+           EVERY LOGICAL PAGE BECOMES ONE PHYSICAL PAGE
         ============================================================ */
 
         .magazine-page {
-            position: relative;
-
             width: 210mm;
             height: 297mm;
+
             min-height: 297mm;
             max-height: 297mm;
 
             margin: 0 auto;
-            padding: 18mm 17mm 17mm 17mm;
+
+            padding: 18mm 17mm 16mm 17mm;
+
+            position: relative;
 
             overflow: hidden;
 
@@ -74,51 +74,14 @@
         }
 
         /* ============================================================
-           COMMON TYPOGRAPHY
+           COMMON ELEMENTS
         ============================================================ */
-
-        h1,
-        h2,
-        h3,
-        p {
-            margin-top: 0;
-        }
-
-        p {
-            font-size: 10.2pt;
-            line-height: 1.52;
-            margin-bottom: 4mm;
-        }
-
-        .small-text {
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 8pt;
-            line-height: 1.45;
-            color: #6b7280;
-        }
-
-        .muted {
-            color: #6b7280;
-        }
-
-        .rule {
-            width: 100%;
-            height: 1px;
-
-            background: #d1d5db;
-
-            margin: 5mm 0;
-        }
 
         .page-number {
             position: absolute;
 
-            right: 14mm;
             bottom: 7mm;
+            right: 14mm;
 
             font-family:
                 Arial,
@@ -126,6 +89,7 @@
                 sans-serif;
 
             font-size: 8pt;
+
             color: #6b7280;
         }
 
@@ -136,10 +100,10 @@
                 sans-serif;
 
             font-size: 7pt;
-            font-weight: bold;
+
+            letter-spacing: 1.5px;
 
             text-transform: uppercase;
-            letter-spacing: 1.7px;
 
             color: #6b7280;
 
@@ -153,14 +117,53 @@
                 sans-serif;
 
             font-size: 8pt;
+
             font-weight: bold;
 
-            text-transform: uppercase;
             letter-spacing: 1.8px;
+
+            text-transform: uppercase;
 
             color: #7f1d1d;
 
             margin-bottom: 4mm;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 4mm;
+
+            line-height: 1.55;
+
+            font-size: 10.5pt;
+        }
+
+        .small-text {
+            font-size: 8.5pt;
+
+            line-height: 1.45;
+
+            color: #4b5563;
+        }
+
+        .muted {
+            color: #6b7280;
+        }
+
+        .rule {
+            width: 100%;
+
+            height: 1px;
+
+            background: #d1d5db;
+
+            margin: 5mm 0;
         }
 
         /* ============================================================
@@ -168,14 +171,6 @@
         ============================================================ */
 
         .cover-page {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            padding: 24mm 20mm;
-
-            color: #ffffff;
-
             background:
                 linear-gradient(
                     135deg,
@@ -183,6 +178,16 @@
                     #1f2937 55%,
                     #7f1d1d 100%
                 );
+
+            color: white;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 24mm 20mm;
         }
 
         .cover-kicker {
@@ -192,30 +197,30 @@
                 sans-serif;
 
             font-size: 9pt;
-            font-weight: bold;
 
-            text-transform: uppercase;
             letter-spacing: 3px;
 
-            color: #e5e7eb;
+            text-transform: uppercase;
+
+            opacity: 0.8;
         }
 
         .cover-title {
-            max-width: 170mm;
+            font-size: 34pt;
 
-            font-size: 35pt;
             line-height: 1.04;
 
             margin: 0;
+
+            max-width: 170mm;
         }
 
         .cover-subtitle {
-            max-width: 155mm;
-
-            margin-top: 7mm;
-
             font-size: 15pt;
+
             line-height: 1.4;
+
+            max-width: 155mm;
 
             color: #e5e7eb;
         }
@@ -226,7 +231,8 @@
                 Helvetica,
                 sans-serif;
 
-            font-size: 8.5pt;
+            font-size: 9pt;
+
             line-height: 1.7;
 
             color: #d1d5db;
@@ -234,11 +240,12 @@
 
         .cover-accent {
             width: 35mm;
+
             height: 3px;
 
-            margin: 8mm 0;
-
             background: #fca5a5;
+
+            margin: 8mm 0;
         }
 
         /* ============================================================
@@ -249,6 +256,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -259,16 +267,16 @@
         }
 
         .inside-cover-box h1 {
-            font-size: 28pt;
-            line-height: 1.08;
+            font-size: 27pt;
         }
 
         /* ============================================================
-           EDITORIAL PAGE
+           EDITORIAL
         ============================================================ */
 
         .editorial-title {
-            font-size: 28pt;
+            font-size: 27pt;
+
             line-height: 1.1;
 
             margin-bottom: 7mm;
@@ -283,8 +291,7 @@
         ============================================================ */
 
         .toc-title {
-            font-size: 29pt;
-            line-height: 1.05;
+            font-size: 28pt;
 
             margin-bottom: 8mm;
         }
@@ -292,34 +299,32 @@
         .toc-item {
             display: flex;
 
+            justify-content: space-between;
+
             align-items: baseline;
 
-            gap: 4mm;
-
-            padding: 3.5mm 0;
+            padding: 3mm 0;
 
             border-bottom: 1px dotted #cbd5e1;
+
+            font-size: 11pt;
         }
 
         .toc-number {
-            min-width: 12mm;
-
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 9pt;
             font-weight: bold;
 
             color: #7f1d1d;
+
+            width: 15mm;
         }
 
         .toc-label {
             flex: 1;
-
-            font-size: 11pt;
-            font-weight: bold;
         }
 
         /* ============================================================
@@ -328,15 +333,12 @@
 
         .section-page {
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #f8fafc 0%,
-                    #eef2f7 100%
-                );
+            background: #f8fafc;
         }
 
         .section-number {
@@ -345,10 +347,8 @@
                 Helvetica,
                 sans-serif;
 
-            font-size: 9pt;
-            font-weight: bold;
+            font-size: 10pt;
 
-            text-transform: uppercase;
             letter-spacing: 3px;
 
             color: #7f1d1d;
@@ -357,10 +357,9 @@
         }
 
         .section-title {
-            max-width: 160mm;
+            font-size: 32pt;
 
-            font-size: 34pt;
-            line-height: 1.03;
+            line-height: 1.05;
 
             margin-bottom: 7mm;
         }
@@ -369,23 +368,24 @@
             max-width: 145mm;
 
             font-size: 13pt;
+
             line-height: 1.55;
 
             color: #4b5563;
         }
 
         .section-count {
-            margin-top: 9mm;
+            margin-top: 10mm;
 
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 8pt;
-            font-weight: bold;
+            font-size: 9pt;
 
             text-transform: uppercase;
+
             letter-spacing: 1.5px;
 
             color: #6b7280;
@@ -396,15 +396,13 @@
         ============================================================ */
 
         .article-page {
-    display: flex;
+            display: flex;
 
-    flex-direction: column;
-
-    padding-bottom: 30mm;
-}
+            flex-direction: column;
+        }
 
         .article-header {
-            margin-bottom: 4mm;
+            margin-bottom: 5mm;
         }
 
         .article-category {
@@ -414,44 +412,21 @@
                 sans-serif;
 
             font-size: 7.5pt;
+
             font-weight: bold;
 
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+
+            letter-spacing: 1.6px;
 
             color: #7f1d1d;
 
             margin-bottom: 3mm;
-        }
-
-        .continuation-label {
-            display: flex;
-            justify-content: space-between;
-
-            margin-bottom: 3mm;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 7pt;
-            font-weight: bold;
-
-            text-transform: uppercase;
-            letter-spacing: 1.3px;
-
-            color: #6b7280;
-        }
-
-        .part-indicator {
-            color: #7f1d1d;
         }
 
         .article-title {
-            max-width: 175mm;
-
             font-size: 23pt;
+
             line-height: 1.08;
 
             margin-bottom: 4mm;
@@ -459,128 +434,189 @@
 
         .article-meta {
             display: flex;
-            flex-wrap: wrap;
 
-            gap: 4mm;
+            gap: 5mm;
+
+            flex-wrap: wrap;
 
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 7.3pt;
+            font-size: 7.5pt;
 
             color: #6b7280;
         }
 
         .article-image {
-            display: block;
-
             width: 100%;
-            height: 68mm;
 
-            margin: 3mm 0 6mm 0;
+            height: 72mm;
 
             object-fit: cover;
+
+            margin: 3mm 0 6mm 0;
 
             background: #e5e7eb;
         }
 
         .article-image-small {
-            display: block;
-
             width: 100%;
-            height: 50mm;
 
-            margin: 3mm 0 5mm 0;
+            height: 55mm;
 
             object-fit: cover;
+
+            margin: 3mm 0 6mm 0;
 
             background: #e5e7eb;
         }
 
         .article-body {
-            width: 100%;
+            column-count: 1;
+
+            column-gap: 8mm;
+
+            /* Reserve space for the fixed source footer. */
+            padding-bottom: 16mm;
         }
 
         .article-body p {
-            font-size: 10.1pt;
+            font-size: 10.2pt;
+
             line-height: 1.52;
 
-            margin-bottom: 3.2mm;
+            margin-bottom: 3.5mm;
         }
 
         .article-lead {
-            font-size: 11.5pt !important;
+            font-size: 12pt !important;
+
             line-height: 1.45 !important;
 
             font-weight: bold;
         }
 
+        .continuation-label {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 7.5pt;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            color: #6b7280;
+
+            margin-bottom: 4mm;
+        }
+
         .source-box {
-    position: absolute;
+            position: absolute;
 
-    left: 17mm;
-    right: 17mm;
-    bottom: 10mm;
+            left: 17mm;
+            right: 17mm;
+            bottom: 13mm;
 
-    padding-top: 3mm;
+            margin: 0;
+            padding-top: 3mm;
 
-    border-top: 1px solid #d1d5db;
+            border-top: 1px solid #d1d5db;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    font-size: 7pt;
+            font-size: 6.5pt;
 
-    line-height: 1.35;
+            line-height: 1.3;
 
-    color: #6b7280;
+            color: #6b7280;
 
-    margin: 0;
-
-    background: #ffffff;
-}
-
-.source-url {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
-
-        .source-box strong {
-            color: #374151;
+            max-height: 11mm;
+            overflow: hidden;
         }
 
         .source-url {
             overflow-wrap: anywhere;
-            word-break: break-word;
         }
 
         /* ============================================================
-           GENERAL CONTENT
+           GENERIC CONTENT PAGE
         ============================================================ */
 
         .content-title {
-            max-width: 175mm;
+            font-size: 27pt;
 
-            font-size: 28pt;
-            line-height: 1.08;
+            line-height: 1.1;
 
             margin-bottom: 7mm;
         }
 
         .content-body {
-            max-width: 172mm;
+            max-width: 170mm;
+        }
+
+        .appendix-intro {
+            font-size: 9.5pt;
+            line-height: 1.45;
+            color: #4b5563;
+            margin-bottom: 6mm;
+        }
+
+        .appendix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 7.5pt;
+        }
+
+        .appendix-table th {
+            text-align: left;
+            font-weight: 700;
+            padding: 2.5mm 2mm;
+            border-bottom: 1px solid #111827;
+            background: #f3f4f6;
+        }
+
+        .appendix-table td {
+            vertical-align: top;
+            padding: 2.5mm 2mm;
+            border-bottom: 1px solid #e5e7eb;
+            line-height: 1.35;
+        }
+
+        .appendix-number {
+            width: 9mm;
+            font-weight: 700;
+        }
+
+        .appendix-score {
+            white-space: nowrap;
+            font-weight: 700;
+        }
+
+        .appendix-reason {
+            font-size: 7pt;
+            color: #374151;
         }
 
         .content-body ul {
+            margin-top: 2mm;
+
+            margin-bottom: 5mm;
+
             padding-left: 7mm;
         }
 
         .content-body li {
             margin-bottom: 2.5mm;
+
             line-height: 1.45;
         }
 
@@ -589,8 +625,7 @@
         ============================================================ */
 
         .analytics-title {
-            font-size: 28pt;
-            line-height: 1.05;
+            font-size: 26pt;
 
             margin-bottom: 5mm;
         }
@@ -603,7 +638,7 @@
 
             gap: 4mm;
 
-            margin-bottom: 7mm;
+            margin-bottom: 6mm;
         }
 
         .metric-card {
@@ -621,12 +656,11 @@
                 sans-serif;
 
             font-size: 20pt;
+
             font-weight: bold;
         }
 
         .metric-label {
-            margin-top: 1mm;
-
             font-family:
                 Arial,
                 Helvetica,
@@ -635,35 +669,36 @@
             font-size: 7pt;
 
             text-transform: uppercase;
+
             letter-spacing: 1px;
 
             color: #6b7280;
-        }
 
-        /* ============================================================
-           CHARTS
-        ============================================================ */
+            margin-top: 1mm;
+        }
 
         .chart-page {
             display: flex;
+
             flex-direction: column;
+
+            justify-content: flex-start;
         }
 
         .chart-image {
             display: block;
 
             width: 100%;
-            height: auto;
 
-            max-height: 215mm;
-
-            margin-top: 5mm;
+            max-height: 210mm;
 
             object-fit: contain;
+
+            margin-top: 5mm;
         }
 
         /* ============================================================
-           PIPELINE / METHODOLOGY
+           METHODOLOGY / PIPELINE
         ============================================================ */
 
         .pipeline-step {
@@ -677,17 +712,16 @@
         }
 
         .pipeline-number {
-            min-width: 9mm;
-
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            font-size: 9pt;
             font-weight: bold;
 
             color: #7f1d1d;
+
+            min-width: 9mm;
         }
 
         .pipeline-name {
@@ -697,83 +731,21 @@
         }
 
         /* ============================================================
-           DATA TABLE
-        ============================================================ */
-
-        .data-table {
-            width: 100%;
-
-            border-collapse: collapse;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 8pt;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 2.5mm;
-
-            border-bottom: 1px solid #e5e7eb;
-
-            text-align: left;
-        }
-
-        .data-table th {
-            font-size: 7pt;
-
-            text-transform: uppercase;
-            letter-spacing: 1px;
-
-            color: #6b7280;
-        }
-
-        .data-table .num {
-            text-align: right;
-        }
-
-        /* ============================================================
-           INFO / NOTE
-        ============================================================ */
-
-        .info-note {
-            margin-top: 6mm;
-
-            padding: 5mm;
-
-            background: #f8fafc;
-
-            border-left: 3px solid #7f1d1d;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            font-size: 8pt;
-            line-height: 1.5;
-
-            color: #4b5563;
-        }
-
-        /* ============================================================
            BACK COVER
         ============================================================ */
 
         .back-cover {
+            background: #111827;
+
+            color: white;
+
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
-
-            background: #111827;
-
-            color: #ffffff;
         }
 
         .back-cover-content {
@@ -781,8 +753,7 @@
         }
 
         .back-cover h1 {
-            font-size: 30pt;
-            line-height: 1.05;
+            font-size: 28pt;
 
             margin-bottom: 7mm;
         }
@@ -792,32 +763,14 @@
         }
 
         /* ============================================================
-           SCREEN PREVIEW
-        ============================================================ */
-
-        @media screen {
-
-            body {
-                padding: 15mm 0;
-            }
-
-            .magazine-page {
-                margin: 0 auto 10mm auto;
-
-                box-shadow:
-                    0 8px 30px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        /* ============================================================
-           PRINT
+           PRINT SAFETY
         ============================================================ */
 
         @media print {
 
             html,
             body {
-                background: #ffffff;
+                background: white;
             }
 
             .magazine-page {
@@ -833,8 +786,11 @@
 
 <body>
 
-
 {% for page in page_plan %}
+
+    {# ================================================================
+       PAGE TYPE
+    ================================================================= #}
 
     {% set page_type = page.type|default('content')|lower %}
 
@@ -843,10 +799,7 @@
        COVER
     ================================================================= #}
 
-    {% if page_type == 'cover'
-          or ('cover' in page_type
-              and 'inside' not in page_type
-              and 'back' not in page_type) %}
+    {% if page_type == 'cover' %}
 
     <section class="magazine-page cover-page">
 
@@ -858,22 +811,21 @@
 
         </div>
 
-
         <div>
 
             <div class="cover-accent"></div>
 
             <h1 class="cover-title">
-                {{ page.title or metadata.title or "Securing the Northeast" }}
+                {{ page.title
+                   or "Securing the Northeast" }}
             </h1>
 
             <p class="cover-subtitle">
-                {{ metadata.subtitle
-                   or "Indian Army's Role in Stability, Peace & National Security" }}
+                Indian Army's Role in Stability,
+                Peace &amp; National Security
             </p>
 
         </div>
-
 
         <div class="cover-meta">
 
@@ -883,8 +835,8 @@
 
             <div>
                 Coverage period:
-                {{ metadata.date_range
-                   or "5 September 2026 — 5 October 2026" }}
+                5 September 2026 —
+                5 October 2026
             </div>
 
             <div>
@@ -894,9 +846,8 @@
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -930,14 +881,14 @@
 
             <p class="small-text">
                 Coverage period:
-                {{ metadata.date_range
-                   or "5 September 2026 — 5 October 2026" }}
+                5 September 2026 to
+                5 October 2026
             </p>
 
         </div>
 
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -987,8 +938,8 @@
 
                 <p>
                     Articles were collected, filtered, classified,
-                    scored and organized through the automated
-                    research pipeline.
+                    scored and organized through the magazine's
+                    automated research pipeline.
                 </p>
 
             {% endif %}
@@ -996,7 +947,7 @@
         </div>
 
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1006,8 +957,7 @@
        TABLE OF CONTENTS
     ================================================================= #}
 
-    {% elif 'toc' in page_type
-          or 'contents' in page_type %}
+    {% elif 'toc' in page_type or 'contents' in page_type %}
 
     <section class="magazine-page">
 
@@ -1021,46 +971,38 @@
 
         <div class="rule"></div>
 
-
         {% for section in sections %}
 
         <div class="toc-item">
 
             <div class="toc-number">
-                {{ "%02d"|format(loop.index) }}
+                {{ loop.index|string }}
             </div>
 
             <div class="toc-label">
-
                 {{ section.name
                    or section.title
-                   or section.category
-                   or "Section" }}
-
+                   or section.category }}
             </div>
 
             <div class="muted">
-
                 {{ section.articles|length }}
-
                 article{% if section.articles|length != 1 %}s{% endif %}
-
             </div>
 
         </div>
 
         {% endfor %}
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
 
 
     {# ================================================================
-       SECTION OPENER
+       SECTION PAGE
     ================================================================= #}
 
     {% elif 'section' in page_type
@@ -1074,14 +1016,10 @@
         </div>
 
         <h1 class="section-title">
-
             {{ page.title
                or page.section
-               or page.category
                or "Section" }}
-
         </h1>
-
 
         {% if page.content %}
 
@@ -1091,120 +1029,81 @@
 
         {% endif %}
 
-
         {% if page.article_count is defined %}
 
         <div class="section-count">
-
             {{ page.article_count }}
-
             article{% if page.article_count != 1 %}s{% endif %}
-
         </div>
 
         {% endif %}
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
 
 
     {# ================================================================
-       ARTICLE
+       ARTICLE PAGE
     ================================================================= #}
 
     {% elif 'article' in page_type %}
 
-    {% set article = page.article|default({}) %}
-
     <section class="magazine-page article-page">
 
+        {% set article = page.article %}
 
         <div class="article-header">
-
 
             {% if page.is_continuation %}
 
             <div class="continuation-label">
-
-                <span>
-                    Continued
-                    {% if page.page_part %}
-                        — Part {{ page.page_part }}
-                    {% endif %}
-                </span>
-
-                <span class="part-indicator">
-                    {{ page.article_category
-                       or article.category
-                       or "Regional News" }}
-                </span>
-
+                Continued
+                {% if page.page_part %}
+                    — Part {{ page.page_part }}
+                {% endif %}
             </div>
 
             {% endif %}
 
-
             <div class="article-category">
-
                 {{ page.article_category
                    or article.category
                    or "Regional News" }}
-
             </div>
 
-
             <h1 class="article-title">
-
                 {{ page.article_title
                    or article.title
                    or "Untitled Article" }}
-
             </h1>
-
 
             <div class="article-meta">
 
-                {% if page.article_source
-                      or article.source %}
+                {% if page.article_source or article.source %}
 
                 <span>
-
                     {{ page.article_source
                        or article.source }}
-
                 </span>
 
                 {% endif %}
 
-
-                {% if page.published_date
-                      or article.published_date %}
+                {% if article.published_date %}
 
                 <span>
-
-                    {{ page.published_date
-                       or article.published_date }}
-
+                    {{ article.published_date }}
                 </span>
 
                 {% endif %}
 
-
-                {% if page.article_id
-                      or article.article_id
-                      or article.id %}
+                {% if article.id %}
 
                 <span>
-
-                    Article
-                    {{ page.article_id
-                       or article.article_id
-                       or article.id }}
-
+                    Article ID:
+                    {{ article.id }}
                 </span>
 
                 {% endif %}
@@ -1215,7 +1114,7 @@
 
 
         {# ------------------------------------------------------------
-           Article image only on first page
+           Only show image on the opener page
         ------------------------------------------------------------- #}
 
         {% if not page.is_continuation
@@ -1242,12 +1141,15 @@
                 or ""
             %}
 
-            {% for paragraph in body_text.split('\n') %}
+            {% set paragraphs =
+                body_text.split('\n')
+            %}
+
+            {% for paragraph in paragraphs %}
 
                 {% if paragraph.strip() %}
 
-                    {% if loop.first
-                          and not page.is_continuation %}
+                    {% if loop.first and not page.is_continuation %}
 
                     <p class="article-lead">
                         {{ paragraph }}
@@ -1284,7 +1186,6 @@
 
             {% endif %}
 
-
             {% if page.article_url %}
 
             <br>
@@ -1299,7 +1200,7 @@
 
 
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1319,17 +1220,13 @@
         </div>
 
         <h1 class="analytics-title">
-
             {{ page.title
                or "Northeast Coverage Analytics" }}
-
         </h1>
 
         <div class="rule"></div>
 
-
         <div class="analytics-summary">
-
 
             <div class="metric-card">
 
@@ -1383,9 +1280,8 @@
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1403,15 +1299,11 @@
             Data Visualization
         </div>
 
-
         <h1 class="content-title">
-
             {{ page.title
                or page.chart_title
                or "Coverage Analysis" }}
-
         </h1>
-
 
         {% if page.chart_path %}
 
@@ -1437,9 +1329,116 @@
 
         {% endif %}
 
+        <div class="page-number">
+            {{ page.display_page_number }}
+        </div>
+
+    </section>
+
+
+    {# ================================================================
+       APPENDIX A — SOURCES & ARTICLE COUNT
+    ================================================================= #}
+
+    {% elif page_type == 'appendix_sources' %}
+
+    <section class="magazine-page">
+
+        <div class="running-label">
+            Appendix A
+        </div>
+
+        <h1 class="content-title">
+            {{ page.title }}
+        </h1>
+
+        <div class="appendix-intro">
+            {{ page.content }}
+        </div>
+
+        <table class="appendix-table">
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Articles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in page.source_rows %}
+                <tr>
+                    <td>{{ row.source }}</td>
+                    <td class="appendix-score">{{ row.article_count }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><strong>Total selected articles</strong></td>
+                    <td class="appendix-score"><strong>{{ articles|length }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="small-text" style="margin-top:5mm;">
+            Counts are generated from the same article records used by the magazine composition engine; no manual source count is maintained separately.
+        </div>
 
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
+        </div>
+
+    </section>
+
+
+    {# ================================================================
+       APPENDIX B — ARTICLE SELECTION REASONING
+    ================================================================= #}
+
+    {% elif page_type == 'appendix_selection' %}
+
+    <section class="magazine-page">
+
+        <div class="running-label">
+            Appendix B
+        </div>
+
+        <h1 class="content-title">
+            {{ page.title }}
+        </h1>
+
+        <div class="appendix-intro">
+            {{ page.content }}
+        </div>
+
+        <table class="appendix-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Article</th>
+                    <th>Score</th>
+                    <th>Why Selected</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in page.selection_rows %}
+                <tr>
+                    <td class="appendix-number">{{ row.number }}</td>
+                    <td>
+                        <strong>{{ row.title }}</strong><br>
+                        <span class="small-text">{{ row.category }} · {{ row.source }}</span>
+                    </td>
+                    <td class="appendix-score">
+                        {{ row.article_score if row.article_score is not none else '—' }}/100
+                        {% if row.northeast_score is not none %}
+                        <br><span class="small-text">NE: {{ row.northeast_score }}</span>
+                        {% endif %}
+                    </td>
+                    <td class="appendix-reason">{{ row.reason }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="page-number">
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1457,19 +1456,14 @@
             Sources
         </div>
 
-
         <h1 class="content-title">
-
             {{ page.title
                or "Source Index" }}
-
         </h1>
-
 
         <div class="content-body">
 
-            {% set source_names = [] %}
-
+            {% set seen_sources = [] %}
 
             {% for article in articles %}
 
@@ -1478,18 +1472,16 @@
                     or "Unknown Source"
                 %}
 
-
-                {% if source not in source_names %}
+                {% if source not in seen_sources %}
 
                     {% set _ =
-                        source_names.append(source)
+                        seen_sources.append(source)
                     %}
-
 
                     <div class="pipeline-step">
 
                         <div class="pipeline-number">
-                            {{ source_names|length }}
+                            {{ loop.index }}
                         </div>
 
                         <div>
@@ -1501,16 +1493,10 @@
                             <div class="small-text">
 
                                 Articles included:
-                                {{
-                                    articles
-                                    |selectattr(
-                                        "source",
-                                        "equalto",
-                                        source
-                                    )
-                                    |list
-                                    |length
-                                }}
+                                {{ articles
+                                   |selectattr("source", "equalto", source)
+                                   |list
+                                   |length }}
 
                             </div>
 
@@ -1524,9 +1510,8 @@
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1544,17 +1529,12 @@
             Methodology
         </div>
 
-
         <h1 class="content-title">
-
             {{ page.title
                or "Research Methodology" }}
-
         </h1>
 
-
         <div class="content-body">
-
 
             <div class="pipeline-step">
 
@@ -1671,16 +1651,15 @@
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
 
 
     {# ================================================================
-       PIPELINE
+       PIPELINE PAGE
     ================================================================= #}
 
     {% elif 'pipeline' in page_type %}
@@ -1691,131 +1670,103 @@
             AI Editorial Pipeline
         </div>
 
-
         <h1 class="content-title">
-
             {{ page.title
                or "From Web Data to Magazine" }}
-
         </h1>
-
 
         <div class="content-body">
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">01</div>
-
                 <div>
                     <div class="pipeline-name">
                         Scrapling
                     </div>
-
                     <div class="small-text">
                         Web article discovery and extraction.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">02</div>
-
                 <div>
                     <div class="pipeline-name">
                         SQLite
                     </div>
-
                     <div class="small-text">
                         Structured article storage and metadata.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">03</div>
-
                 <div>
                     <div class="pipeline-name">
                         NLP Classification
                     </div>
-
                     <div class="small-text">
                         Northeast relevance, themes and entities.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">04</div>
-
                 <div>
                     <div class="pipeline-name">
                         Article Scoring
                     </div>
-
                     <div class="small-text">
                         Multi-factor ranking of candidate articles.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">05</div>
-
                 <div>
                     <div class="pipeline-name">
                         Sentence Transformers
                     </div>
-
                     <div class="small-text">
                         Semantic embeddings for retrieval.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">06</div>
-
                 <div>
                     <div class="pipeline-name">
                         Chroma
                     </div>
-
                     <div class="small-text">
                         Local vector storage and semantic search.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">07</div>
-
                 <div>
                     <div class="pipeline-name">
                         Mistral RAG
                     </div>
-
                     <div class="small-text">
                         Evidence-grounded editorial generation.
                     </div>
                 </div>
             </div>
 
-
             <div class="pipeline-step">
                 <div class="pipeline-number">08</div>
-
                 <div>
                     <div class="pipeline-name">
                         Magazine Composition
                     </div>
-
                     <div class="small-text">
                         Automated page planning and HTML composition.
                     </div>
@@ -1824,9 +1775,8 @@
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1861,22 +1811,22 @@
             <div class="cover-accent"></div>
 
             <p class="small-text">
-                {{ metadata.date_range
-                   or "5 September 2026 — 5 October 2026" }}
+                Coverage period:
+                5 September 2026 —
+                5 October 2026
             </p>
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
 
 
     {# ================================================================
-       GENERIC SUPPORT PAGE
+       GENERIC OVERVIEW / SUPPORT PAGE
     ================================================================= #}
 
     {% else %}
@@ -1887,18 +1837,13 @@
             Northeast Sentinel AI
         </div>
 
-
         <h1 class="content-title">
-
             {{ page.title
                or page.heading
                or "Northeast India" }}
-
         </h1>
 
-
         <div class="rule"></div>
-
 
         <div class="content-body">
 
@@ -1907,20 +1852,6 @@
                 {% for paragraph in page.content.split('\n') %}
 
                     {% if paragraph.strip() %}
-
-                    <p>
-                        {{ paragraph }}
-                    </p>
-
-                    {% endif %}
-
-                {% endfor %}
-
-            {% elif page.paragraphs %}
-
-                {% for paragraph in page.paragraphs %}
-
-                    {% if paragraph %}
 
                     <p>
                         {{ paragraph }}
@@ -1941,9 +1872,8 @@
 
         </div>
 
-
         <div class="page-number">
-            {{ page.display_page_number|default(page.page_number) }}
+            {{ page.display_page_number }}
         </div>
 
     </section>
@@ -1951,7 +1881,6 @@
     {% endif %}
 
 {% endfor %}
-
 
 </body>
 
