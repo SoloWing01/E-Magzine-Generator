@@ -17,6 +17,14 @@ except ImportError:
 # PATH CONFIGURATION
 # ============================================================================
 
+# pdf_generator.py
+# app/magazine/templates/pdf_generator.py
+#
+# parents[0] -> templates
+# parents[1] -> magazine
+# parents[2] -> app
+# parents[3] -> project root
+
 BASE_DIR = Path(__file__).resolve().parents[3]
 
 OUTPUT_DIR = BASE_DIR / "data" / "output"
@@ -30,13 +38,34 @@ EXPECTED_PAGES = 50
 # ============================================================================
 # PDF CSS
 # ============================================================================
+#
+# IMPORTANT:
+# This stylesheet is deliberately conservative.
+#
+# render_magazine.py already prepares the HTML and converts:
+#
+#   data/images/...  -> ../images/...
+#   data/charts/...  -> ../charts/...
+#
+# The PDF generator should therefore preserve the HTML magazine layout
+# instead of rebuilding or replacing its alignment.
+#
+# The main purpose of this CSS is:
+#   1. Define A4 physical pages.
+#   2. Preserve .magazine-page boundaries.
+#   3. Prevent accidental page splitting.
+#   4. Preserve the existing magazine margins/padding.
+#   5. Keep images and charts inside their containers.
+#   6. Hide elements marked .no-print.
+#
+# ============================================================================
 
 PDF_CSS = """
 <style id="pdf-magazine-normalization">
 
-/* ========================================================================
-   PHYSICAL PAGE
-   ======================================================================== */
+/* =========================================================================
+   A4 PAGE
+   ========================================================================= */
 
 @page {
     size: A4;
@@ -44,9 +73,9 @@ PDF_CSS = """
 }
 
 
-/* ========================================================================
-   ROOT
-   ======================================================================== */
+/* =========================================================================
+   DOCUMENT ROOT
+   ========================================================================= */
 
 html,
 body {
@@ -55,13 +84,13 @@ body {
 
     width: 210mm !important;
 
-    box-sizing: border-box !important;
+    background: white !important;
 }
 
 
-/* ========================================================================
+/* =========================================================================
    GLOBAL BOX MODEL
-   ======================================================================== */
+   ========================================================================= */
 
 *,
 *::before,
@@ -70,38 +99,39 @@ body {
 }
 
 
-/* ========================================================================
+/* =========================================================================
    MAGAZINE PAGE
-   ======================================================================== */
+   ========================================================================= */
+
+/*
+   IMPORTANT:
+
+   Do NOT set padding to zero here.
+
+   The actual magazine template is responsible for the visual alignment,
+   margins, typography and spacing.
+
+   We only enforce the physical A4 dimensions and page breaking.
+*/
 
 .magazine-page {
 
     width: 210mm !important;
-
     min-width: 210mm !important;
     max-width: 210mm !important;
 
-    /*
-       A4 physical height at the CSS page level.
-    */
     height: 297mm !important;
-
     min-height: 297mm !important;
     max-height: 297mm !important;
 
     margin: 0 !important;
 
-    padding: 0 !important;
-
-    box-sizing: border-box !important;
-
     position: relative !important;
 
     overflow: hidden !important;
 
-    /*
-       Every .magazine-page is a complete physical page.
-    */
+    box-sizing: border-box !important;
+
     break-before: auto !important;
     break-after: page !important;
     break-inside: avoid !important;
@@ -112,85 +142,210 @@ body {
 }
 
 
-/* ========================================================================
+/* =========================================================================
    LAST PAGE
-   ======================================================================== */
+   ========================================================================= */
 
 .magazine-page:last-child {
+
     break-after: auto !important;
+
     page-break-after: auto !important;
 }
 
 
-/* ========================================================================
-   ARTICLE PAGES
-   ======================================================================== */
+/* =========================================================================
+   COVER
+   ========================================================================= */
 
-.article-page {
-
-    width: 210mm !important;
-    height: 297mm !important;
-
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-
-    overflow: hidden !important;
+.cover-page {
 
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/*
-   Article content must not independently generate pages.
-*/
+/* =========================================================================
+   INSIDE COVER
+   ========================================================================= */
 
-.article-page .article-body,
-.article-page .article-content,
-.article-page .article-text {
+.inside-cover {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   SECTION PAGE
+   ========================================================================= */
+
+.section-page {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   ARTICLE PAGE
+   ========================================================================= */
+
+.article-page {
+
+    width: 210mm !important;
+
+    height: 297mm !important;
+
+    min-height: 297mm !important;
+
+    max-height: 297mm !important;
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
 
     overflow: hidden !important;
+}
 
-    max-height: 250mm !important;
+
+/* =========================================================================
+   ARTICLE HEADER
+   ========================================================================= */
+
+.article-header {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   ARTICLE TITLE
+   ========================================================================= */
+
+.article-title {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   ARTICLE META
+   ========================================================================= */
+
+.article-meta {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   ARTICLE IMAGE
+   ========================================================================= */
+
+.article-image {
+
+    display: block !important;
+
+    max-width: 100% !important;
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   ARTICLE BODY
+   ========================================================================= */
+
+/*
+   Do NOT give the article body an arbitrary fixed max-height.
+
+   The page builder already divides articles into page-sized body chunks.
+   render_magazine.py explicitly prepares:
+
+       prepared["content"] = prepared["body_chunk"]
+
+   Therefore the body chunk should be allowed to use the space allocated
+   by the magazine template.
+*/
+
+.article-body,
+.article-content,
+.article-text {
+
+    max-width: 100% !important;
 
     box-sizing: border-box !important;
 }
 
 
-/* ========================================================================
-   ARTICLE TYPOGRAPHY
-   ======================================================================== */
+/* =========================================================================
+   ARTICLE PARAGRAPHS
+   ========================================================================= */
 
-/*
-   These PDF-only values prevent long generated articles from exceeding
-   the physical page. The HTML version remains unchanged.
-*/
-
-.article-page p {
-
-    margin-top: 0.8em !important;
-    margin-bottom: 0.8em !important;
-
-    line-height: 1.35 !important;
+.article-body p,
+.article-content p,
+.article-text p {
 
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-.article-page h1,
-.article-page h2,
-.article-page h3,
-.article-page h4 {
+/* =========================================================================
+   ARTICLE HEADINGS
+   ========================================================================= */
+
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-text h1,
+.article-text h2,
+.article-text h3,
+.article-text h4 {
+
+    break-after: avoid !important;
+
+    page-break-after: avoid !important;
 
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/* ========================================================================
+/* =========================================================================
+   SOURCE BOX
+   ========================================================================= */
+
+.source-box {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
    IMAGES
-   ======================================================================== */
+   ========================================================================= */
 
 .magazine-page img {
 
@@ -198,74 +353,241 @@ body {
 
     box-sizing: border-box !important;
 
-    object-fit: contain !important;
-
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/* ========================================================================
+/* =========================================================================
+   ARTICLE IMAGES
+   ========================================================================= */
+
+.article-image img {
+
+    max-width: 100% !important;
+
+    height: auto !important;
+
+    display: block !important;
+}
+
+
+/* =========================================================================
    FIGURES
-   ======================================================================== */
+   ========================================================================= */
 
 .magazine-page figure {
 
     max-width: 100% !important;
 
-    margin: 0 !important;
-
-    box-sizing: border-box !important;
-
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/* ========================================================================
+/* =========================================================================
    TABLES
-   ======================================================================== */
+   ========================================================================= */
 
 .magazine-page table {
 
+    width: 100% !important;
+
     max-width: 100% !important;
 
-    box-sizing: border-box !important;
+    border-collapse: collapse !important;
 
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/* ========================================================================
-   CHARTS
-   ======================================================================== */
+/* =========================================================================
+   TABLE ROWS
+   ========================================================================= */
+
+.magazine-page tr {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   CHART PAGES
+   ========================================================================= */
 
 .chart-page {
 
+    width: 210mm !important;
+
+    height: 297mm !important;
+
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/* ========================================================================
-   COVER PAGES
-   ======================================================================== */
+/* =========================================================================
+   CHART IMAGES
+   ========================================================================= */
 
-.cover-page,
+.chart-page .chart-image {
+
+    display: block !important;
+
+    max-width: 100% !important;
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   ANALYTICS
+   ========================================================================= */
+
+.analytics-page {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   CONTENTS / TOC
+   ========================================================================= */
+
+.contents-page,
+.toc-page {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   SOURCE PAGE
+   ========================================================================= */
+
+.source-page {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   METHODOLOGY PAGE
+   ========================================================================= */
+
+.methodology-page {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   PIPELINE PAGE
+   ========================================================================= */
+
+.pipeline-page {
+
+    break-inside: avoid !important;
+
+    page-break-inside: avoid !important;
+}
+
+
+/* =========================================================================
+   BACK COVER
+   ========================================================================= */
+
 .back-cover {
 
     break-inside: avoid !important;
+
     page-break-inside: avoid !important;
 }
 
 
-/* ========================================================================
-   PRINT SAFETY
-   ======================================================================== */
+/* =========================================================================
+   PRINT-ONLY CONTROL
+   ========================================================================= */
 
 .no-print {
+
     display: none !important;
+}
+
+
+/* =========================================================================
+   LINKS
+   ========================================================================= */
+
+a {
+
+    text-decoration: none !important;
+}
+
+
+/* =========================================================================
+   TEXT SAFETY
+   ========================================================================= */
+
+.magazine-page {
+
+    overflow-wrap: break-word !important;
+
+    word-wrap: break-word !important;
+}
+
+
+/* =========================================================================
+   PREVENT HORIZONTAL OVERFLOW
+   ========================================================================= */
+
+.magazine-page > * {
+
+    max-width: 100% !important;
+}
+
+
+/* =========================================================================
+   PDF PAGE SAFETY
+   ========================================================================= */
+
+@media print {
+
+    html,
+    body {
+
+        width: 210mm !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+    .magazine-page {
+
+        width: 210mm !important;
+
+        height: 297mm !important;
+
+        margin: 0 !important;
+    }
 }
 
 </style>
@@ -287,64 +609,88 @@ class PDFGenerator:
     ):
 
         self.html_path = Path(html_path)
+
         self.pdf_path = Path(pdf_path)
 
         self.expected_pages = expected_pages
 
         self.html_content: Optional[str] = None
+
         self.pdf_html: Optional[str] = None
 
         self.soup: Optional[BeautifulSoup] = None
 
 
-    # ========================================================================
-    # HEADER
-    # ========================================================================
+    # =========================================================================
+    # LOGGING
+    # =========================================================================
 
     @staticmethod
     def header(title: str):
 
-        print("\n" + "=" * 70)
-        print(title)
-        print("=" * 70)
+        print(
+            "\n" + "=" * 70,
+            flush=True,
+        )
+
+        print(
+            title,
+            flush=True,
+        )
+
+        print(
+            "=" * 70,
+            flush=True,
+        )
 
 
-    # ========================================================================
+    # =========================================================================
     # LOAD HTML
-    # ========================================================================
+    # =========================================================================
 
     def load_html(self):
 
-        self.header("Checking HTML input...")
+        self.header(
+            "CHECKING HTML INPUT"
+        )
 
         if not self.html_path.exists():
 
             raise FileNotFoundError(
-                f"HTML input not found:\n{self.html_path}"
+                "HTML input not found:\n"
+                f"{self.html_path}"
             )
 
-        self.html_content = self.html_path.read_text(
-            encoding="utf-8"
+        self.html_content = (
+            self.html_path.read_text(
+                encoding="utf-8"
+            )
         )
 
-        print("HTML input found:")
-        print(self.html_path)
-
-        size_kb = self.html_path.stat().st_size / 1024
+        size_kb = (
+            self.html_path.stat().st_size
+            / 1024
+        )
 
         print(
-            f"HTML size: {size_kb:.2f} KB"
+            f"HTML input : {self.html_path}",
+            flush=True,
+        )
+
+        print(
+            f"HTML size  : {size_kb:.2f} KB",
+            flush=True,
         )
 
 
-    # ========================================================================
+    # =========================================================================
     # HTML STRUCTURE
-    # ========================================================================
+    # =========================================================================
 
     def validate_html_pages(self):
 
         self.header(
-            "Validating HTML page structure..."
+            "VALIDATING HTML PAGE STRUCTURE"
         )
 
         if self.html_content is None:
@@ -365,7 +711,8 @@ class PDFGenerator:
         count = len(pages)
 
         print(
-            f"HTML logical pages: {count}"
+            f"HTML logical pages: {count}",
+            flush=True,
         )
 
         if count != self.expected_pages:
@@ -378,16 +725,19 @@ class PDFGenerator:
             )
 
         print(
-            "HTML page count: PASSED"
+            "HTML page count: PASSED",
+            flush=True,
         )
 
 
-    # ========================================================================
-    # ASSET DISCOVERY
-    # ========================================================================
+    # =========================================================================
+    # ASSET HELPERS
+    # =========================================================================
 
     @staticmethod
-    def is_external_asset(asset: str) -> bool:
+    def is_external_asset(
+        asset: str,
+    ) -> bool:
 
         value = asset.lower().strip()
 
@@ -405,6 +755,7 @@ class PDFGenerator:
     ) -> Optional[Path]:
 
         if not asset:
+
             return None
 
         asset = asset.strip()
@@ -413,8 +764,15 @@ class PDFGenerator:
 
             return None
 
-        asset = asset.split("#")[0]
-        asset = asset.split("?")[0]
+        asset = asset.split(
+            "#",
+            1,
+        )[0]
+
+        asset = asset.split(
+            "?",
+            1,
+        )[0]
 
         asset = asset.replace(
             "%20",
@@ -427,15 +785,43 @@ class PDFGenerator:
 
         if path.is_absolute():
 
-            candidates.append(path)
+            candidates.append(
+                path
+            )
+
+        # ---------------------------------------------------------
+        # FIRST:
+        # Resolve relative to the generated HTML.
+        #
+        # Example:
+        #
+        # HTML:
+        # data/output/northeast_sentinel_magazine.html
+        #
+        # src:
+        # ../images/article_29/image.jpg
+        #
+        # resolves to:
+        # data/images/article_29/image.jpg
+        # ---------------------------------------------------------
+
+        candidates.append(
+            self.html_path.parent / asset
+        )
+
+        # ---------------------------------------------------------
+        # SECOND:
+        # Project-relative path.
+        # ---------------------------------------------------------
 
         candidates.append(
             BASE_DIR / asset
         )
 
-        candidates.append(
-            self.html_path.parent / asset
-        )
+        # ---------------------------------------------------------
+        # THIRD:
+        # Remove leading ./ if present.
+        # ---------------------------------------------------------
 
         candidates.append(
             BASE_DIR / asset.lstrip("./")
@@ -445,15 +831,19 @@ class PDFGenerator:
 
             if candidate.exists():
 
-                return candidate
+                return candidate.resolve()
 
         return None
 
 
+    # =========================================================================
+    # ASSET VALIDATION
+    # =========================================================================
+
     def validate_assets(self):
 
         self.header(
-            "Validating HTML assets..."
+            "VALIDATING HTML ASSETS"
         )
 
         if self.soup is None:
@@ -462,12 +852,14 @@ class PDFGenerator:
                 "HTML has not been parsed."
             )
 
-        image_elements = self.soup.find_all(
-            "img"
+        image_elements = (
+            self.soup.find_all("img")
         )
 
         local_assets = 0
+
         external_assets = 0
+
         missing_assets = []
 
         for image in image_elements:
@@ -475,6 +867,7 @@ class PDFGenerator:
             src = image.get("src")
 
             if not src:
+
                 continue
 
             if self.is_external_asset(src):
@@ -485,38 +878,52 @@ class PDFGenerator:
 
             local_assets += 1
 
-            if self.resolve_asset(src) is None:
+            resolved = self.resolve_asset(
+                src
+            )
 
-                missing_assets.append(src)
+            if resolved is None:
+
+                missing_assets.append(
+                    src
+                )
 
         print(
-            f"Image elements found: "
-            f"{len(image_elements)}"
+            f"Image elements found : "
+            f"{len(image_elements)}",
+            flush=True,
         )
 
         print(
-            f"Local assets checked: "
-            f"{local_assets}"
+            f"Local assets checked : "
+            f"{local_assets}",
+            flush=True,
         )
 
         print(
-            f"External/data assets: "
-            f"{external_assets}"
+            f"External/data assets : "
+            f"{external_assets}",
+            flush=True,
         )
 
         print(
-            f"Missing assets: "
-            f"{len(missing_assets)}"
+            f"Missing assets       : "
+            f"{len(missing_assets)}",
+            flush=True,
         )
 
         if missing_assets:
 
-            print("\nMissing assets:")
+            print(
+                "\nMissing assets:",
+                flush=True,
+            )
 
             for asset in missing_assets:
 
                 print(
-                    f"  - {asset}"
+                    f"  - {asset}",
+                    flush=True,
                 )
 
             raise FileNotFoundError(
@@ -524,18 +931,19 @@ class PDFGenerator:
             )
 
         print(
-            "Asset validation: PASSED"
+            "Asset validation: PASSED",
+            flush=True,
         )
 
 
-    # ========================================================================
+    # =========================================================================
     # CSS INSPECTION
-    # ========================================================================
+    # =========================================================================
 
     def inspect_original_css(self):
 
         self.header(
-            "Inspecting original HTML CSS..."
+            "INSPECTING ORIGINAL HTML CSS"
         )
 
         if self.html_content is None:
@@ -560,23 +968,25 @@ class PDFGenerator:
 
         print(
             "Original A4 declaration: "
-            f"{'FOUND' if a4_found else 'NOT FOUND'}"
+            f"{'FOUND' if a4_found else 'NOT FOUND'}",
+            flush=True,
         )
 
         print(
             "Original page-break CSS: "
-            f"{'FOUND' if page_break_found else 'NOT FOUND'}"
+            f"{'FOUND' if page_break_found else 'NOT FOUND'}",
+            flush=True,
         )
 
 
-    # ========================================================================
+    # =========================================================================
     # PREPARE PDF HTML
-    # ========================================================================
+    # =========================================================================
 
     def prepare_pdf_html(self):
 
         self.header(
-            "Preparing PDF HTML..."
+            "PREPARING PDF HTML"
         )
 
         if self.html_content is None:
@@ -587,29 +997,39 @@ class PDFGenerator:
 
         html = self.html_content
 
-        # ------------------------------------------------------------
-        # Remove any previously injected PDF normalization block.
+        # ---------------------------------------------------------------------
+        # Remove an older PDF stylesheet if the HTML already contains one.
+        # This prevents multiple PDF normalization blocks from accumulating.
+        # ---------------------------------------------------------------------
+
+        html = re.sub(
+            r'<style[^>]*id=["\']pdf-normalization["\'][^>]*>'
+            r'.*?</style>',
+            "",
+            html,
+            flags=(
+                re.IGNORECASE
+                | re.DOTALL
+            ),
+        )
+
+        html = re.sub(
+            r'<style[^>]*id=["\']pdf-magazine-normalization["\'][^>]*>'
+            r'.*?</style>',
+            "",
+            html,
+            flags=(
+                re.IGNORECASE
+                | re.DOTALL
+            ),
+        )
+
+        # ---------------------------------------------------------------------
+        # Add PDF CSS at the end of the document.
         #
-        # This makes repeated runs deterministic.
-        # ------------------------------------------------------------
-
-        html = re.sub(
-            r'<style[^>]*id=["\']pdf-normalization["\'][^>]*>.*?</style>',
-            "",
-            html,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
-
-        html = re.sub(
-            r'<style[^>]*id=["\']pdf-magazine-normalization["\'][^>]*>.*?</style>',
-            "",
-            html,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
-
-        # ------------------------------------------------------------
-        # Insert as the final stylesheet.
-        # ------------------------------------------------------------
+        # It is deliberately limited so that the magazine template remains
+        # responsible for the visual formatting.
+        # ---------------------------------------------------------------------
 
         lower = html.lower()
 
@@ -632,18 +1052,19 @@ class PDFGenerator:
         self.pdf_html = html
 
         print(
-            "PDF CSS normalization: APPLIED"
+            "PDF CSS normalization: APPLIED",
+            flush=True,
         )
 
 
-    # ========================================================================
+    # =========================================================================
     # GENERATE PDF
-    # ========================================================================
+    # =========================================================================
 
     def generate_pdf(self):
 
         self.header(
-            "Generating PDF with WeasyPrint..."
+            "GENERATING PDF WITH WEASYPRINT"
         )
 
         if self.pdf_html is None:
@@ -658,60 +1079,153 @@ class PDFGenerator:
         )
 
         print(
-            f"Input : {self.html_path}"
+            f"Input HTML : {self.html_path}",
+            flush=True,
         )
 
         print(
-            f"Output: {self.pdf_path}"
+            f"Output PDF : {self.pdf_path}",
+            flush=True,
         )
 
-        document = HTML(
-            string=self.pdf_html,
-            base_url=str(BASE_DIR),
+        print(
+            "Creating WeasyPrint document...",
+            flush=True,
         )
 
-        document.write_pdf(
-            str(self.pdf_path)
-        )
+        try:
+
+            # -------------------------------------------------------------
+            # IMPORTANT:
+            #
+            # render_magazine.py converts:
+            #
+            # data/images/example.jpg
+            #
+            # into:
+            #
+            # ../images/example.jpg
+            #
+            # because the final HTML is stored in:
+            #
+            # data/output/
+            #
+            # Therefore the correct base_url is the HTML directory:
+            #
+            # data/output/
+            # -------------------------------------------------------------
+
+            document = HTML(
+                string=self.pdf_html,
+                base_url=str(
+                    self.html_path.parent
+                ),
+            )
+
+            print(
+                "WeasyPrint document created.",
+                flush=True,
+            )
+
+            print(
+                "Writing PDF...",
+                flush=True,
+            )
+
+            document.write_pdf(
+                target=str(
+                    self.pdf_path
+                )
+            )
+
+            print(
+                "WeasyPrint finished.",
+                flush=True,
+            )
+
+        except Exception as exc:
+
+            print(
+                "\nWEASYPRINT ERROR",
+                flush=True,
+            )
+
+            print(
+                f"Error type: {type(exc).__name__}",
+                flush=True,
+            )
+
+            print(
+                f"Error     : {exc}",
+                flush=True,
+            )
+
+            raise
 
         if not self.pdf_path.exists():
 
             raise RuntimeError(
-                "PDF was not created."
+                "PDF was not created:\n"
+                f"{self.pdf_path}"
             )
 
-        size_mb = (
+        file_size_mb = (
             self.pdf_path.stat().st_size
             / (1024 * 1024)
         )
 
+        if self.pdf_path.stat().st_size == 0:
+
+            raise RuntimeError(
+                "PDF file was created but is empty."
+            )
+
         print(
-            "\nPDF generated successfully."
+            "\nPDF generated successfully.",
+            flush=True,
         )
 
         print(
-            f"PDF path: {self.pdf_path}"
+            f"PDF path : {self.pdf_path}",
+            flush=True,
         )
 
         print(
-            f"PDF size: {size_mb:.2f} MB"
+            f"PDF size : {file_size_mb:.2f} MB",
+            flush=True,
         )
 
 
-    # ========================================================================
+    # =========================================================================
     # PDF FILE VALIDATION
-    # ========================================================================
+    # =========================================================================
 
     def validate_pdf_file(self):
 
         self.header(
-            "Validating PDF file..."
+            "VALIDATING PDF FILE"
         )
 
         if not self.pdf_path.exists():
 
             raise FileNotFoundError(
                 self.pdf_path
+            )
+
+        file_size = (
+            self.pdf_path.stat().st_size
+        )
+
+        print(
+            f"PDF file size: "
+            f"{file_size / (1024 * 1024):.2f} MB",
+            flush=True,
+        )
+
+        if file_size == 0:
+
+            raise ValueError(
+                "PDF file is empty."
             )
 
         with self.pdf_path.open(
@@ -727,13 +1241,14 @@ class PDFGenerator:
             )
 
         print(
-            "PDF header: PASSED"
+            "PDF header: PASSED",
+            flush=True,
         )
 
 
-    # ========================================================================
-    # PAGE COUNT
-    # ========================================================================
+    # =========================================================================
+    # PDF PAGE COUNT
+    # =========================================================================
 
     def get_pdf_page_count(self):
 
@@ -747,28 +1262,40 @@ class PDFGenerator:
             str(self.pdf_path)
         )
 
-        return len(reader.pages)
+        return len(
+            reader.pages
+        )
 
 
-    # ========================================================================
+    # =========================================================================
     # PAGE VALIDATION
-    # ========================================================================
+    # =========================================================================
 
     def validate_pdf_pages(self):
 
         self.header(
-            "Validating physical PDF page count..."
+            "VALIDATING PHYSICAL PDF PAGE COUNT"
         )
 
-        page_count = self.get_pdf_page_count()
-
-        print(
-            "Page-count method: pypdf"
+        page_count = (
+            self.get_pdf_page_count()
         )
 
         print(
-            f"Physical PDF pages: "
-            f"{page_count}"
+            "Page-count method: pypdf",
+            flush=True,
+        )
+
+        print(
+            f"Expected pages   : "
+            f"{self.expected_pages}",
+            flush=True,
+        )
+
+        print(
+            f"Physical pages   : "
+            f"{page_count}",
+            flush=True,
         )
 
         if page_count != self.expected_pages:
@@ -776,18 +1303,21 @@ class PDFGenerator:
             raise ValueError(
                 "\n"
                 "PDF PAGE COUNT MISMATCH\n"
-                f"Expected : {self.expected_pages}\n"
-                f"Actual   : {page_count}\n"
+                f"Expected : "
+                f"{self.expected_pages}\n"
+                f"Actual   : "
+                f"{page_count}\n"
             )
 
         print(
-            "PDF page count: PASSED"
+            "PDF page count: PASSED",
+            flush=True,
         )
 
 
-    # ========================================================================
-    # PDF TEXT DIAGNOSTIC
-    # ========================================================================
+    # =========================================================================
+    # PDF DIAGNOSTIC
+    # =========================================================================
 
     def diagnose_pdf(self):
 
@@ -798,7 +1328,8 @@ class PDFGenerator:
         if PdfReader is None:
 
             print(
-                "pypdf unavailable."
+                "pypdf unavailable.",
+                flush=True,
             )
 
             return
@@ -807,16 +1338,25 @@ class PDFGenerator:
             str(self.pdf_path)
         )
 
-        print(
-            f"Physical pages: {len(reader.pages)}"
+        actual_pages = len(
+            reader.pages
         )
 
         print(
-            f"Expected pages : {self.expected_pages}"
+            f"Physical pages: "
+            f"{actual_pages}",
+            flush=True,
         )
 
         print(
-            "\nPhysical page mapping:"
+            f"Expected pages : "
+            f"{self.expected_pages}",
+            flush=True,
+        )
+
+        print(
+            "\nPhysical page mapping:",
+            flush=True,
         )
 
         for number, page in enumerate(
@@ -835,22 +1375,58 @@ class PDFGenerator:
                     text.split()
                 )
 
-                preview = text[:160]
+                preview = text[:180]
 
             except Exception as exc:
 
                 preview = (
-                    f"<extraction error: {exc}>"
+                    "<extraction error: "
+                    f"{exc}>"
                 )
 
             print(
-                f"{number:03d} | {preview}"
+                f"{number:03d} | "
+                f"{preview}",
+                flush=True,
             )
 
 
-    # ========================================================================
+    # =========================================================================
+    # OUTPUT INFORMATION
+    # =========================================================================
+
+    def print_output_information(self):
+
+        self.header(
+            "PDF OUTPUT"
+        )
+
+        print(
+            f"HTML : {self.html_path}",
+            flush=True,
+        )
+
+        print(
+            f"PDF  : {self.pdf_path}",
+            flush=True,
+        )
+
+        if self.pdf_path.exists():
+
+            size_mb = (
+                self.pdf_path.stat().st_size
+                / (1024 * 1024)
+            )
+
+            print(
+                f"Size : {size_mb:.2f} MB",
+                flush=True,
+            )
+
+
+    # =========================================================================
     # COMPLETE PIPELINE
-    # ========================================================================
+    # =========================================================================
 
     def run(self):
 
@@ -860,28 +1436,52 @@ class PDFGenerator:
 
         try:
 
-            # 1
+            # -------------------------------------------------------------
+            # 1. Load the HTML generated by render_magazine.py
+            # -------------------------------------------------------------
+
             self.load_html()
 
-            # 2
+            # -------------------------------------------------------------
+            # 2. Verify that render_magazine.py produced 50 logical pages
+            # -------------------------------------------------------------
+
             self.validate_html_pages()
 
-            # 3
+            # -------------------------------------------------------------
+            # 3. Verify all local image assets
+            # -------------------------------------------------------------
+
             self.validate_assets()
 
-            # 4
+            # -------------------------------------------------------------
+            # 4. Inspect the existing HTML CSS
+            # -------------------------------------------------------------
+
             self.inspect_original_css()
 
-            # 5
+            # -------------------------------------------------------------
+            # 5. Add minimal PDF-specific rules
+            # -------------------------------------------------------------
+
             self.prepare_pdf_html()
 
-            # 6
+            # -------------------------------------------------------------
+            # 6. Generate physical PDF
+            # -------------------------------------------------------------
+
             self.generate_pdf()
 
-            # 7
+            # -------------------------------------------------------------
+            # 7. Validate PDF header/file
+            # -------------------------------------------------------------
+
             self.validate_pdf_file()
 
-            # 8
+            # -------------------------------------------------------------
+            # 8. Validate physical page count
+            # -------------------------------------------------------------
+
             try:
 
                 self.validate_pdf_pages()
@@ -892,39 +1492,67 @@ class PDFGenerator:
 
                 raise
 
-            # --------------------------------------------------------
+            # -------------------------------------------------------------
             # SUCCESS
-            # --------------------------------------------------------
+            # -------------------------------------------------------------
 
             self.header(
                 "PHASE 16 COMPLETE"
             )
 
             print(
-                "PDF generation: SUCCESS"
+                "PDF generation: SUCCESS",
+                flush=True,
             )
 
             print(
                 f"Logical pages : "
-                f"{self.expected_pages}"
+                f"{self.expected_pages}",
+                flush=True,
             )
 
             print(
                 f"Physical pages: "
-                f"{self.expected_pages}"
+                f"{self.expected_pages}",
+                flush=True,
             )
 
             print(
                 f"PDF output    : "
-                f"{self.pdf_path}"
+                f"{self.pdf_path}",
+                flush=True,
             )
+
+            self.print_output_information()
 
             return self.pdf_path
 
-        except Exception:
+        except Exception as exc:
 
             print(
-                "\nPHASE 16 FAILED."
+                "\n" + "=" * 70,
+                flush=True,
+            )
+
+            print(
+                "PHASE 16 FAILED",
+                flush=True,
+            )
+
+            print(
+                "=" * 70,
+                flush=True,
+            )
+
+            print(
+                f"Error type: "
+                f"{type(exc).__name__}",
+                flush=True,
+            )
+
+            print(
+                f"Error: {exc}",
+                flush=True,
             )
 
             raise
@@ -936,10 +1564,31 @@ class PDFGenerator:
 
 def main():
 
+    print(
+        "\nStarting PDF generator...",
+        flush=True,
+    )
+
+    print(
+        f"Project root: {BASE_DIR}",
+        flush=True,
+    )
+
+    print(
+        f"HTML input  : {HTML_PATH}",
+        flush=True,
+    )
+
+    print(
+        f"PDF output  : {PDF_PATH}",
+        flush=True,
+    )
+
     generator = PDFGenerator()
 
     generator.run()
 
 
 if __name__ == "__main__":
+
     main()

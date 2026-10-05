@@ -1831,7 +1831,7 @@
     {
       "type": "date_coverage",
       "title": "Coverage Window",
-      "content": "Selected reporting spans 10 September 2026 to 04 October 2026.\nConfigured assignment window: 2026-09-05 to 2026-10-05.\nFinal editorial records: 11.\nThe date filter is applied before final editorial composition.",
+      "content": "Selected reporting spans 10 September 2026 to 04 October 2026.\nConfigured assignment window: 2026-09-05 to 2026-10-04.\nFinal editorial records: 11.\nThe date filter is applied before final editorial composition.",
       "page_number": 43,
       "display_page_number": 43
     },
@@ -1897,5 +1897,5 @@
     "pages_without_body_chunk": [],
     "chart_pages_without_path": []
   },
-  "generated_at": "2026-10-05T13:51:48.532625+05:30"
+  "generated_at": "2026-10-05T16:17:43.810256+05:30"
 }
