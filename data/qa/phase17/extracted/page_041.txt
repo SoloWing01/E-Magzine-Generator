@@ -1,0 +1,10 @@
+NORTHEAST SENTINEL AI
+Editorial Mix by Section
+The final editorial mix is:
+Security & Strategic Affairs: 1 article(s)
+Development: 4 article(s)
+Regional News: 2 article(s)
+Society & Youth: 3 article(s)
+Sports & Achievements: 1 article(s)
+The section structure is inherited from the classifier output used by the magazine composition stage.
+41

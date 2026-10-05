@@ -1,0 +1,8 @@
+NORTHEAST SENTINEL AI
+Grounded AI Editorial Generation
+The editorial generator does not treat the language model as an independent news source.
+Selected articles are embedded with Sentence Transformers and stored in Chroma. The requested story is used to retrieve
+relevant evidence, which is passed to Mistral as the generation context.
+Generated factual paragraphs carry source citations, and the grounding stage compares claims with their cited evidence
+before an article is accepted.
+45

@@ -1,0 +1,14 @@
+NORTHEAST SENTINEL AI
+Northeast State Coverage
+State mentions detected in the selected editorial corpus:
+Assam: 6 article(s)
+Manipur: 3 article(s)
+Mizoram: 2 article(s)
+Nagaland: 2 article(s)
+Arunachal Pradesh: 1 article(s)
+Meghalaya: 1 article(s)
+Sikkim: 1 article(s)
+Tripura: 1 article(s)
+A state is counted when its name appears in the article title or editorial body. This is a coverage indicator, not a claim of
+exclusive geographic focus.
+40

@@ -1,0 +1,75 @@
+# ─────────────────────────────────────
+# Web Application
+# ─────────────────────────────────────
+streamlit
+
+# ─────────────────────────────────────
+# Web Scraping
+# ─────────────────────────────────────
+scrapling[fetchers]
+
+# ─────────────────────────────────────
+# Data Processing
+# ─────────────────────────────────────
+pandas
+numpy
+
+# ─────────────────────────────────────
+# Database
+# ─────────────────────────────────────
+sqlalchemy
+
+# ─────────────────────────────────────
+# Data Validation / Configuration
+# ─────────────────────────────────────
+pydantic
+pydantic-settings
+python-dotenv
+
+# ─────────────────────────────────────
+# NLP / Machine Learning
+# ─────────────────────────────────────
+scikit-learn
+spacy
+sentence-transformers
+transformers
+torch
+torchvision
+
+# ─────────────────────────────────────
+# LangChain
+# ─────────────────────────────────────
+langchain
+langchain-core
+langchain-community
+langchain-huggingface
+langchain-chroma
+
+# ─────────────────────────────────────
+# Vector Database
+# ─────────────────────────────────────
+chromadb
+
+# ─────────────────────────────────────
+# Visualization
+# ─────────────────────────────────────
+matplotlib
+plotly
+
+# ─────────────────────────────────────
+# HTTP / Utilities
+# ─────────────────────────────────────
+requests
+beautifulsoup4
+
+# ─────────────────────────────────────
+# Image Processing
+# ─────────────────────────────────────
+Pillow
+
+# ─────────────────────────────────────
+# Magazine Generation
+# ─────────────────────────────────────
+jinja2
+weasyprint
+pypdf

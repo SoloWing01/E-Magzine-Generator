@@ -1,0 +1,5 @@
+NORTHEAST SENTINEL AI
+Research Methodology
+The system combines web collection, validation, relevance classification, scoring, semantic retrieval, grounded generation
+and editorial quality checks before composition.
+48

@@ -1,0 +1,45 @@
+========================================================================
+PHASE 17 — PDF QUALITY ASSURANCE
+========================================================================
+
+PDF: /home/solow/dataScience/northeast_magzine/data/output/northeast_sentinel_magazine.pdf
+HTML: /home/solow/dataScience/northeast_magzine/data/output/northeast_sentinel_magazine.html
+Magazine data: /home/solow/dataScience/northeast_magzine/data/output/magazine_data.json
+
+RESULT: FAIL
+Passed checks: 19
+Failed errors: 2
+Warnings: 1
+
+CHECKS
+------------------------------------------------------------------------
+[PASS] Magazine JSON readable: magazine_data.json loaded successfully.
+[PASS] Magazine article count: JSON declares 11 article(s); found 11.
+[PASS] Magazine source count: JSON declares 1 source(s); found 1 unique source name(s).
+[PASS] Magazine target page count: JSON declares target_pages=50; expected 50.
+[PASS] HTML logical page count: Found 50 logical pages; expected 50.
+[PASS] HTML page numbering: HTML page numbers are sequential.
+[PASS] HTML article title coverage: All 11 expected article titles found.
+[FAIL] HTML image assets: Missing 15 local image asset(s): [{'page': 7, 'src': '../images/article_29/image_01_1068723c0db5.jpg'}, {'page': 10, 'src': '../images/article_15/image_01_a1a7a93733ba.jpg'}, {'page': 12, 'src': '../images/article_3/image_01_0f48e63c598f.jpg'}, {'page': 14, 'src': '../images/article_30/image_01_76da28d9e562.jpg'}, {'page': 16, 'src': '../images/article_32/image_01_e06f94efe638.jpg'}, {'page': 19, 'src': '../images/article_11/image_01_49db2b535ae9.jpg'}, {'page': 21, 'src': '../images/article_31/image_01_8d47f0a122c9.jpg'}, {'page': 24, 'src': '../images/article_12/image_01_8bfd3466c4ad.jpg'}, {'page': 27, 'src': '../images/article_13/image_01_582619699521.jpg'}, {'page': 29, 'src': '../images/article_9/image_01_a7f6a337babe.jpg'}, {'page': 32, 'src': '../images/article_34/image_01_f88cad2a0c25.jpg'}, {'page': 35, 'src': '../charts/articles_by_category.png'}, {'page': 36, 'src': '../charts/articles_by_source.png'}, {'page': 37, 'src': '../charts/articles_over_time.png'}, {'page': 38, 'src': '../charts/northeast_state_coverage.png'}]
+[FAIL] HTML chart assets: Missing chart asset(s): [{'page': 35, 'chart': '../charts/articles_by_category.png'}, {'page': 36, 'chart': '../charts/articles_by_source.png'}, {'page': 37, 'chart': '../charts/articles_over_time.png'}, {'page': 38, 'chart': '../charts/northeast_state_coverage.png'}]
+[PASS] HTML source URLs: Found 11 unique HTTP(S) link(s); all 11 expected source URL(s) are present.
+[PASS] HTML placeholder detection: No known placeholder phrases detected.
+[PASS] Article continuation markers: Continuation article pages are explicitly marked.
+[PASS] PDF readable: PDF opened successfully with pypdf.
+[PASS] PDF physical page count: Found 50 physical pages; expected 50.
+[PASS] PDF A4 dimensions: All PDF pages use A4 dimensions.
+[PASS] Exact duplicate PDF pages: No exact duplicate page text detected.
+[PASS] PDF article title coverage: All 11 expected article title(s) found in PDF.
+[WARN] Unexpected low-text pages: Low-text page(s): [{'page': 2, 'word_count': 28, 'html_type': 'generic'}, {'page': 4, 'word_count': 30, 'html_type': 'generic'}, {'page': 5, 'word_count': 42, 'html_type': 'generic'}, {'page': 9, 'word_count': 32, 'html_type': 'section'}, {'page': 18, 'word_count': 33, 'html_type': 'section'}, {'page': 23, 'word_count': 33, 'html_type': 'section'}, {'page': 31, 'word_count': 38, 'html_type': 'section'}, {'page': 34, 'word_count': 37, 'html_type': 'generic'}, {'page': 35, 'word_count': 9, 'html_type': 'chart'}, {'page': 36, 'word_count': 9, 'html_type': 'chart'}, {'page': 37, 'word_count': 9, 'html_type': 'chart'}, {'page': 38, 'word_count': 9, 'html_type': 'chart'}, {'page': 42, 'word_count': 35, 'html_type': 'generic'}, {'page': 43, 'word_count': 35, 'html_type': 'generic'}, {'page': 47, 'word_count': 23, 'html_type': 'generic'}, {'page': 48, 'word_count': 25, 'html_type': 'generic'}, {'page': 49, 'word_count': 21, 'html_type': 'generic'}, {'page': 50, 'word_count': 42, 'html_type': 'generic'}]
+[PASS] PDF placeholder detection: No known placeholder phrases detected in PDF text.
+[PASS] PDF source link annotations: Found 11 unique PDF link annotation(s); all expected source URL(s) are linked.
+[PASS] HTML/PDF page count agreement: HTML logical pages and PDF physical pages both equal 50.
+[PASS] Article IDs represented in HTML: Every expected article ID appears on at least one article page.
+
+OUTPUTS
+------------------------------------------------------------------------
+Extracted page text: /home/solow/dataScience/northeast_magzine/data/qa/phase17/extracted
+JSON report: /home/solow/dataScience/northeast_magzine/data/qa/phase17/reports/phase17_qa_report.json
+Text report: /home/solow/dataScience/northeast_magzine/data/qa/phase17/reports/phase17_qa_report.txt
+
+========================================================================

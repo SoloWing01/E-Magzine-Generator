@@ -1,0 +1,5 @@
+NORTHEAST SENTINEL AI
+AI Editorial Pipeline
+Scrapling → SQLite → NLP → scoring → embeddings → Chroma → Mistral RAG → grounding → images → analytics
+→ magazine composition → PDF.
+49

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title or project_name or "Northeast Sentinel AI" }}</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #e5e5e5; font-family: Georgia, "Times New Roman", serif; color: #1f2933; }
+body { width: 100%; }
+.magazine-page { width: 210mm; height: 297mm; min-height: 297mm; max-height: 297mm; margin: 0 auto; padding: 16mm 16mm 15mm 16mm; position: relative; overflow: hidden; background: #fff; page-break-after: always; break-after: page; }
+.magazine-page:last-child { page-break-after: auto; break-after: page; }
+.page-number { position: absolute; bottom: 6mm; right: 14mm; font: 7.5pt Arial, Helvetica, sans-serif; color: #6b7280; }
+.running-label, .eyebrow { font: 7pt Arial, Helvetica, sans-serif; letter-spacing: 1.5px; text-transform: uppercase; color: #7f1d1d; margin-bottom: 4mm; }
+.rule { width: 100%; height: 1px; background: #d1d5db; margin: 4mm 0 5mm; }
+p { margin: 0 0 3.2mm; line-height: 1.48; font-size: 10pt; }
+.small-text { font: 8pt/1.4 Arial, Helvetica, sans-serif; color: #4b5563; }
+.muted { color: #6b7280; }
+
+/* Cover */
+.cover-page { background: linear-gradient(135deg, #111827 0%, #1f2937 55%, #7f1d1d 100%); color: white; display: flex; flex-direction: column; justify-content: space-between; padding: 24mm 20mm; }
+.cover-kicker { font: 8.5pt Arial, Helvetica, sans-serif; letter-spacing: 3px; text-transform: uppercase; opacity: .82; }
+.cover-title { font-size: 34pt; line-height: 1.03; margin: 0; max-width: 170mm; }
+.cover-subtitle { font-size: 14pt; line-height: 1.35; max-width: 155mm; color: #e5e7eb; }
+.cover-meta { font: 8.5pt/1.65 Arial, Helvetica, sans-serif; color: #d1d5db; }
+.cover-accent { width: 35mm; height: 3px; background: #fca5a5; margin: 7mm 0; }
+
+/* Intro */
+.inside-cover { display: flex; align-items: center; justify-content: center; text-align: center; }
+.inside-cover-box { max-width: 145mm; }
+.inside-cover-box h1 { font-size: 26pt; line-height: 1.08; }
+.editorial-title, .toc-title, .analytics-title { font-size: 27pt; line-height: 1.08; margin: 0 0 6mm; }
+.editorial-body, .content-body { max-width: 176mm; }
+.toc-item { display: flex; gap: 4mm; align-items: baseline; padding: 2.6mm 0; border-bottom: 1px dotted #cbd5e1; font-size: 10.5pt; }
+.toc-number { font: bold 8.5pt Arial, Helvetica, sans-serif; color: #7f1d1d; width: 10mm; }
+.toc-label { flex: 1; }
+
+/* Sections */
+.section-page { display: flex; flex-direction: column; justify-content: center; background: #f8fafc; }
+.section-number { font: 9pt Arial, Helvetica, sans-serif; letter-spacing: 3px; color: #7f1d1d; margin-bottom: 5mm; }
+.section-title { font-size: 31pt; line-height: 1.03; margin: 0 0 6mm; }
+.section-description { max-width: 145mm; font-size: 12pt; line-height: 1.48; color: #4b5563; }
+.section-count { margin-top: 8mm; font: 8pt Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1.4px; color: #6b7280; }
+
+/* Articles */
+.article-page { display: flex; flex-direction: column; }
+.article-header { margin-bottom: 3mm; }
+.article-category { font: bold 7pt Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1.5px; color: #7f1d1d; margin-bottom: 2.5mm; }
+.article-title { font-size: 21pt; line-height: 1.06; margin: 0 0 3mm; }
+.article-meta { display: flex; gap: 4mm; flex-wrap: wrap; font: 7pt Arial, Helvetica, sans-serif; color: #6b7280; }
+.article-image { width: 100%; height: 68mm; object-fit: cover; margin: 3mm 0 5mm; background: #e5e7eb; }
+.article-body { width: 100%; }
+.article-body p { font-size: 9.8pt; line-height: 1.46; margin-bottom: 3mm; }
+.article-lead { font-size: 11.2pt !important; line-height: 1.4 !important; font-weight: bold; }
+.continuation-label { font: 7pt Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1.5px; color: #6b7280; margin-bottom: 3mm; }
+.part-indicator { float: right; font: 7pt Arial, Helvetica, sans-serif; color: #9ca3af; }
+.source-box { margin-top: auto; padding-top: 3mm; border-top: 1px solid #d1d5db; font: 6.8pt/1.35 Arial, Helvetica, sans-serif; color: #6b7280; }
+.source-url { overflow-wrap: anywhere; }
+.source-link { color: #7f1d1d; text-decoration: none; }
+
+/* Data */
+.metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 5mm 0 7mm; }
+.metric-card { padding: 5mm; background: #f3f4f6; border-left: 3px solid #7f1d1d; }
+.metric-value { font: bold 19pt Arial, Helvetica, sans-serif; }
+.metric-label { margin-top: 1mm; font: 6.8pt Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; }
+.chart-page { display: flex; flex-direction: column; }
+.chart-image { display: block; width: 100%; max-width: 178mm; max-height: 215mm; object-fit: contain; margin: 4mm auto 0; }
+.data-table { width: 100%; border-collapse: collapse; margin-top: 4mm; font: 8.5pt Arial, Helvetica, sans-serif; }
+.data-table th, .data-table td { padding: 2.2mm 2mm; border-bottom: 1px solid #e5e7eb; text-align: left; }
+.data-table th { color: #7f1d1d; }
+
+/* Pipeline */
+.pipeline-step { display: flex; gap: 4mm; padding: 3mm 0; border-bottom: 1px solid #e5e7eb; }
+.pipeline-number { font: bold 8pt Arial, Helvetica, sans-serif; color: #7f1d1d; min-width: 8mm; }
+.pipeline-name { font-weight: bold; margin-bottom: 1mm; }
+
+/* Back cover */
+.back-cover { background: #111827; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+.back-cover-content { max-width: 145mm; }
+.back-cover h1 { font-size: 28pt; margin-bottom: 6mm; }
+.back-cover p { color: #d1d5db; }
+
+@media print { html, body { background: white; } .magazine-page { margin: 0; box-shadow: none; } a { color: inherit; } }
+</style>
+</head>
+<body>
+{% for page in page_plan %}
+{% set page_type = page.type|default('content')|lower %}
+
+{% if page_type == 'cover' %}
+<section class="magazine-page cover-page">
+  <div><div class="cover-kicker">Northeast Sentinel AI</div></div>
+  <div>
+    <div class="cover-accent"></div>
+    <h1 class="cover-title">{{ page.title or "Securing the Northeast" }}</h1>
+    <p class="cover-subtitle">Indian Army's Role in Stability, Peace &amp; National Security</p>
+  </div>
+  <div class="cover-meta">
+    <div>E-MAGAZINE</div>
+    <div>Coverage period: {{ metadata.date_range or "5 September 2026 — 5 October 2026" }}</div>
+    <div>AI-assisted research, retrieval, analysis and editorial generation</div>
+  </div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'inside_cover' %}
+<section class="magazine-page inside-cover">
+  <div class="inside-cover-box">
+    <div class="eyebrow">Northeast Sentinel AI</div>
+    <h1>Stability, Peace &amp;<br>National Security</h1>
+    <div class="rule"></div>
+    <p>An automated research and editorial system for structured coverage of Northeast India.</p>
+    <p class="small-text">Coverage period: {{ metadata.date_range }}</p>
+  </div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'editorial' %}
+<section class="magazine-page">
+  <div class="running-label">Editor's Note</div>
+  <h1 class="editorial-title">{{ page.title or "Editorial" }}</h1>
+  <div class="rule"></div>
+  <div class="editorial-body">
+    {% for paragraph in page.content.split('\n\n') %}{% if paragraph.strip() %}<p>{{ paragraph }}</p>{% endif %}{% endfor %}
+  </div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'toc' %}
+<section class="magazine-page">
+  <div class="running-label">Contents</div>
+  <h1 class="toc-title">Table of Contents</h1>
+  <div class="rule"></div>
+  {% for section in sections %}
+  <div class="toc-item"><div class="toc-number">{{ "%02d"|format(loop.index) }}</div><div class="toc-label"><strong>{{ section.title }}</strong><br><span class="small-text">{{ section.article_count }} article{% if section.article_count != 1 %}s{% endif %}</span></div></div>
+  {% endfor %}
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'section' %}
+<section class="magazine-page section-page">
+  <div class="section-number">SECTION {{ page.section }}</div>
+  <h1 class="section-title">{{ page.title or page.section }}</h1>
+  <p class="section-description">{{ page.content }}</p>
+  <div class="section-count">{{ page.article_count }} article{% if page.article_count != 1 %}s{% endif %}</div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'article' %}
+<section class="magazine-page article-page">
+  <div class="article-header">
+    {% if page.is_continuation %}<div class="continuation-label">Continued — Part {{ page.page_part }} of {{ page.page_parts }}<span class="part-indicator">{{ page.article_category }}</span></div>{% endif %}
+    <div class="article-category">{{ page.article_category or "Regional News" }}</div>
+    <h1 class="article-title">{{ page.article_title or "Untitled Article" }}</h1>
+    <div class="article-meta">
+      {% if page.article_source %}<span>{{ page.article_source }}</span>{% endif %}
+      {% if page.published_date %}<span>{{ page.published_date }}</span>{% endif %}
+      <span>Article {{ page.article_id }}</span>
+    </div>
+  </div>
+
+  {% if not page.is_continuation and page.article_image %}
+  <img class="article-image" src="{{ page.article_image }}" alt="{{ page.article_title or 'Article image' }}">
+  {% endif %}
+
+  <div class="article-body">
+    {% for paragraph in page.body_chunk.split('\n') %}
+      {% if paragraph.strip() %}
+        {% if loop.first and not page.is_continuation %}<p class="article-lead">{{ paragraph }}</p>{% else %}<p>{{ paragraph }}</p>{% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="source-box">
+    <strong>Source:</strong> {{ page.article_source or "Unknown source" }}
+    {% if page.article_url %}<br><a class="source-link" href="{{ page.article_url }}">{{ page.article_url }}</a>{% endif %}
+    {% if page.source_ids %}<br>Evidence reference: {{ page.source_ids|join(', ') }}{% endif %}
+  </div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'analytics' %}
+<section class="magazine-page">
+  <div class="running-label">Data &amp; Analytics</div>
+  <h1 class="analytics-title">{{ page.title or "Northeast Coverage Analytics" }}</h1>
+  <div class="rule"></div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="metric-value">{{ articles|length }}</div><div class="metric-label">Selected Articles</div></div>
+    <div class="metric-card"><div class="metric-value">{{ sections|length }}</div><div class="metric-label">Sections</div></div>
+    <div class="metric-card"><div class="metric-value">{{ charts|length }}</div><div class="metric-label">Charts</div></div>
+  </div>
+  <div class="content-body"><p>The analytics pages summarize the selected editorial corpus by category, source, date and Northeast-state coverage. They describe this edition's selection rather than all reporting in the region.</p></div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'chart' %}
+<section class="magazine-page chart-page">
+  <div class="running-label">Data Visualization</div>
+  <h1 class="content-title">{{ page.title or page.chart_name or "Coverage Analysis" }}</h1>
+  {% if page.chart_path %}<img class="chart-image" src="{{ page.chart_path }}" alt="{{ page.title or 'Analytics chart' }}">{% else %}<p class="muted">Chart image unavailable.</p>{% endif %}
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'source' %}
+<section class="magazine-page">
+  <div class="running-label">Sources</div>
+  <h1 class="content-title">Source Index</h1>
+  <div class="rule"></div>
+  <table class="data-table"><thead><tr><th>#</th><th>Source</th><th>Articles</th></tr></thead><tbody>
+  {% set ns = namespace(last_source='', source_no=0) %}
+  {% for article in articles %}
+    {% if article.source != ns.last_source %}{% set ns.source_no = ns.source_no + 1 %}<tr><td>{{ ns.source_no }}</td><td>{{ article.source }}</td><td>{{ articles|selectattr('source','equalto',article.source)|list|length }}</td></tr>{% set ns.last_source = article.source %}{% endif %}
+  {% endfor %}
+  </tbody></table>
+  <div class="content-body" style="margin-top:6mm"><p class="small-text">Individual article pages contain the original source URL as a clickable reference.</p></div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'methodology' or page_type == 'pipeline' or page_type in ['overview','state_coverage','category_overview','source_distribution','date_coverage','editorial_process','rag_methodology','image_methodology','analytics_summary','methodology_detail','closing_note','methodology_intro'] %}
+<section class="magazine-page">
+  <div class="running-label">Northeast Sentinel AI</div>
+  <h1 class="content-title">{{ page.title or "Editorial Analysis" }}</h1>
+  <div class="rule"></div>
+  <div class="content-body">
+    {% for paragraph in page.content.split('\n') %}
+      {% if paragraph.strip() %}
+        {% set parts = paragraph.split(':', 1) %}
+        {% if paragraph[:2].isdigit() and paragraph[2:3] == '.' %}
+          <div class="pipeline-step"><div class="pipeline-number">{{ paragraph[:2] }}</div><div class="pipeline-name">{{ paragraph[3:].strip() }}</div></div>
+        {% else %}<p>{{ paragraph }}</p>{% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% elif page_type == 'back_cover' %}
+<section class="magazine-page back-cover">
+  <div class="back-cover-content">
+    <div class="cover-kicker">Northeast Sentinel AI</div>
+    <h1>End of Edition</h1>
+    <p>Securing the Northeast:<br>Indian Army's Role in Stability,<br>Peace &amp; National Security</p>
+    <div class="cover-accent"></div>
+    <p class="small-text">Coverage period: {{ metadata.date_range }}</p>
+  </div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+
+{% else %}
+<section class="magazine-page">
+  <div class="running-label">Northeast Sentinel AI</div>
+  <h1 class="content-title">{{ page.title or page.heading or "Northeast India" }}</h1>
+  <div class="rule"></div>
+  <div class="content-body"><p>{{ page.content or "" }}</p></div>
+  <div class="page-number">{{ page.display_page_number }}</div>
+</section>
+{% endif %}
+{% endfor %}
+</body>
+</html>
