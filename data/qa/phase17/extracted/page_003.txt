@@ -1,9 +1,9 @@
-EDITOR'S NOTE
-Editor's Note
-This edition presents a focused, machine-assisted view of Northeast India during the configured coverage window. Rather
-than treating the region as a single narrative, the magazine organizes selected reporting into security, development, regional
-affairs, society and sport.
-The publication is produced through a reproducible pipeline that collects reporting, validates dates and content, evaluates
-Northeast relevance, ranks candidates, retrieves evidence and generates grounded editorial copy. The result is intended to
-make the selection logic visible alongside the stories themselves.
+EDITOR'S NOTE 
+Editor's Note 
+This edition presents a focused, machine-assisted view of Northeast India during the configured coverage window.
+Rather than treating the region as a single narrative, the magazine organizes selected reporting into security,
+development, regional affairs, society and sport. 
+The publication is produced through a reproducible pipeline that collects reporting, validates dates and content,
+evaluates Northeast relevance, ranks candidates, retrieves evidence and generates grounded editorial copy. The
+result is intended to make the selection logic visible alongside the stories themselves. 
 3

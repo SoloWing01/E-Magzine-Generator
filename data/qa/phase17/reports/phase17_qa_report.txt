@@ -7,9 +7,9 @@ HTML: /home/solow/dataScience/northeast_magzine/data/output/northeast_sentinel_m
 Magazine data: /home/solow/dataScience/northeast_magzine/data/output/magazine_data.json
 
 RESULT: FAIL
-Passed checks: 19
-Failed errors: 2
-Warnings: 1
+Passed checks: 16
+Failed errors: 4
+Warnings: 2
 
 CHECKS
 ------------------------------------------------------------------------
@@ -20,9 +20,9 @@ CHECKS
 [PASS] HTML logical page count: Found 50 logical pages; expected 50.
 [PASS] HTML page numbering: HTML page numbers are sequential.
 [PASS] HTML article title coverage: All 11 expected article titles found.
-[FAIL] HTML image assets: Missing 15 local image asset(s): [{'page': 7, 'src': '../images/article_29/image_01_1068723c0db5.jpg'}, {'page': 10, 'src': '../images/article_15/image_01_a1a7a93733ba.jpg'}, {'page': 12, 'src': '../images/article_3/image_01_0f48e63c598f.jpg'}, {'page': 14, 'src': '../images/article_30/image_01_76da28d9e562.jpg'}, {'page': 16, 'src': '../images/article_32/image_01_e06f94efe638.jpg'}, {'page': 19, 'src': '../images/article_11/image_01_49db2b535ae9.jpg'}, {'page': 21, 'src': '../images/article_31/image_01_8d47f0a122c9.jpg'}, {'page': 24, 'src': '../images/article_12/image_01_8bfd3466c4ad.jpg'}, {'page': 27, 'src': '../images/article_13/image_01_582619699521.jpg'}, {'page': 29, 'src': '../images/article_9/image_01_a7f6a337babe.jpg'}, {'page': 32, 'src': '../images/article_34/image_01_f88cad2a0c25.jpg'}, {'page': 35, 'src': '../charts/articles_by_category.png'}, {'page': 36, 'src': '../charts/articles_by_source.png'}, {'page': 37, 'src': '../charts/articles_over_time.png'}, {'page': 38, 'src': '../charts/northeast_state_coverage.png'}]
-[FAIL] HTML chart assets: Missing chart asset(s): [{'page': 35, 'chart': '../charts/articles_by_category.png'}, {'page': 36, 'chart': '../charts/articles_by_source.png'}, {'page': 37, 'chart': '../charts/articles_over_time.png'}, {'page': 38, 'chart': '../charts/northeast_state_coverage.png'}]
-[PASS] HTML source URLs: Found 11 unique HTTP(S) link(s); all 11 expected source URL(s) are present.
+[FAIL] HTML image assets: Missing 15 local image asset(s): [{'page': 7, 'src': '../images/article_29/image_01_1068723c0db5.jpg'}, {'page': 10, 'src': '../images/article_15/image_01_a1a7a93733ba.jpg'}, {'page': 12, 'src': '../images/article_3/image_01_0f48e63c598f.jpg'}, {'page': 15, 'src': '../images/article_30/image_01_76da28d9e562.jpg'}, {'page': 17, 'src': '../images/article_32/image_01_e06f94efe638.jpg'}, {'page': 20, 'src': '../images/article_11/image_01_49db2b535ae9.jpg'}, {'page': 22, 'src': '../images/article_31/image_01_8d47f0a122c9.jpg'}, {'page': 25, 'src': '../images/article_12/image_01_8bfd3466c4ad.jpg'}, {'page': 28, 'src': '../images/article_13/image_01_582619699521.jpg'}, {'page': 30, 'src': '../images/article_9/image_01_a7f6a337babe.jpg'}, {'page': 33, 'src': '../images/article_34/image_01_f88cad2a0c25.jpg'}, {'page': 36, 'src': '../charts/articles_by_category.png'}, {'page': 37, 'src': '../charts/articles_by_source.png'}, {'page': 38, 'src': '../charts/articles_over_time.png'}, {'page': 39, 'src': '../charts/northeast_state_coverage.png'}]
+[FAIL] HTML chart assets: Missing chart asset(s): [{'page': 36, 'chart': '../charts/articles_by_category.png'}, {'page': 37, 'chart': '../charts/articles_by_source.png'}, {'page': 38, 'chart': '../charts/articles_over_time.png'}, {'page': 39, 'chart': '../charts/northeast_state_coverage.png'}]
+[FAIL] HTML source URLs: Missing expected source URL(s): ['https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294', 'https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912', 'https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316', 'https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301', 'https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279', 'https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287', 'https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285', 'https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278', 'https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314', 'https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276', 'https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044']
 [PASS] HTML placeholder detection: No known placeholder phrases detected.
 [PASS] Article continuation markers: Continuation article pages are explicitly marked.
 [PASS] PDF readable: PDF opened successfully with pypdf.
@@ -30,11 +30,11 @@ CHECKS
 [PASS] PDF A4 dimensions: All PDF pages use A4 dimensions.
 [PASS] Exact duplicate PDF pages: No exact duplicate page text detected.
 [PASS] PDF article title coverage: All 11 expected article title(s) found in PDF.
-[WARN] Unexpected low-text pages: Low-text page(s): [{'page': 2, 'word_count': 28, 'html_type': 'generic'}, {'page': 4, 'word_count': 30, 'html_type': 'generic'}, {'page': 5, 'word_count': 42, 'html_type': 'generic'}, {'page': 9, 'word_count': 32, 'html_type': 'section'}, {'page': 18, 'word_count': 33, 'html_type': 'section'}, {'page': 23, 'word_count': 33, 'html_type': 'section'}, {'page': 31, 'word_count': 38, 'html_type': 'section'}, {'page': 34, 'word_count': 37, 'html_type': 'generic'}, {'page': 35, 'word_count': 9, 'html_type': 'chart'}, {'page': 36, 'word_count': 9, 'html_type': 'chart'}, {'page': 37, 'word_count': 9, 'html_type': 'chart'}, {'page': 38, 'word_count': 9, 'html_type': 'chart'}, {'page': 42, 'word_count': 35, 'html_type': 'generic'}, {'page': 43, 'word_count': 35, 'html_type': 'generic'}, {'page': 47, 'word_count': 23, 'html_type': 'generic'}, {'page': 48, 'word_count': 25, 'html_type': 'generic'}, {'page': 49, 'word_count': 21, 'html_type': 'generic'}, {'page': 50, 'word_count': 42, 'html_type': 'generic'}]
+[WARN] Unexpected low-text pages: Low-text page(s): [{'page': 2, 'word_count': 29, 'html_type': 'generic'}, {'page': 4, 'word_count': 30, 'html_type': 'generic'}, {'page': 6, 'word_count': 28, 'html_type': 'section'}, {'page': 9, 'word_count': 21, 'html_type': 'section'}, {'page': 19, 'word_count': 21, 'html_type': 'section'}, {'page': 24, 'word_count': 21, 'html_type': 'section'}, {'page': 32, 'word_count': 20, 'html_type': 'section'}, {'page': 35, 'word_count': 35, 'html_type': 'generic'}, {'page': 36, 'word_count': 6, 'html_type': 'chart'}, {'page': 37, 'word_count': 6, 'html_type': 'chart'}, {'page': 38, 'word_count': 6, 'html_type': 'chart'}, {'page': 39, 'word_count': 6, 'html_type': 'chart'}, {'page': 44, 'word_count': 35, 'html_type': 'generic'}, {'page': 47, 'word_count': 11, 'html_type': 'generic'}, {'page': 50, 'word_count': 42, 'html_type': 'generic'}]
 [PASS] PDF placeholder detection: No known placeholder phrases detected in PDF text.
-[PASS] PDF source link annotations: Found 11 unique PDF link annotation(s); all expected source URL(s) are linked.
+[WARN] PDF source link annotations: 11 expected source URL(s) are not present as PDF link annotations.
 [PASS] HTML/PDF page count agreement: HTML logical pages and PDF physical pages both equal 50.
-[PASS] Article IDs represented in HTML: Every expected article ID appears on at least one article page.
+[FAIL] Article IDs represented in HTML: Missing article ID(s) in HTML: [3, 9, 11, 12, 13, 15, 29, 30, 31, 32, 34]
 
 OUTPUTS
 ------------------------------------------------------------------------

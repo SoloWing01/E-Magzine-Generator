@@ -1,4 +1,3 @@
-DATA VISUALIZATION
-Northeast State Coverage
+DATA VISUALIZATION 
+Articles Over Time 
 38
-Northeast State Coverage

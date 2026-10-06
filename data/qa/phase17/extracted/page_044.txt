@@ -1,11 +1,7 @@
-NORTHEAST SENTINEL AI
-Editorial Decision Process
-1. Discover and collect candidate reporting.
-2. Validate title, URL, source, date and content.
-3. Reject articles without a meaningful Northeast connection.
-4. Classify surviving articles into editorial themes.
-5. Score relevance, theme, security relevance, freshness, source quality and content quality.
-6. Remove duplicate or near-duplicate candidates.
-7. Retrieve evidence from the local vector store for grounded generation.
-8. Validate generated claims against retrieved evidence.
+NORTHEAST SENTINEL AI 
+Coverage Window 
+Selected reporting spans 10 September 2026 to 04 October 2026. 
+Configured assignment window: 2026-09-05 to 2026-10-04. 
+Final editorial records: 11. 
+The date filter is applied before final editorial composition. 
 44

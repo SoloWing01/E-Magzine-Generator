@@ -1,5 +1,13 @@
-NORTHEAST SENTINEL AI
-Research Methodology
-The system combines web collection, validation, relevance classification, scoring, semantic retrieval, grounded generation
-and editorial quality checks before composition.
+METHODOLOGY 
+Research Methodology 
+01 Web collection 
+Articles are discovered and collected through the scraping pipeline.
+02 Validation and date filtering 
+Article metadata and publication dates are validated against the configured coverage period.
+03 Relevance and classification 
+Articles are evaluated for Northeast relevance and classified into magazine themes.
+04 Scoring and ranking 
+Relevance, theme, security, freshness, source quality and content quality contribute to article ranking.
+05 Retrieval and grounded generation 
+Selected articles are embedded into the vector store and retrieved as evidence for grounded editorial generation.
 48

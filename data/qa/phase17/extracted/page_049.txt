@@ -1,5 +1,19 @@
-NORTHEAST SENTINEL AI
-AI Editorial Pipeline
-Scrapling → SQLite → NLP → scoring → embeddings → Chroma → Mistral RAG → grounding → images → analytics
-→ magazine composition → PDF.
+AI EDITORIAL PIPELINE 
+AI Editorial Pipeline 
+01 Scrapling 
+Web article discovery and extraction.
+02 SQLite 
+Structured article storage and metadata.
+03 NLP Classification 
+Northeast relevance, themes and entities.
+04 Article Scoring 
+Multi-factor ranking of candidate articles.
+05 Sentence Transformers
+Semantic embeddings for retrieval.
+06 Chroma 
+Local vector storage and semantic search.
+07 Mistral RAG 
+Evidence-grounded editorial generation.
+08 Magazine Composition 
+Automated page planning and HTML composition.
 49

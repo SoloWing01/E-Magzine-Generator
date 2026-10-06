@@ -1,4 +1,8 @@
-DATA VISUALIZATION
-Articles By Category
+DATA & ANALYTICS 
+Northeast Coverage Analytics 
+11 SELECTED ARTICLES 
+5 SECTIONS 
+4 CHARTS 
+The analytical layer summarizes the articles retained by the editorial pipeline and provides visual evidence for
+category, source, temporal and Northeast-state coverage. 
 35
-Articles By Category

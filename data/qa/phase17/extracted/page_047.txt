@@ -1,6 +1,5 @@
-SOURCES
-Source Index
-# Source Articles
-1 The Assam Tribune 11
-Individual article pages contain the original source URL as a clickable reference.
+SOURCES 
+Source Index 
+1 The Assam Tribune
+Articles included: 11 
 47

@@ -1,6 +1,13 @@
-NORTHEAST SENTINEL AI
-Reading the Edition
-Each article is linked to its source and publication date. Continuation pages are explicitly marked. The analytics section
-describes the selected corpus, while the methodology pages explain how the automated editorial system produced the
-edition.
+METHODOLOGY 
+Reading the Edition 
+01 Web collection 
+Articles are discovered and collected through the scraping pipeline.
+02 Validation and date filtering 
+Article metadata and publication dates are validated against the configured coverage period.
+03 Relevance and classification 
+Articles are evaluated for Northeast relevance and classified into magazine themes.
+04 Scoring and ranking 
+Relevance, theme, security, freshness, source quality and content quality contribute to article ranking.
+05 Retrieval and grounded generation 
+Selected articles are embedded into the vector store and retrieved as evidence for grounded editorial generation.
 5

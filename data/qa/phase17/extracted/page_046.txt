@@ -1,7 +1,13 @@
-NORTHEAST SENTINEL AI
-Image Selection
-11 of 11 selected articles have an associated local image asset.
-The composition engine places the selected image on the article opener and removes it from continuation pages so the text
-can use the available page area efficiently.
-Image files are kept local to the generated magazine package for deterministic PDF rendering.
+METHODOLOGY 
+Grounded AI Editorial Generation 
+01 Web collection 
+Articles are discovered and collected through the scraping pipeline.
+02 Validation and date filtering 
+Article metadata and publication dates are validated against the configured coverage period.
+03 Relevance and classification 
+Articles are evaluated for Northeast relevance and classified into magazine themes.
+04 Scoring and ranking 
+Relevance, theme, security, freshness, source quality and content quality contribute to article ranking.
+05 Retrieval and grounded generation 
+Selected articles are embedded into the vector store and retrieved as evidence for grounded editorial generation.
 46

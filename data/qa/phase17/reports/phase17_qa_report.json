@@ -23,9 +23,9 @@
   },
   "summary": {
     "result": "FAIL",
-    "passed_checks": 19,
-    "failed_errors": 2,
-    "warnings": 1,
+    "passed_checks": 16,
+    "failed_errors": 4,
+    "warnings": 2,
     "total_checks": 22
   },
   "checks": [
@@ -75,19 +75,19 @@
       "name": "HTML image assets",
       "passed": false,
       "severity": "error",
-      "message": "Missing 15 local image asset(s): [{'page': 7, 'src': '../images/article_29/image_01_1068723c0db5.jpg'}, {'page': 10, 'src': '../images/article_15/image_01_a1a7a93733ba.jpg'}, {'page': 12, 'src': '../images/article_3/image_01_0f48e63c598f.jpg'}, {'page': 14, 'src': '../images/article_30/image_01_76da28d9e562.jpg'}, {'page': 16, 'src': '../images/article_32/image_01_e06f94efe638.jpg'}, {'page': 19, 'src': '../images/article_11/image_01_49db2b535ae9.jpg'}, {'page': 21, 'src': '../images/article_31/image_01_8d47f0a122c9.jpg'}, {'page': 24, 'src': '../images/article_12/image_01_8bfd3466c4ad.jpg'}, {'page': 27, 'src': '../images/article_13/image_01_582619699521.jpg'}, {'page': 29, 'src': '../images/article_9/image_01_a7f6a337babe.jpg'}, {'page': 32, 'src': '../images/article_34/image_01_f88cad2a0c25.jpg'}, {'page': 35, 'src': '../charts/articles_by_category.png'}, {'page': 36, 'src': '../charts/articles_by_source.png'}, {'page': 37, 'src': '../charts/articles_over_time.png'}, {'page': 38, 'src': '../charts/northeast_state_coverage.png'}]"
+      "message": "Missing 15 local image asset(s): [{'page': 7, 'src': '../images/article_29/image_01_1068723c0db5.jpg'}, {'page': 10, 'src': '../images/article_15/image_01_a1a7a93733ba.jpg'}, {'page': 12, 'src': '../images/article_3/image_01_0f48e63c598f.jpg'}, {'page': 15, 'src': '../images/article_30/image_01_76da28d9e562.jpg'}, {'page': 17, 'src': '../images/article_32/image_01_e06f94efe638.jpg'}, {'page': 20, 'src': '../images/article_11/image_01_49db2b535ae9.jpg'}, {'page': 22, 'src': '../images/article_31/image_01_8d47f0a122c9.jpg'}, {'page': 25, 'src': '../images/article_12/image_01_8bfd3466c4ad.jpg'}, {'page': 28, 'src': '../images/article_13/image_01_582619699521.jpg'}, {'page': 30, 'src': '../images/article_9/image_01_a7f6a337babe.jpg'}, {'page': 33, 'src': '../images/article_34/image_01_f88cad2a0c25.jpg'}, {'page': 36, 'src': '../charts/articles_by_category.png'}, {'page': 37, 'src': '../charts/articles_by_source.png'}, {'page': 38, 'src': '../charts/articles_over_time.png'}, {'page': 39, 'src': '../charts/northeast_state_coverage.png'}]"
     },
     {
       "name": "HTML chart assets",
       "passed": false,
       "severity": "error",
-      "message": "Missing chart asset(s): [{'page': 35, 'chart': '../charts/articles_by_category.png'}, {'page': 36, 'chart': '../charts/articles_by_source.png'}, {'page': 37, 'chart': '../charts/articles_over_time.png'}, {'page': 38, 'chart': '../charts/northeast_state_coverage.png'}]"
+      "message": "Missing chart asset(s): [{'page': 36, 'chart': '../charts/articles_by_category.png'}, {'page': 37, 'chart': '../charts/articles_by_source.png'}, {'page': 38, 'chart': '../charts/articles_over_time.png'}, {'page': 39, 'chart': '../charts/northeast_state_coverage.png'}]"
     },
     {
       "name": "HTML source URLs",
-      "passed": true,
+      "passed": false,
       "severity": "error",
-      "message": "Found 11 unique HTTP(S) link(s); all 11 expected source URL(s) are present."
+      "message": "Missing expected source URL(s): ['https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294', 'https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912', 'https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316', 'https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301', 'https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279', 'https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287', 'https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285', 'https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278', 'https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314', 'https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276', 'https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044']"
     },
     {
       "name": "HTML placeholder detection",
@@ -135,7 +135,7 @@
       "name": "Unexpected low-text pages",
       "passed": false,
       "severity": "warning",
-      "message": "Low-text page(s): [{'page': 2, 'word_count': 28, 'html_type': 'generic'}, {'page': 4, 'word_count': 30, 'html_type': 'generic'}, {'page': 5, 'word_count': 42, 'html_type': 'generic'}, {'page': 9, 'word_count': 32, 'html_type': 'section'}, {'page': 18, 'word_count': 33, 'html_type': 'section'}, {'page': 23, 'word_count': 33, 'html_type': 'section'}, {'page': 31, 'word_count': 38, 'html_type': 'section'}, {'page': 34, 'word_count': 37, 'html_type': 'generic'}, {'page': 35, 'word_count': 9, 'html_type': 'chart'}, {'page': 36, 'word_count': 9, 'html_type': 'chart'}, {'page': 37, 'word_count': 9, 'html_type': 'chart'}, {'page': 38, 'word_count': 9, 'html_type': 'chart'}, {'page': 42, 'word_count': 35, 'html_type': 'generic'}, {'page': 43, 'word_count': 35, 'html_type': 'generic'}, {'page': 47, 'word_count': 23, 'html_type': 'generic'}, {'page': 48, 'word_count': 25, 'html_type': 'generic'}, {'page': 49, 'word_count': 21, 'html_type': 'generic'}, {'page': 50, 'word_count': 42, 'html_type': 'generic'}]"
+      "message": "Low-text page(s): [{'page': 2, 'word_count': 29, 'html_type': 'generic'}, {'page': 4, 'word_count': 30, 'html_type': 'generic'}, {'page': 6, 'word_count': 28, 'html_type': 'section'}, {'page': 9, 'word_count': 21, 'html_type': 'section'}, {'page': 19, 'word_count': 21, 'html_type': 'section'}, {'page': 24, 'word_count': 21, 'html_type': 'section'}, {'page': 32, 'word_count': 20, 'html_type': 'section'}, {'page': 35, 'word_count': 35, 'html_type': 'generic'}, {'page': 36, 'word_count': 6, 'html_type': 'chart'}, {'page': 37, 'word_count': 6, 'html_type': 'chart'}, {'page': 38, 'word_count': 6, 'html_type': 'chart'}, {'page': 39, 'word_count': 6, 'html_type': 'chart'}, {'page': 44, 'word_count': 35, 'html_type': 'generic'}, {'page': 47, 'word_count': 11, 'html_type': 'generic'}, {'page': 50, 'word_count': 42, 'html_type': 'generic'}]"
     },
     {
       "name": "PDF placeholder detection",
@@ -145,9 +145,9 @@
     },
     {
       "name": "PDF source link annotations",
-      "passed": true,
+      "passed": false,
       "severity": "warning",
-      "message": "Found 11 unique PDF link annotation(s); all expected source URL(s) are linked."
+      "message": "11 expected source URL(s) are not present as PDF link annotations."
     },
     {
       "name": "HTML/PDF page count agreement",
@@ -157,35 +157,23 @@
     },
     {
       "name": "Article IDs represented in HTML",
-      "passed": true,
+      "passed": false,
       "severity": "error",
-      "message": "Every expected article ID appears on at least one article page."
+      "message": "Missing article ID(s) in HTML: [3, 9, 11, 12, 13, 15, 29, 30, 31, 32, 34]"
     }
   ],
   "html": {
     "logical_pages": 50,
     "page_types": {
-      "generic": 18,
+      "generic": 17,
       "section": 5,
-      "article": 23,
+      "article": 24,
       "chart": 4
     },
-    "article_pages": 23,
+    "article_pages": 24,
     "chart_pages": 4,
     "image_references": 15,
-    "html_urls": [
-      "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294",
-      "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912",
-      "https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316",
-      "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301",
-      "https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279",
-      "https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287",
-      "https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285",
-      "https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278",
-      "https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314",
-      "https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276",
-      "https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044"
-    ],
+    "html_urls": [],
     "expected_urls": [
       "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294",
       "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912",
@@ -214,69 +202,69 @@
         "src": "../images/article_3/image_01_0f48e63c598f.jpg"
       },
       {
-        "page": 14,
+        "page": 15,
         "src": "../images/article_30/image_01_76da28d9e562.jpg"
       },
       {
-        "page": 16,
+        "page": 17,
         "src": "../images/article_32/image_01_e06f94efe638.jpg"
       },
       {
-        "page": 19,
+        "page": 20,
         "src": "../images/article_11/image_01_49db2b535ae9.jpg"
       },
       {
-        "page": 21,
+        "page": 22,
         "src": "../images/article_31/image_01_8d47f0a122c9.jpg"
       },
       {
-        "page": 24,
+        "page": 25,
         "src": "../images/article_12/image_01_8bfd3466c4ad.jpg"
       },
       {
-        "page": 27,
+        "page": 28,
         "src": "../images/article_13/image_01_582619699521.jpg"
       },
       {
-        "page": 29,
+        "page": 30,
         "src": "../images/article_9/image_01_a7f6a337babe.jpg"
       },
       {
-        "page": 32,
+        "page": 33,
         "src": "../images/article_34/image_01_f88cad2a0c25.jpg"
       },
       {
-        "page": 35,
+        "page": 36,
         "src": "../charts/articles_by_category.png"
       },
       {
-        "page": 36,
+        "page": 37,
         "src": "../charts/articles_by_source.png"
       },
       {
-        "page": 37,
+        "page": 38,
         "src": "../charts/articles_over_time.png"
       },
       {
-        "page": 38,
+        "page": 39,
         "src": "../charts/northeast_state_coverage.png"
       }
     ],
     "missing_charts": [
       {
-        "page": 35,
+        "page": 36,
         "chart": "../charts/articles_by_category.png"
       },
       {
-        "page": 36,
+        "page": 37,
         "chart": "../charts/articles_by_source.png"
       },
       {
-        "page": 37,
+        "page": 38,
         "chart": "../charts/articles_over_time.png"
       },
       {
-        "page": 38,
+        "page": 39,
         "chart": "../charts/northeast_state_coverage.png"
       }
     ],
@@ -293,7 +281,7 @@
         "title": "Securing the Northeast",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Securing the Northeast Indian Army's Role in Stability, Peace & National Security E-MAGAZINE Coverage period: 10 September 2026 – 04 October 2026 AI-assisted research, retrieval, analysis and editorial generation 1",
+        "text": "Northeast Sentinel AI Securing the Northeast Indian Army's Role in Stability,\n                Peace & National Security E-MAGAZINE Coverage period:\n                5 September 2026 —\n                5 October 2026 AI-assisted research,\n                retrieval, analysis and editorial generation 1",
         "images": [],
         "links": []
       },
@@ -308,7 +296,7 @@
         "title": "",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Stability, Peace & National Security An automated research and editorial system for structured coverage of Northeast India. Coverage period: 10 September 2026 – 04 October 2026 2",
+        "text": "Northeast Sentinel AI Stability, Peace &\n                National Security An automated research and editorial system\n                for structured coverage of Northeast India. Coverage period:\n                5 September 2026 to\n                5 October 2026 2",
         "images": [],
         "links": []
       },
@@ -336,7 +324,7 @@
         "title": "Table of Contents",
         "article_id": null,
         "is_continuation": false,
-        "text": "Contents Table of Contents 01 Security & Strategic Affairs 1 article 02 Development 4 articles 03 Regional News 2 articles 04 Society & Youth 3 articles 05 Sports & Achievements 1 article 4",
+        "text": "Contents Table of Contents 1 Security & Strategic Affairs 1\n                article 2 Development 4\n                articles 3 Regional News 2\n                articles 4 Society & Youth 3\n                articles 5 Sports & Achievements 1\n                article 4",
         "images": [],
         "links": []
       },
@@ -350,7 +338,7 @@
         "title": "Reading the Edition",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Reading the Edition Each article is linked to its source and publication date. Continuation pages are explicitly marked. The analytics section describes the selected corpus, while the methodology pages explain how the automated editorial system produced the edition. 5",
+        "text": "Methodology Reading the Edition 01 Web collection Articles are discovered and collected\n                        through the scraping pipeline. 02 Validation and date filtering Article metadata and publication dates\n                        are validated against the configured\n                        coverage period. 03 Relevance and classification Articles are evaluated for Northeast\n                        relevance and classified into magazine\n                        themes. 04 Scoring and ranking Relevance, theme, security, freshness,\n                        source quality and content quality\n                        contribute to article ranking. 05 Retrieval and grounded generation Selected articles are embedded into the\n                        vector store and retrieved as evidence\n                        for grounded editorial generation. 5",
         "images": [],
         "links": []
       },
@@ -365,7 +353,7 @@
         "title": "Security & Strategic Affairs",
         "article_id": null,
         "is_continuation": false,
-        "text": "SECTION Security & Strategic Affairs Security & Strategic Affairs Security developments, strategic affairs, border management and the role of security forces across Northeast India. 1 article 6",
+        "text": "SECTION Security & Strategic Affairs Security developments, strategic affairs, border management and the role of security forces across Northeast India. 1\n            article 6",
         "images": [],
         "links": []
       },
@@ -377,19 +365,17 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested",
-        "article_id": 29,
+        "title": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Apprehend Two Myanmar Nationals",
+        "article_id": null,
         "is_continuation": false,
-        "text": "Security & Strategic Affairs Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested The Assam Tribune 2026-10-04T06:59:55 Article 29 In a significant operation targeting drug trafficking along the India-Myanmar border, the Assam Rifles seized **2.5 kg of heroin** valued at approximately **Rs 5.07 crore** in Mizoram’s Champhai district. The operation resulted in the apprehension of **two Myanmar nationals**. Source: The Assam Tribune https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285 Evidence reference: 29 7",
+        "text": "Security & Strategic Affairs Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Apprehend Two Myanmar Nationals The Assam Tribune 2026-10-04T06:59:55 In a significant operation targeting drug trafficking along the India-Myanmar border, the Assam Rifles seized 2.5 kg of heroin valued at approximately Rs 5.07 crore and apprehended two Myanmar nationals in Mizoram’s Champhai district. The operation was conducted at Zote, Champhai, based on specific intelligence gathered by the troops. Following the seizure, the narcotics and the arrested individuals were handed over to the Champhai Excise and Narcotics Department for further investigation and legal proceedings, as reported by a Defence spokesman. Source: The Assam Tribune https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285 7",
         "images": [
           {
             "src": "../images/article_29/image_01_1068723c0db5.jpg",
-            "alt": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested"
+            "alt": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Apprehend Two Myanmar Nationals"
           }
         ],
-        "links": [
-          "https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285"
-        ]
+        "links": []
       },
       {
         "index": 8,
@@ -399,14 +385,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested",
-        "article_id": 29,
+        "title": "Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Apprehend Two Myanmar Nationals",
+        "article_id": null,
         "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Security & Strategic Affairs Security & Strategic Affairs Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Two Myanmar Nationals Arrested The Assam Tribune 2026-10-04T06:59:55 Article 29 The recovery took place in **Zote, Champhai district**, with the seized narcotics and the arrested individuals subsequently handed over to the **Champhai Excise and Narcotics Department** for further investigation and legal proceedings. This latest seizure underscores the Assam Rifles’ ongoing efforts, in coordination with civil agencies, to combat drug-smuggling activities along the international border and safeguard the security of border populations. The operation follows a recent **destruction of seized drugs** worth over **Rs 11.82 crore** in Mizoram. The disposal, conducted at **Bethani Multipurpose Farm in Aizawl**, included **5.356 kg of heroin**, **19.430 kg of ganja**, **1.985 kg of methamphetamine tablets**, and other narcotic substances. The destruction adhered to **Section 51A of the Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985**, and the **NDPS (Seizure, Storage, Sampling and Disposal) Rules, 2022**. Mizoram and neighboring **Manipur** remain critical regions for drug trafficking due to their **910 km of unfenced international border** with Myanmar. The porous border facilitates the smuggling of heroin, methamphetamine (commonly referred to as **Yaba or party tablets**), codeine-based cough syrups, and other narcotics from Myanmar into India and beyond. [Source 29] Source: The Assam Tribune https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285 Evidence reference: 29 8",
+        "text": "Continued\n                \n                    — Part 2 Security & Strategic Affairs Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Apprehend Two Myanmar Nationals The Assam Tribune 2026-10-04T06:59:55 This latest crackdown underscores the Assam Rifles’ ongoing efforts, in coordination with civil agencies, to combat drug-smuggling activities along the international border and safeguard the security of border populations. The operation follows a recent development in Mizoram, where the Excise and Narcotics Department destroyed seized drugs worth over Rs 11.82 crore at Bethani Multipurpose Farm in Aizawl. The disposal was carried out after courts concluded related cases, adhering to Section 51A of the Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985, and the NDPS (Seizure, Storage, Sampling and Disposal) Rules, 2022. The destroyed substances included 5.356 kg of heroin, 19.430 kg of ganja, 1.985 kg of methamphetamine tablets, 89.9 kg of codeine-based cough syrup, 0.418 kg of alprazolam, 0.04 kg of nitrazepam, and 6.830 kg of opium, with a combined estimated value of Rs 11,82,13,173. The seized drugs highlight the persistent challenge of narcotic smuggling in the region, with heroin and methamphetamine tablets—commonly referred to as Yaba or party tablets—being among the most trafficked substances. These drugs, along with codeine-based cough syrups, are frequently misused and illegally transported through clandestine routes. Source: The Assam Tribune https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285 8",
         "images": [],
-        "links": [
-          "https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285"
-        ]
+        "links": []
       },
       {
         "index": 9,
@@ -419,7 +403,7 @@
         "title": "Development",
         "article_id": null,
         "is_continuation": false,
-        "text": "SECTION Development Development Infrastructure, economy, connectivity, governance and development initiatives shaping the region. 4 articles 9",
+        "text": "SECTION Development Infrastructure, economy, connectivity, governance and development initiatives shaping the region. 4\n            articles 9",
         "images": [],
         "links": []
       },
@@ -431,19 +415,17 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades",
-        "article_id": 15,
+        "title": "Guwahati Railway Station Expands Capacity with Major Infrastructure Projects",
+        "article_id": null,
         "is_continuation": false,
-        "text": "Development Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades The Assam Tribune 2026-10-04T07:25:14 Article 15 Guwahati Railway Station is currently managing over 50,000 passengers daily, with numbers peaking at around 65,000 during high-traffic seasons, according to the Northeast Frontier Railway (NFR). The station serves as a critical transit hub for the Northeast, with more than 200 trains operating through it every day, reflecting the region’s growing reliance on rail connectivity [Source 15]. Source: The Assam Tribune https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287 Evidence reference: 15 10",
+        "text": "Development Guwahati Railway Station Expands Capacity with Major Infrastructure Projects The Assam Tribune 2026-10-04T07:25:14 Guwahati Railway Station is currently managing over 50,000 passengers daily, with numbers rising to approximately 65,000 during peak seasons. This surge in passenger traffic has prompted the Northeast Frontier Railway (NFR) to accelerate infrastructure development projects across Guwahati and its surrounding areas. Source: The Assam Tribune https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287 10",
         "images": [
           {
             "src": "../images/article_15/image_01_a1a7a93733ba.jpg",
-            "alt": "Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades"
+            "alt": "Guwahati Railway Station Expands Capacity with Major Infrastructure Projects"
           }
         ],
-        "links": [
-          "https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287"
-        ]
+        "links": []
       },
       {
         "index": 11,
@@ -453,14 +435,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades",
-        "article_id": 15,
+        "title": "Guwahati Railway Station Expands Capacity with Major Infrastructure Projects",
+        "article_id": null,
         "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Development Development Guwahati Railway Station Surges Past 50,000 Daily Passengers as NFR Rolls Out Major Infrastructure Upgrades The Assam Tribune 2026-10-04T07:25:14 Article 15 To address rising demand and operational challenges, the NFR has launched multiple infrastructure projects across Guwahati and its surrounding areas. One key initiative is the **Kamakhya-Guwahati third line**, a 5.74-kilometer stretch sanctioned at a cost of Rs 467 crore. Scheduled for completion by 2028, this project aims to ease congestion, enhance capacity, and improve train operations for passengers in Kamrup Metro district [Source 15]. Another major undertaking is the **Agthori-Kamakhya double line**, combined with the construction of a **second Saraighat Rail-cum-Road Bridge**. The Rs 1,474 crore project spans 7.20 kilometers, including a 1.3-kilometer bridge that will carry a double-line railway track alongside a three-lane road. This infrastructure is expected to relieve pressure on the existing Saraighat Bridge, boost connectivity between Guwahati, North Guwahati, and other Northeast regions, and support additional commuter services [Source 15]. In parallel, the **Mega Coaching Complex at New Guwahati** is under construction at a cost of Rs 227 crore. This facility will strengthen terminal and maintenance infrastructure, further supporting the region’s expanding rail network [Source 15]. Redevelopment efforts are also transforming Guwahati and Kamakhya railway stations. Guwahati Railway Station is being modernized with an IT park and designed under green-building principles, incorporating solar power, waste management, and water conservation measures [Source 15]. Meanwhile, the **Kamakhya-Azara Elevated Corridor** project includes a 13.25-kilometer double-line stretch, with the remaining portion targeted for completion by July 2028. This elevated viaduct, particularly through the Deepor Beel area, aims to balance railway efficiency with wildlife conservation, ensuring safe passage for elephants and other species [Source 15]. The NFR is also enhancing freight and logistics capabilities through **Gati Shakti Cargo Terminals (GCTs)**. The GCT at Baihata, near Guwahati, has already been completed, improving freight-handling and logistics operations in the region [Source 15]. These projects collectively seek to expand railway capacity, reduce congestion, and improve the resilience of train operations in and around Guwahati [Source 15]. Source: The Assam Tribune https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287 Evidence reference: 15 11",
+        "text": "Continued\n                \n                    — Part 2 Development Guwahati Railway Station Expands Capacity with Major Infrastructure Projects The Assam Tribune 2026-10-04T07:25:14 One of the key initiatives is the construction of the Kamakhya-Guwahati third line, a 5.74-kilometer project sanctioned at a cost of Rs 467 crore. Scheduled for completion by 2028, this additional line aims to increase capacity, reduce congestion, and improve train operations for passengers and residents of Kamrup Metro district. Another significant project is the Agthori-Kamakhya double line, which includes the second Saraighat Rail-cum-Road Bridge. The Rs 1,474 crore project spans 7.20 kilometers, featuring a 1.3-kilometer bridge that will carry a double-line railway track alongside a three-lane road. This infrastructure is expected to enhance rail and road connectivity across the Brahmaputra while easing pressure on the existing Saraighat Bridge. The development of a Mega Coaching Complex at New Guwahati is also underway, with a sanctioned cost of Rs 227 crore. This facility will bolster train terminal and maintenance capabilities in the region. Additionally, the redevelopment of Guwahati and Kamakhya railway stations is in progress, focusing on modern amenities and improved accessibility. Guwahati Railway Station is being transformed into a green-building facility, incorporating solar power, waste management, and water management systems. To address environmental and wildlife concerns, the Kamakhya-Azara Elevated Corridor is being constructed. This project includes an elevated viaduct along the stretch, including sections near Deepor Beel, to ensure safe wildlife movement while maintaining efficient rail connectivity. The remaining 13.25-kilometer Azara-Kamakhya double-line stretch is targeted for completion by July 2028. The NFR is also enhancing freight and logistics infrastructure through Gati Shakti Cargo Terminals. The GCT at Baihata, located near Guwahati, has already been completed, improving freight-handling and logistics operations in the region. These projects collectively aim to expand railway capacity, reduce congestion, and enhance the efficiency of train services around Guwahati. Source: The Assam Tribune https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287 11",
         "images": [],
-        "links": [
-          "https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287"
-        ]
+        "links": []
       },
       {
         "index": 12,
@@ -471,18 +451,16 @@
         ],
         "type": "article",
         "title": "Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates",
-        "article_id": 3,
+        "article_id": null,
         "is_continuation": false,
-        "text": "Development Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates The Assam Tribune 2026-09-10T09:09:06 Article 3 Assam Chief Minister Himanta Biswa Sarma has identified the shortage of suitable land as a major barrier to industrial growth in the state, stating that many potential investors are unable to establish operations due to this constraint. Speaking at the inauguration of PepsiCo India’s Rs 787-crore food manufacturing plant in Banekuchi, Nalbari, Sarma emphasized the government’s plan to address this issue by creating land banks and developing industrial estates at strategic locations. Source: The Assam Tribune https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912 Evidence reference: 3 12",
+        "text": "Development Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates The Assam Tribune 2026-09-10T09:09:06 Assam Chief Minister Himanta Biswa Sarma has identified the shortage of suitable land as a major barrier to industrial growth in the state, stating that many potential investors are unable to establish operations due to this constraint. Speaking at the inauguration of PepsiCo India’s Rs 787-crore food manufacturing plant in Banekuchi, Nalbari, Sarma emphasized the government’s proactive approach to address this issue by creating land banks and developing industrial estates at strategic locations. Source: The Assam Tribune https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912 12",
         "images": [
           {
             "src": "../images/article_3/image_01_0f48e63c598f.jpg",
             "alt": "Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates"
           }
         ],
-        "links": [
-          "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912"
-        ]
+        "links": []
       },
       {
         "index": 13,
@@ -493,13 +471,11 @@
         ],
         "type": "article",
         "title": "Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates",
-        "article_id": 3,
+        "article_id": null,
         "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Development Development Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates The Assam Tribune 2026-09-10T09:09:06 Article 3 \"We need land. Many industries want to come to Assam, but due to the absence of suitable land, they could not come. So, now we are trying to create land banks. Wherever there is land, we will take industries there,\" Sarma said, underlining the urgency of the situation. The government is prioritizing land near railway stations and highways for industrial estate development to enhance connectivity and accessibility for businesses. The newly inaugurated PepsiCo facility, which will manufacture food products, is expected to generate over 200 direct and 500 indirect employment opportunities, with approximately 75% of the workforce comprising women. Sarma noted that around 120 women will receive digital literacy training as part of the initiative. The project also marks a significant milestone, as it will enable Assam to produce food products that will be distributed nationwide, previously manufactured primarily in states like Uttar Pradesh, Karnataka, and Maharashtra. The facility’s operations will create a substantial demand for local potatoes, with PepsiCo currently requiring 30,000 metric tonnes annually, a figure projected to rise to 70,000 metric tonnes by 2030. To support local farmers, the state government, PepsiCo, and the State Bank of India have collaborated to facilitate the procurement of specialized potato seeds through Kisan Credit Cards, benefiting around 5,000 farmers and their families. Additionally, a Rs 35-crore cold storage facility with a capacity of 10,000 tonnes is being established to strengthen the potato supply chain. Sarma also highlighted the importance of retaining Assam’s workforce within the state to reduce reliance on external employment opportunities. He referenced the government’s Shraddhanjali scheme, which has, in some months, repatriated as many as 50 bodies of workers who died while working in other states, including Karnataka, Telangana, Maharashtra, and Kerala. \"To prevent such situations, we need to establish industries and create employment opportunities within Assam so that our people do not have to leave the state in search of work,\" he stated. The Chief Minister further revealed that Assam has attracted investments totaling around Rs 3 lakh crore across sectors such as hydrocarbons and petrochemicals, energy, mining, and electronics, with the potential to generate employment for approximately one lakh people. [Source 3] Source: The Assam Tribune https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912 Evidence reference: 3 13",
+        "text": "Continued\n                \n                    — Part 2 Development Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates The Assam Tribune 2026-09-10T09:09:06 \"We need land. Many industries want to come to Assam, but due to the absence of suitable land, they could not come. So, now we are trying to create land banks. Wherever there is land, we will take industries there,\" Sarma said, underlining the urgency of the situation. The focus, he added, is on identifying land near railway stations and highways to facilitate the establishment of industrial estates. \"To create industrial estates, we need suitable land near railway stations and highways. Wherever we find land in such locations, we have decided to build industrial estates there,\" the Chief Minister stated, outlining the government’s strategy to enhance industrial infrastructure. The inauguration of the PepsiCo facility, which is expected to generate over 200 direct and 500 indirect employment opportunities—with around 75% of the workforce comprising women—marks a significant milestone for Assam’s industrial sector. Sarma highlighted that approximately 120 women will receive digital literacy training as part of the initiative. The project, which was laid out by Sarma and then Industries Minister Chandra Mohan Patowary on September 3, 2023, is poised to transform Assam’s manufacturing landscape, with products from the facility set to be distributed nationwide. The facility’s operations will also bolster local agriculture, particularly the potato sector. PepsiCo currently requires around 30,000 metric tonnes of potatoes annually, with projections indicating a rise to 70,000 metric tonnes by 2030. To support this demand, the state government, PepsiCo, and the State Bank of India have collaborated to facilitate the procurement of specialized potato seeds for farmers through Kisan Credit Cards, benefiting around 5,000 farmers and their families. Additionally, a Rs 35-crore cold storage facility with a capacity of 10,000 tonnes is being established to strengthen the potato supply chain. Sarma stressed the importance of expanding industries within Assam to reduce the state’s workforce dependence on employment opportunities outside the state. He cited the Shraddhanjali scheme, which has, in some months, brought back as many as 50 bodies of Assamese workers who died while working in other states, including Karnataka, Telangana, Maharashtra, and Kerala. \"To prevent such situations, we need to establish industries and create employment opportunities within Assam so that our people do not have to leave the state in search of work,\" he said. Source: The Assam Tribune https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912 13",
         "images": [],
-        "links": [
-          "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912"
-        ]
+        "links": []
       },
       {
         "index": 14,
@@ -509,19 +485,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma",
-        "article_id": 30,
-        "is_continuation": false,
-        "text": "Development Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma The Assam Tribune 2026-10-04T05:49:20 Article 30 The Mizoram Government has not received any funds under the Centre’s **Special Assistance to States for Capital Investment (SASCI)** scheme during the current financial year (2026-27), according to an RTI reply from the Department of Expenditure, Ministry of Finance. The Opposition **Mizo National Front (MNF)** has cited this information in a press release, raising concerns over the state’s financial management under Chief Minister **Pu Lalduhoma**. Source: The Assam Tribune https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278 Evidence reference: 30 14",
-        "images": [
-          {
-            "src": "../images/article_30/image_01_76da28d9e562.jpg",
-            "alt": "Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278"
-        ]
+        "title": "Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 3 Development Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates The Assam Tribune 2026-09-10T09:09:06 The Chief Minister also noted that Assam has attracted investments totaling around Rs 3 lakh crore across sectors such as hydrocarbons and petrochemicals, energy, mining, and electronics, with the potential to generate employment for approximately one lakh people. Source: The Assam Tribune https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912 14",
+        "images": [],
+        "links": []
       },
       {
         "index": 15,
@@ -531,14 +500,17 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma",
-        "article_id": 30,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Development Development Mizoram Receives No SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma The Assam Tribune 2026-10-04T05:49:20 Article 30 As of **September 30, 2026**, seven of the eight North Eastern States had received SASCI funds, while Mizoram received **zero rupees**. The allocations for other states were as follows: **Arunachal Pradesh (Rs 3,965.82 crore)**, **Nagaland (Rs 3,324.68 crore)**, **Tripura (Rs 2,613.17 crore)**, **Assam (Rs 2,504.16 crore)**, **Manipur (Rs 2,129.24 crore)**, **Meghalaya (Rs 1,947.14 crore)**, and **Sikkim (Rs 921.97 crore)**. The SASCI scheme provides **50-year interest-free loans** for capital investment projects, with the Union Government allocating **Rs 2 lakh crore** for 2026-27. The MNF highlighted that Mizoram has faced difficulties in availing SASCI funds since the **Zoram People’s Movement (ZPM) Government** took office in **December 2023**. The party alleged that **Rs 233.31 crore** sanctioned under SASCI in **2023-24** and **Rs 111.52 crore** sanctioned in **2025-26** had **lapsed** due to poor financial management. The MNF specifically accused Chief Minister Lalduhoma, who also holds the **Finance portfolio**, of failing to utilize available Central funds effectively. The Opposition party further alleged that the Mizoram Government had previously submitted **utilization certificates** without releasing the corresponding SASCI funds. The MNF stated it would **monitor the issue closely** and take up any such matters with the Centre if similar instances occurred in the future. The **Department of Expenditure**, the nodal department for State finances, was not directly quoted but referenced in the context of fund releases. The MNF demanded an explanation from Lalduhoma regarding the **zero fund release** in 2026-27, emphasizing his dual role as both **Chief Minister and Finance Minister**. [Source 30] Source: The Assam Tribune https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278 Evidence reference: 30 15",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278"
-        ]
+        "title": "Mizoram Fails to Receive SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Development Mizoram Fails to Receive SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma The Assam Tribune 2026-10-04T05:49:20 The Mizoram Government has received no funds under the Centre’s Special Assistance to States for Capital Investment (SASCI) scheme during the current financial year, according to an RTI reply from the Department of Expenditure, Ministry of Finance. The Opposition Mizo National Front (MNF) has cited this information in a press release, raising concerns over the state’s financial management under Chief Minister Pu Lalduhoma, who also holds the Finance portfolio. Source: The Assam Tribune https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278 15",
+        "images": [
+          {
+            "src": "../images/article_30/image_01_76da28d9e562.jpg",
+            "alt": "Mizoram Fails to Receive SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma"
+          }
+        ],
+        "links": []
       },
       {
         "index": 16,
@@ -548,19 +520,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development",
-        "article_id": 32,
-        "is_continuation": false,
-        "text": "Development NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development The Assam Tribune 2026-10-04T05:36:04 Article 32 The North Eastern Council (NEC) has reaffirmed its commitment to supporting Nagaland’s coffee farmers by addressing key challenges such as water harvesting, mechanisation, and the adoption of new technologies and equipment. Speaking during a review of the Coffee USP Project in Tuophema village, Kohima district, NEC Secretary Satinder Kumar Bhalla emphasized that these measures are essential for the welfare and economic upliftment of coffee-growing communities. Source: The Assam Tribune https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276 Evidence reference: 32 16",
-        "images": [
-          {
-            "src": "../images/article_32/image_01_e06f94efe638.jpg",
-            "alt": "NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276"
-        ]
+        "title": "Mizoram Fails to Receive SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Development Mizoram Fails to Receive SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma The Assam Tribune 2026-10-04T05:49:20 As of September 30, 2026, seven of the eight North Eastern States had received SASCI funds for 2026-27, while Mizoram received zero rupees. The allocations for other states were as follows: Arunachal Pradesh received Rs 3,965.82 crore, Nagaland Rs 3,324.68 crore, Tripura Rs 2,613.17 crore, Assam Rs 2,504.16 crore, Manipur Rs 2,129.24 crore, Meghalaya Rs 1,947.14 crore, and Sikkim Rs 921.97 crore. The SASCI scheme provides states with 50-year interest-free loans for capital investment projects, with the Union Government allocating Rs 2 lakh crore for 2026-27 under this scheme. The MNF highlighted that Mizoram has faced difficulties in availing SASCI funds since the Zoram People’s Movement (ZPM) Government took power in December 2023. The party alleged that Rs 233.31 crore sanctioned to Mizoram under SASCI in 2023-24 had lapsed, and another Rs 111.52 crore sanctioned in 2025-26 suffered the same fate. The Opposition attributed this to poor financial management by Chief Minister Lalduhoma and demanded an explanation from him in his capacity as both Chief Minister and Finance Minister. The MNF further alleged that the Mizoram Government had previously submitted utilisation certificates without releasing the corresponding SASCI funds. The party stated it would monitor the issue closely and take up any such matter with the Centre if similar instances occurred in the future. The Department of Expenditure, the Union Government’s nodal department for state finances, including the release of special assistance, was not directly quoted but referenced in the context of the RTI reply. The Opposition’s press release underscores the urgency of addressing the financial discrepancies, with the MNF insisting that the zero fund release for 2026-27 warrants a formal explanation from Lalduhoma. Source: The Assam Tribune https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278 16",
+        "images": [],
+        "links": []
       },
       {
         "index": 17,
@@ -570,18 +535,36 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development",
-        "article_id": 32,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Development Development NEC Pledges Support for Nagaland’s Coffee Farmers, Advocates Modernisation and Integrated Development The Assam Tribune 2026-10-04T05:36:04 Article 32 During his visit on Friday, Bhalla inspected coffee plantation sites and the Hi-Tech Coffee Washing Station, engaging directly with farmers and members of the Tuophema cluster. He highlighted that the Coffee USP Project extends beyond mere plantation initiatives, aiming to serve as an integrated livelihood and economic development programme. The goal is to empower villages, societies, and clusters by maximizing the value derived from the region’s natural and human resources. Bhalla stressed that sustainable livelihoods for coffee farmers depend on more than just cultivation. For the sector to become commercially viable and competitive, he noted the necessity of good road connectivity, modern processing machinery, efficient post-harvest infrastructure, quality assurance, value addition, and strong market and export linkages. These elements are critical to ensuring the sector’s growth and profitability. The NEC Secretary expressed hope that the project would significantly boost the income of farmers and communities, underscoring that achieving this requires collaboration among the Government of India, the Nagaland Government, the Coffee Board, local administration, farmers, technical institutions, and the private sector. He urged the Nagaland Government and the Coffee Board to collaborate with Central agricultural institutions to identify suitable intercrops and complementary agricultural activities. Such diversification, Bhalla stated, would enhance land productivity, provide additional income sources for farmers, and strengthen the overall economic viability of coffee cultivation. Additionally, Bhalla called for the local administration to engage with leading industrial houses, investors, and exporters to facilitate mechanisation and automation in the coffee sector through financial and institutional arrangements. This collective effort, he emphasized, aligns with broader strategies evolved by the Chief Ministers of the North Eastern States to substantially enhance farmers’ incomes. [Source 32] Source: The Assam Tribune https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276 Evidence reference: 32 17",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276"
-        ]
+        "title": "NEC Pledges Comprehensive Support to Nagaland’s Coffee Sector Amid Push for Modernization",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Development NEC Pledges Comprehensive Support to Nagaland’s Coffee Sector Amid Push for Modernization The Assam Tribune 2026-10-04T05:36:04 The North Eastern Council (NEC) has reaffirmed its commitment to bolstering Nagaland’s coffee farming community, with Secretary Satinder Kumar Bhalla emphasizing the need for modernization and integrated development during a recent review of the Coffee USP Project in Tuophema village, Kohima district. Source: The Assam Tribune https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276 17",
+        "images": [
+          {
+            "src": "../images/article_32/image_01_e06f94efe638.jpg",
+            "alt": "NEC Pledges Comprehensive Support to Nagaland’s Coffee Sector Amid Push for Modernization"
+          }
+        ],
+        "links": []
       },
       {
         "index": 18,
         "page_number": 18,
+        "classes": [
+          "article-page",
+          "magazine-page"
+        ],
+        "type": "article",
+        "title": "NEC Pledges Comprehensive Support to Nagaland’s Coffee Sector Amid Push for Modernization",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Development NEC Pledges Comprehensive Support to Nagaland’s Coffee Sector Amid Push for Modernization The Assam Tribune 2026-10-04T05:36:04 During his visit, Bhalla inspected coffee plantation sites and the Hi-Tech Coffee Washing Station, engaging directly with local growers and cluster members. He underscored that the Coffee USP Project extends beyond mere plantation initiatives, framing it as an ‘integrated livelihood and economic development programme’ designed to maximize value from the region’s natural and human resources. Bhalla highlighted critical gaps hindering the sector’s competitiveness, stating that commercial viability requires ‘good road connectivity, modern processing machinery, efficient post-harvest infrastructure, quality assurance, value addition, and strong market and export linkages.’ He stressed that these improvements are essential for transforming coffee cultivation into a sustainable economic driver for rural communities. The NEC Secretary also urged the Nagaland Government and the Coffee Board to collaborate with Central agricultural institutions to identify suitable intercrops and complementary activities for coffee plantations. Such diversification, he noted, would enhance land productivity and provide farmers with additional income streams, thereby strengthening the sector’s economic resilience. Bhalla’s remarks followed a broader directive from North Eastern States’ Chief Ministers to devise strategies aimed at significantly boosting farmers’ incomes. He reiterated that achieving this goal demands coordinated efforts from the Government of India, Nagaland Government, Coffee Board, local administration, farmers, technical institutions, and the private sector. The visit concluded with Bhalla expressing optimism that the project would lead to a ‘substantial increase in the income of farmers and communities,’ contingent upon addressing challenges like water harvesting, mechanization, and technology adoption. Source: The Assam Tribune https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276 18",
+        "images": [],
+        "links": []
+      },
+      {
+        "index": 19,
+        "page_number": 19,
         "classes": [
           "magazine-page",
           "section-page"
@@ -590,31 +573,9 @@
         "title": "Regional News",
         "article_id": null,
         "is_continuation": false,
-        "text": "SECTION Regional News Regional News Major regional developments and events from across Northeast India. 2 articles 18",
+        "text": "SECTION Regional News Major regional developments and events from across Northeast India. 2\n            articles 19",
         "images": [],
         "links": []
-      },
-      {
-        "index": 19,
-        "page_number": 19,
-        "classes": [
-          "article-page",
-          "magazine-page"
-        ],
-        "type": "article",
-        "title": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near",
-        "article_id": 11,
-        "is_continuation": false,
-        "text": "Regional News Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near The Assam Tribune 2026-10-04T12:21:04 Article 11 The campaign for the Nagaon Lok Sabha bypoll concluded at 5 pm on Sunday, October 4, with the Bharatiya Janata Party (BJP), Indian National Congress (Congress), and All India United Democratic Front (AIUDF) making their last appeals to voters ahead of polling on October 6. The final day saw senior leaders from all three parties intensify their efforts and trade barbs as the constituency entered the mandatory 48-hour silence period. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316 Evidence reference: 11 19",
-        "images": [
-          {
-            "src": "../images/article_11/image_01_49db2b535ae9.jpg",
-            "alt": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316"
-        ]
       },
       {
         "index": 20,
@@ -624,14 +585,17 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near",
-        "article_id": 11,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Regional News Regional News Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Sharpen Attacks as Polls Near The Assam Tribune 2026-10-04T12:21:04 Article 11 BJP leaders, including Assam Minister and party leader Pijush Hazarika, targeted AIUDF chief Maulana Badruddin Ajmal and Congress MLA Asif Mohammad Nazar during a campaign meeting in Lahorighat. Hazarika criticized Ajmal’s health, describing him as \"an ailing man\" who \"would not be able to work without assistance.\" He urged Ajmal to stop campaigning and seek treatment in Dubai, adding that such a person would need support from two others to function. The BJP’s state president, Dilip Saikia, and Finance Minister Jayanta Mallabaruah also participated in campaign activities in the Raha Assembly segment, with Saikia emphasizing voter support for BJP’s candidate Devasish Sharma. Saikia claimed that the party’s efforts had resonated across the constituency, with supporters chanting for Sharma’s victory. The Congress held campaign meetings in Lahorighat and Raha, rallying behind Sibamoni Bora. APCC president Gaurav Gogoi, AICC secretary Manoj Chauhan, and MLAs Asif Mohammad Nazar and Baby Begum addressed supporters, with the party highlighting themes of \"unity, harmony, democracy, and development.\" Gogoi directed sharp criticism at AIUDF and Ajmal, alleging a close political relationship between Ajmal and Assam Chief Minister Himanta Biswa Sarma. He claimed Ajmal had functioned as the BJP’s \"B Team\" and predicted that the AIUDF would cease to exist after the bypoll, with Sarma eventually inducting Ajmal into the BJP. The Nagaon bypoll was triggered by the resignation of former Congress MP Pradyut Bordoloi from the Lok Sabha seat, who later won the Dispur Assembly seat on a BJP ticket. With campaigning now over, the constituency entered the silence period at 5 pm on October 4, with voting scheduled for October 6 and counting on October 9. [Source 11] Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316 Evidence reference: 11 20",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316"
-        ]
+        "title": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Trade Barbs as Polls Near",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Regional News Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Trade Barbs as Polls Near The Assam Tribune 2026-10-04T12:21:04 The campaign for the Nagaon Lok Sabha bypoll concluded at 5 pm on Sunday, October 4, with the Bharatiya Janata Party (BJP), Indian National Congress (Congress), and All India United Democratic Front (AIUDF) making their last appeals to voters ahead of polling on October 6. Senior leaders from all three parties intensified their efforts as the constituency entered the mandatory 48-hour silence period, which began immediately after the campaign ended. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316 20",
+        "images": [
+          {
+            "src": "../images/article_11/image_01_49db2b535ae9.jpg",
+            "alt": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Trade Barbs as Polls Near"
+          }
+        ],
+        "links": []
       },
       {
         "index": 21,
@@ -641,19 +605,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction",
-        "article_id": 31,
-        "is_continuation": false,
-        "text": "Regional News 71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction The Assam Tribune 2026-10-04T12:00:08 Article 31 A 71-year-old man, identified as Hemjang Haokip of Khunkho Kuki Village near Leimakhong in Manipur’s Kangpokpi district, was found dead in a nearby forest on Sunday following his reported abduction and the burning of his field hut. Haokip had gone missing after his hut was allegedly set ablaze on Saturday, with his body later discovered with his hands tied behind his back. His farm trousers, shirt, and sweater were recovered during a search operation conducted by villagers and security forces, who deployed sniffer dogs to locate him [Source 31]. Source: The Assam Tribune https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314 Evidence reference: 31 21",
-        "images": [
-          {
-            "src": "../images/article_31/image_01_8d47f0a122c9.jpg",
-            "alt": "71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314"
-        ]
+        "title": "Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Trade Barbs as Polls Near",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Regional News Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Trade Barbs as Polls Near The Assam Tribune 2026-10-04T12:21:04 BJP leaders, including Assam Minister and party leader Pijush Hazarika, targeted AIUDF chief Maulana Badruddin Ajmal and Congress MLA Asif Mohammad Nazar during a rally in Lahorighat. Hazarika criticized Ajmal’s health, describing him as \"an ailing man\" who \"would not be able to work without assistance.\" He urged Ajmal to stop campaigning and seek treatment in Dubai, stating, \"He has to be supported and helped by two people.\" The BJP’s campaign also saw participation from state president Dilip Saikia and Finance Minister Jayanta Mallabaruah, who addressed supporters in Raha. Saikia emphasized voter confidence in the BJP, declaring, \"People support BJP because they know the things that the party has been doing for them.\" He further urged voters to support Devasish Sharma for the bypolls, as supporters chanted in unison. The Congress held campaign meetings in Lahorighat and Raha, rallying behind candidate Sibamoni Bora. APCC president Gaurav Gogoi, AICC secretary Manoj Chauhan, and MLAs Asif Mohammad Nazar and Baby Begum attended the gatherings, which the party described as reflecting its focus on \"unity, harmony, democracy, and development.\" Gogoi directed sharp criticism at AIUDF and Ajmal, alleging a close political alliance between Ajmal and Assam Chief Minister Himanta Biswa Sarma. He claimed Ajmal had functioned as the BJP’s \"B Team\" and predicted that the AIUDF would cease to exist after the bypolls, with Sarma eventually inducting Ajmal into the BJP. Gogoi stated, \"Maulana Badruddin Ajmal is the closest friend of Himanta Biswa Sarma in Assam politics.\" The Nagaon bypoll was triggered by the resignation of former Congress MP Pradyut Bordoloi from the Lok Sabha seat, who later won the Dispur Assembly seat on a BJP ticket. With campaigning now over, the constituency observes the silence period until polling day on October 6, with counting scheduled for October 9. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316 21",
+        "images": [],
+        "links": []
       },
       {
         "index": 22,
@@ -663,18 +620,36 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction",
-        "article_id": 31,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Regional News Regional News 71-Year-Old Kuki Man Found Dead in Manipur’s Kangpokpi Forest After Alleged Abduction The Assam Tribune 2026-10-04T12:00:08 Article 31 Haokip’s disappearance came to light in the evening of Saturday, as heavy rainfall had kept many villagers away from their fields. The deceased was known to frequently spend nights in his field hut, and villagers launched a search after discovering the burnt structure and his absence. The search continued until dark but failed to locate him, and operations were suspended overnight due to darkness and security concerns [Source 31]. The Kuki Youth Organisation (KYO), Leimakhong Block, had earlier called for Haokip’s immediate and safe return, urging authorities and security agencies to intensify the search and take action against those responsible. Meanwhile, the Ariang (Khunkhu) Naga Village Authority issued a clarification denying any involvement in Haokip’s disappearance. The statement emphasized that the two villages—Khunkho Kuki and Ariang (Khunkhu) Naga—have maintained peaceful and cordial relations for decades and appealed against unverified allegations, warning that such claims could escalate distrust and tension between the communities [Source 31]. The village authority also noted that movement restrictions had been imposed on its residents since August 14 as a precautionary measure following an earlier incident involving Naga villages. The incident involving Haokip’s death occurs amid renewed tensions between the Kuki and Naga communities in Manipur, particularly in Kangpokpi and neighboring areas, where reports of abductions, hostage-taking, and attacks involving civilians from both groups have raised concerns over retaliatory violence [Source 31]. Security forces continued search and security operations in the area, but further details surrounding Haokip’s death and the circumstances leading to his abduction remain under investigation. Source: The Assam Tribune https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314 Evidence reference: 31 22",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314"
-        ]
+        "title": "Search Suspended After 71-Year-Old Man Found Dead in Manipur’s Kangpokpi Forest",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Regional News Search Suspended After 71-Year-Old Man Found Dead in Manipur’s Kangpokpi Forest The Assam Tribune 2026-10-04T12:00:08 A 71-year-old man identified as Hemjang Haokip was found dead in a forest near Manipur’s Kangpokpi district on Sunday, following his disappearance after an incident involving his field hut. Source: The Assam Tribune https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314 22",
+        "images": [
+          {
+            "src": "../images/article_31/image_01_8d47f0a122c9.jpg",
+            "alt": "Search Suspended After 71-Year-Old Man Found Dead in Manipur’s Kangpokpi Forest"
+          }
+        ],
+        "links": []
       },
       {
         "index": 23,
         "page_number": 23,
+        "classes": [
+          "article-page",
+          "magazine-page"
+        ],
+        "type": "article",
+        "title": "Search Suspended After 71-Year-Old Man Found Dead in Manipur’s Kangpokpi Forest",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Regional News Search Suspended After 71-Year-Old Man Found Dead in Manipur’s Kangpokpi Forest The Assam Tribune 2026-10-04T12:00:08 Haokip, a resident of Khunkho Kuki Village near Leimakhong, had gone missing after his field hut was allegedly set ablaze on Saturday. His body was later discovered with his hands reportedly tied behind his back, according to sources. His farm trousers, shirt, and sweater were recovered during a search operation on Sunday, which involved the deployment of sniffer dogs and intensified efforts by security forces. The search for Haokip began after villagers noticed his hut was burnt and he was missing. Heavy rainfall on Saturday had kept many villagers away from their fields, and the incident came to light only in the evening. Haokip was known to spend nights in his field hut. Despite a search that continued until dark, he could not be located, and the operation was suspended due to darkness and security concerns. The Kuki Youth Organisation (KYO), Leimakhong Block, had earlier called for Haokip’s immediate and safe return, urging authorities and security agencies to intensify the search and take action against those responsible. Meanwhile, the Ariang (Khunkhu) Naga Village Authority issued a clarification, stating that their village and residents had no involvement in Haokip’s disappearance. The authority emphasized that the two villages had maintained peaceful and cordial relations for decades and appealed against unverified allegations, warning that such claims could create unnecessary distrust and tension. The village authority also mentioned that movement restrictions had been imposed on its residents from August 14 as a precautionary measure following an earlier incident involving Naga villages. The incident involving Haokip’s disappearance and death occurs amid renewed tensions between Kuki and Naga communities in Manipur, particularly in Kangpokpi and neighboring areas, where reports of abductions, hostage-taking, and attacks involving civilians have been reported in recent months. Security forces continued search and security operations in the area, but further details surrounding Haokip’s death remain awaited. Source: The Assam Tribune https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314 23",
+        "images": [],
+        "links": []
+      },
+      {
+        "index": 24,
+        "page_number": 24,
         "classes": [
           "magazine-page",
           "section-page"
@@ -683,31 +658,9 @@
         "title": "Society & Youth",
         "article_id": null,
         "is_continuation": false,
-        "text": "SECTION Society & Youth Society & Youth Social issues, civic concerns, communities, education and youth-related developments. 3 articles 23",
+        "text": "SECTION Society & Youth Social issues, civic concerns, communities, education and youth-related developments. 3\n            articles 24",
         "images": [],
         "links": []
-      },
-      {
-        "index": 24,
-        "page_number": 24,
-        "classes": [
-          "article-page",
-          "magazine-page"
-        ],
-        "type": "article",
-        "title": "Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate",
-        "article_id": 12,
-        "is_continuation": false,
-        "text": "Society & Youth Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate The Assam Tribune 2026-10-04T09:38:43 Article 12 The alleged deportation of two women from Nagaon district to Bangladesh has become a contentious issue ahead of the October 6 bypoll, with political parties trading accusations and appeals for intervention. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301 Evidence reference: 12 24",
-        "images": [
-          {
-            "src": "../images/article_12/image_01_8bfd3466c4ad.jpg",
-            "alt": "Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301"
-        ]
       },
       {
         "index": 25,
@@ -717,14 +670,17 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate",
-        "article_id": 12,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 3 Society & Youth Society & Youth Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate The Assam Tribune 2026-10-04T09:38:43 Article 12 Assam Congress president Gaurav Gogoi has written to Union External Affairs Minister S Jaishankar, seeking urgent action to trace and bring back Jahanara Begum of Bagariguri and Mumtaz Begum of Dhing Gaon. According to Gogoi’s letter dated October 2, the two women were allegedly sent across the India-Bangladesh border through Gate No. 2 near Border Pillar No. 1339/MP during the night of June 13–14, 2026. Their whereabouts remain unknown since then [Source 12]. The case stems from proceedings before the Foreigners Tribunal in Nagaon, where both women were declared foreigners in 2019. They challenged the tribunal’s opinions before the Gauhati High Court, which in April 2026 set aside the earlier rulings and remanded the cases for fresh consideration due to insufficient material evidence, as per Gogoi’s letter [Source 12]. Despite the High Court’s directions, Jahanara appeared before the tribunal on May 29 and Mumtaz on May 30. Gogoi alleged that both women were taken into custody shortly afterward, preventing them from obtaining fresh tribunal opinions or challenging them in court [Source 12]. The Gauhati High Court later examined the June 2 expulsion orders issued by the District Commissioner, Nagaon, directing the women to leave India within 24 hours—even though they were already in state custody. The court described Mumtaz’s expulsion order as \"farcical\" and ruled that the state machinery had deliberately delayed issuing a certified copy of the tribunal’s opinion, effectively blocking her legal recourse [Source 12]. The High Court also directed the Ministry of External Affairs to be impleaded in the matter to locate the women in Bangladesh and facilitate their return for further legal proceedings [Source 12]. The issue has now entered the bypoll campaign, with Mumtaz’s son appealing to political parties to avoid politicizing her case. He urged the Congress and AIUDF to focus on finding her rather than using her situation for electoral gains. \"We want to find her, where is she,\" he told reporters, adding that he hoped to meet Chief Minister Himanta Biswa Sarma and BJP’s Nagaon candidate Devashish Sharma, who was the District Commissioner when the expulsion order was issued [Source 12]. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301 Evidence reference: 12 25",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301"
-        ]
+        "title": "Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Society & Youth Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate The Assam Tribune 2026-10-04T09:38:43 The alleged deportation of two women from Nagaon to Bangladesh has become a contentious issue ahead of the October 6 bypoll, with political parties trading accusations and appeals for intervention. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301 25",
+        "images": [
+          {
+            "src": "../images/article_12/image_01_8bfd3466c4ad.jpg",
+            "alt": "Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate"
+          }
+        ],
+        "links": []
       },
       {
         "index": 26,
@@ -734,14 +690,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate",
-        "article_id": 12,
+        "title": "Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate",
+        "article_id": null,
         "is_continuation": true,
-        "text": "Continued — Part 3 of 3 Society & Youth Society & Youth Nagaon Bypoll: Alleged Pushback of Two Women Sparks Political Debate The Assam Tribune 2026-10-04T09:38:43 Article 12 The controversy has escalated into a public exchange between Sharma and AIUDF chief Badaruddin Ajmal. Sharma objected to Ajmal’s remarks, stating that an FIR had been filed against him and that pushback operations were carried out in compliance with court orders. Ajmal, however, had earlier alleged that Mumtaz was \"encountered\" and accused the BJP government of targeting Muslims during eviction drives [Source 12]. The dispute reflects broader tensions as the Nagaon bypoll approaches, with legal, administrative, and political dimensions intertwined in the search for the two missing women. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301 Evidence reference: 12 26",
+        "text": "Continued\n                \n                    — Part 2 Society & Youth Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate The Assam Tribune 2026-10-04T09:38:43 Assam Congress president Gaurav Gogoi has written to Union External Affairs Minister S Jaishankar, seeking urgent action to trace and bring back Jahanara Begum of Bagariguri and Mumtaz Begum of Dhing Gaon. According to Gogoi’s letter dated October 2, the two women were allegedly sent across the India-Bangladesh border through Gate No. 2 near Border Pillar No. 1339/MP during the night of June 13–14, 2026. Their whereabouts remain unknown since then. The case stems from Foreigners Tribunal proceedings in Nagaon, where both women were declared foreigners in 2019. They challenged the tribunal’s decisions in the Gauhati High Court, which in April 2026 set aside the earlier opinions and remanded the cases for fresh consideration due to insufficient material evidence, as per Gogoi’s letter. Following the High Court’s directions, Jahanara appeared before the tribunal on May 29, and Mumtaz on May 30. Gogoi alleged that both women were taken into custody shortly afterward, preventing them from obtaining fresh tribunal opinions or challenging them in court. The Gauhati High Court later observed that the tribunal office had ‘deliberately and wilfully delayed’ issuing a certified copy of its opinion in Mumtaz’s case, ruling that the state machinery had obstructed her right to approach the High Court. Similar findings were recorded in Jahanara’s case, with the court also describing the June 2 expulsion orders—directing the women to leave India within 24 hours—as ‘farcical’. The High Court directed the Ministry of External Affairs to locate the women in Bangladesh and facilitate their return to India for legal recourse. Meanwhile, the case has become entangled in the bypoll campaign, with Mumtaz’s son appealing to political parties to prioritize finding her rather than politicizing the issue. He urged both the Congress and AIUDF to assist in tracing her, stating, ‘We want to find her, where is she,’ and expressed a desire to meet Chief Minister Himanta Biswa Sarma and BJP’s Nagaon candidate Devashish Sharma, who was the District Commissioner when the expulsion order was issued. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301 26",
         "images": [],
-        "links": [
-          "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301"
-        ]
+        "links": []
       },
       {
         "index": 27,
@@ -751,19 +705,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding",
-        "article_id": 13,
-        "is_continuation": false,
-        "text": "Society & Youth Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding The Assam Tribune 2026-10-04T06:06:13 Article 13 In Lumding, the issue of freely roaming cattle on public roads has become a growing concern, raising questions about road safety and civic responsibility. Residents have reported seeing cows and bulls occupying roadside areas and even standing on carriageways, posing risks to both motorists and pedestrians. The presence of scattered garbage along the roadsides further compounds the problem, highlighting sanitation and civic management challenges. Source: The Assam Tribune https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279 Evidence reference: 13 27",
-        "images": [
-          {
-            "src": "../images/article_13/image_01_582619699521.jpg",
-            "alt": "Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279"
-        ]
+        "title": "Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 3 Society & Youth Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate The Assam Tribune 2026-10-04T09:38:43 The issue has also sparked a public exchange between Sharma and AIUDF chief Badaruddin Ajmal. Sharma objected to Ajmal’s remarks, stating that an FIR had been filed against him and that pushback operations were carried out in compliance with court orders. Ajmal had alleged that Mumtaz was ‘encountered,’ prompting Sharma to reject the term as casual and accuse the AIUDF of diverting attention during the election. Ajmal had earlier announced plans to approach the Supreme Court over the alleged pushback of two women from Assam’s Juria to Bangladesh, targeting Sharma and accusing the BJP government of selectively targeting Muslims during eviction drives. Source: The Assam Tribune https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301 27",
+        "images": [],
+        "links": []
       },
       {
         "index": 28,
@@ -773,14 +720,17 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding",
-        "article_id": 13,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Society & Youth Society & Youth Roaming Cattle and Roadside Garbage Spark Civic Concerns in Lumding The Assam Tribune 2026-10-04T06:06:13 Article 13 The movement of large animals on public roads creates unexpected obstacles for drivers, particularly for two-wheeler riders who may face sudden evasive maneuvers that could lead to falls and injuries. Pedestrians also encounter difficulties when cattle block roadside passages or narrow sections of the road. Local citizens have expressed the need for municipal or local authorities to investigate the issue, identify high-risk areas where cattle frequently roam, and assess whether existing rules are being violated. They suggest that coordination with animal welfare agencies could help implement measures to address the problem without harming the animals. A long-term solution would require more than temporary removals of cattle from specific stretches. Instead, identifying recurring locations, engaging with animal owners, and enforcing applicable regulations could help resolve the underlying issue. The situation in Lumding underscores the importance of responsible animal ownership and consistent civic oversight to ensure public roads remain safe and accessible for all users. [Source 13] Source: The Assam Tribune https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279 Evidence reference: 13 28",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279"
-        ]
+        "title": "Roaming cattle and roadside garbage pose civic challenges in Lumding",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Society & Youth Roaming cattle and roadside garbage pose civic challenges in Lumding The Assam Tribune 2026-10-04T06:06:13 The issue of freely roaming cattle on public roads in Lumding has become a growing concern, raising questions about road safety and civic management. Residents have observed cows and bulls occupying roadside areas and even standing on carriageways, creating potential hazards for commuters. Garbage scattered along the roadside further compounds the problem, highlighting sanitation concerns and the need for better civic oversight. Source: The Assam Tribune https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279 28",
+        "images": [
+          {
+            "src": "../images/article_13/image_01_582619699521.jpg",
+            "alt": "Roaming cattle and roadside garbage pose civic challenges in Lumding"
+          }
+        ],
+        "links": []
       },
       {
         "index": 29,
@@ -790,19 +740,12 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "AASU Accuses CJP of Political Motives Behind School Visits in Assam",
-        "article_id": 9,
-        "is_continuation": false,
-        "text": "Society & Youth AASU Accuses CJP of Political Motives Behind School Visits in Assam The Assam Tribune 2026-10-04T08:18:13 Article 9 The All Assam Students’ Union (AASU) has raised concerns over the Cockroach Janata Party’s (CJP) recent school visits in Assam, alleging that the initiative is driven by a ‘political agenda’ aimed at maintaining instability in the state. AASU general secretary Samiran Phukan made the remarks following the launch of CJP’s ‘School Thik Karo’ campaign, which involves assessing infrastructure and facilities in government schools across Assam. Source: The Assam Tribune https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294 Evidence reference: 9 29",
-        "images": [
-          {
-            "src": "../images/article_9/image_01_a7f6a337babe.jpg",
-            "alt": "AASU Accuses CJP of Political Motives Behind School Visits in Assam"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294"
-        ]
+        "title": "Roaming cattle and roadside garbage pose civic challenges in Lumding",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Society & Youth Roaming cattle and roadside garbage pose civic challenges in Lumding The Assam Tribune 2026-10-04T06:06:13 The presence of large animals on roads poses risks to both motorists and pedestrians. Two-wheeler riders, in particular, may face sudden evasive maneuvers by cattle, increasing the likelihood of falls and injuries. Pedestrians also struggle when cattle block roadside passages or narrow sections of the road. Local citizens have expressed the need for municipal or local authorities to address the issue systematically. They suggest identifying areas where cattle frequently roam and checking whether existing rules are being violated. Coordination with animal welfare agencies may also be necessary to ensure that measures are implemented without harming the animals. A temporary solution, such as removing cattle from specific stretches, is not sufficient. Instead, a long-term approach involving recurring location identification, communication with animal owners, and enforcement of regulations could help resolve the underlying problem. The situation in Lumding emphasizes the importance of responsible animal ownership and consistent civic oversight. Public roads must remain accessible to all users, while regular maintenance of roadside areas is essential to prevent waste accumulation. Source: The Assam Tribune https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279 29",
+        "images": [],
+        "links": []
       },
       {
         "index": 30,
@@ -812,18 +755,36 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "AASU Accuses CJP of Political Motives Behind School Visits in Assam",
-        "article_id": 9,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Society & Youth Society & Youth AASU Accuses CJP of Political Motives Behind School Visits in Assam The Assam Tribune 2026-10-04T08:18:13 Article 9 Phukan stated that the visits have contributed to a ‘volatile situation’ and questioned whether external actors are attempting to disrupt peace in the region. He emphasized that while developmental activities are welcome, they must be free from political motives. ‘People are aware of the political nature of CJP’s actions,’ Phukan said, adding that AASU remains committed to working for Assam’s people without such agendas [Source 9]. The CJP campaign began with visits to government schools in Palashbari and Dispur constituencies, where a team led by co-convener Ashutosh Ranka evaluated challenges faced by students, teachers, and schools. The party has announced plans to expand these visits across Assam and the Northeast [Source 9]. The initiative follows a recent regional volunteers’ meeting in Guwahati on September 27, which was disrupted by Assam Police. Around 35 CJP members, including Ranka, were detained ahead of the gathering due to lack of prior permission. The detainees protested with a hunger strike before being released later that night [Source 9]. AASU’s criticism underscores broader tensions over CJP’s activities, with Phukan urging the public to recognize ‘the force’ allegedly seeking to destabilize Assam [Source 9]. Source: The Assam Tribune https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294 Evidence reference: 9 30",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294"
-        ]
+        "title": "AASU Raises Concerns Over CJP’s School Visits, Cites Alleged Political Motives",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Society & Youth AASU Raises Concerns Over CJP’s School Visits, Cites Alleged Political Motives The Assam Tribune 2026-10-04T08:18:13 The All Assam Students’ Union (AASU) has expressed reservations about the recent activities of the Cockroach Janata Party (CJP) in Assam, specifically its school visits under the \"School Thik Karo\" campaign. The AASU alleges that these initiatives may carry a \"political agenda aimed at keeping the situation volatile.\" Source: The Assam Tribune https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294 30",
+        "images": [
+          {
+            "src": "../images/article_9/image_01_a7f6a337babe.jpg",
+            "alt": "AASU Raises Concerns Over CJP’s School Visits, Cites Alleged Political Motives"
+          }
+        ],
+        "links": []
       },
       {
         "index": 31,
         "page_number": 31,
+        "classes": [
+          "article-page",
+          "magazine-page"
+        ],
+        "type": "article",
+        "title": "AASU Raises Concerns Over CJP’s School Visits, Cites Alleged Political Motives",
+        "article_id": null,
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Society & Youth AASU Raises Concerns Over CJP’s School Visits, Cites Alleged Political Motives The Assam Tribune 2026-10-04T08:18:13 AASU general secretary Samiran Phukan made the remarks following CJP’s launch of its campaign, during which its functionaries visited government schools in Palashbari and Dispur constituencies to assess infrastructure and facilities. Phukan stated that while developmental activities are welcome, they should not be driven by political motives. \"It would have been a different thing if they concentrated on the development of Assam, but it’s all politics,\" he said. The AASU leader emphasized that the organization’s actions are understood by the public to be politically driven. \"People understand that their actions are political. We, the All Assam Students’ Union, have worked for the people of Assam and will keep on doing that,\" Phukan added. CJP’s campaign began after a regional volunteers’ meeting in Guwahati on September 27, where around 35 members, including co-convener Ashutosh Ranka, were detained by Assam Police for allegedly holding the gathering without prior permission. The detained members were later released after initiating a hunger strike. The AASU has urged the public to identify and recognize the forces it believes are attempting to create instability in the state. The organization has also stated its commitment to continuing its work for the people of Assam. Source: The Assam Tribune https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294 31",
+        "images": [],
+        "links": []
+      },
+      {
+        "index": 32,
+        "page_number": 32,
         "classes": [
           "magazine-page",
           "section-page"
@@ -832,31 +793,9 @@
         "title": "Sports & Achievements",
         "article_id": null,
         "is_continuation": false,
-        "text": "SECTION Sports & Achievements Sports & Achievements Sports, athletes, competitions and achievements from the region. 1 article 31",
+        "text": "SECTION Sports & Achievements Sports, athletes, competitions and achievements from the region. 1\n            article 32",
         "images": [],
         "links": []
-      },
-      {
-        "index": 32,
-        "page_number": 32,
-        "classes": [
-          "article-page",
-          "magazine-page"
-        ],
-        "type": "article",
-        "title": "Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?",
-        "article_id": 34,
-        "is_continuation": false,
-        "text": "Sports & Achievements Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’? The Assam Tribune 2026-10-01T12:34:04 Article 34 Guwahati recently hosted an ODI cricket match that shattered records and redefined expectations, but the spectacle left many questioning whether the pitch lived up to the ideals of the format. The match between India and West Indies produced **811 runs in total**, the third-highest aggregate in ODI history, with **five centuries**—three for West Indies and two for India—and a **405-run chase** completed in just **43.3 overs** with eight wickets in hand. The West Indies’ total of **405 for seven** was their highest in ODI cricket, setting the stage for one of the most one-sided run-fests ever seen. Source: The Assam Tribune https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044 Evidence reference: 34 32",
-        "images": [
-          {
-            "src": "../images/article_34/image_01_f88cad2a0c25.jpg",
-            "alt": "Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?"
-          }
-        ],
-        "links": [
-          "https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044"
-        ]
       },
       {
         "index": 33,
@@ -866,26 +805,30 @@
           "magazine-page"
         ],
         "type": "article",
-        "title": "Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’?",
-        "article_id": 34,
-        "is_continuation": true,
-        "text": "Continued — Part 2 of 2 Sports & Achievements Sports & Achievements Guwahati’s 800-Run ODI Sparks Debate: Was the Pitch Truly ‘Good’? The Assam Tribune 2026-10-01T12:34:04 Article 34 The sheer volume of runs—**800-plus**—dominated headlines, but the lack of a competitive contest between bat and ball raised concerns about the pitch’s suitability for ODI cricket. While spectators and officials like **Chief Minister Himanta Biswa Sarma** praised the surface, calling it *“an absolute delight”*, critics argued that the pitch failed to provide a balanced challenge for bowlers. **India head coach Gautam Gambhir** directly questioned the match’s fairness, stating, *“You talk about cricket, but this is not cricket, this is only batting.”* His point underscored the broader debate: should a pitch be judged by its ability to produce high scores, or by its capacity to create a **meaningful contest** across all disciplines? The Guwahati pitch’s batting-friendly reputation was not new. In its **two previous ODIs** at the venue, India chased **322 in 2018** and posted **373 in 2023**, reinforcing the perception that Barsapara Stadium leans heavily toward batters. The latest match amplified this tendency, with bowlers struggling to extract movement or pace, leaving them with *“too little to work with”*, as Gambhir noted. The result was a game where **406 runs** were chased with **eight wickets intact** and **39 balls remaining**, further exposing the pitch’s inability to reward bowling efforts. India’s batting coach, **Sitanshu Kotak**, offered a counterargument, suggesting that modern batting standards—powered by fitness, technology, and aggressive strokeplay—should factor into the discussion. He questioned whether pitches could realistically be engineered to produce predetermined scores, given the evolution of the game. However, the core issue remained: if a pitch reduces bowling to irrelevance, does it still serve the spirit of ODI cricket? The debate hinges on a simple question: **What defines a ‘good’ ODI pitch?** Some argue it should prioritize entertainment, delivering boundaries and centuries for spectators. Others insist it must balance bat and ball, ensuring bowlers have a chance to influence the game. The Guwahati match highlighted this tension—**spectacular runs versus sporting contest**—leaving fans and experts to reconsider whether modern cricket’s emphasis on high scores comes at the cost of traditional competition. As cricket continues to evolve, the Guwahati ODI serves as a case study in the clash between tradition and innovation. The pitch may have delighted batters, but its lack of challenge for bowlers forces a reckoning: **Is a ‘good’ pitch one that entertains, or one that tests all facets of the game?** [Source 34] Source: The Assam Tribune https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044 Evidence reference: 34 33",
-        "images": [],
-        "links": [
-          "https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044"
-        ]
+        "title": "Guwahati’s 800-Run ODI: Did the Pitch Serve Cricket’s Core?",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Sports & Achievements Guwahati’s 800-Run ODI: Did the Pitch Serve Cricket’s Core? The Assam Tribune 2026-10-01T12:34:04 Guwahati’s recent ODI between India and West Indies produced a record-breaking 811-run aggregate, featuring five centuries, a double hundred, and a dramatic 43.3-over chase—yet the match left many questioning whether the pitch truly delivered a balanced contest. Source: The Assam Tribune https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044 33",
+        "images": [
+          {
+            "src": "../images/article_34/image_01_f88cad2a0c25.jpg",
+            "alt": "Guwahati’s 800-Run ODI: Did the Pitch Serve Cricket’s Core?"
+          }
+        ],
+        "links": []
       },
       {
         "index": 34,
         "page_number": 34,
         "classes": [
+          "article-page",
           "magazine-page"
         ],
-        "type": "generic",
-        "title": "Northeast Coverage Analytics",
+        "type": "article",
+        "title": "Guwahati’s 800-Run ODI: Did the Pitch Serve Cricket’s Core?",
         "article_id": null,
-        "is_continuation": false,
-        "text": "Data & Analytics Northeast Coverage Analytics 11 Selected Articles 5 Sections 4 Charts The analytics pages summarize the selected editorial corpus by category, source, date and Northeast-state coverage. They describe this edition's selection rather than all reporting in the region. 34",
+        "is_continuation": true,
+        "text": "Continued\n                \n                    — Part 2 Sports & Achievements Guwahati’s 800-Run ODI: Did the Pitch Serve Cricket’s Core? The Assam Tribune 2026-10-01T12:34:04 The game saw West Indies post 405 for seven, their highest ODI total, before India chased it down with eight wickets in hand. While the spectacle of 800-plus runs and multiple centuries dominated headlines, critics like India head coach Gautam Gambhir argued that the pitch failed to create a meaningful contest between bat and ball. \"You talk about cricket, but this is not cricket, this is only batting,\" Gambhir told Star Sports after the match, emphasizing that a good ODI should test all three disciplines equally. Chief Minister Himanta Biswa Sarma, however, celebrated the pitch’s batting-friendly nature, calling it \"an absolute delight\" on social media. His perspective reflects a growing debate: Should a pitch be judged by its ability to produce high scores, or by its capacity to challenge batters, bowlers, and fielders alike? India’s batting coach Sitanshu Kotak added another layer to the discussion, questioning whether modern batting standards—powered by fitness, technology, and aggressive strokeplay—should influence pitch expectations. He noted that no pitch can guarantee a specific outcome, but the Guwahati surface’s consistency in producing high totals (including India’s 373 in 2023 and a 322 chase in 2018) raises concerns about its balance. The core issue lies in whether the pitch rewarded skill across all aspects of the game or merely amplified batting dominance. If 400 runs no longer feel challenging and bowlers struggle to find traction, the surface may have lost its ability to create uncertainty—the very essence of cricket. The Guwahati ODI’s record books may shine, but the debate over what constitutes a \"good\" pitch remains unresolved. Source: The Assam Tribune https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044 34",
         "images": [],
         "links": []
       },
@@ -893,20 +836,14 @@
         "index": 35,
         "page_number": 35,
         "classes": [
-          "chart-page",
           "magazine-page"
         ],
-        "type": "chart",
-        "title": "Articles By Category",
+        "type": "generic",
+        "title": "Northeast Coverage Analytics",
         "article_id": null,
         "is_continuation": false,
-        "text": "Data Visualization Articles By Category 35",
-        "images": [
-          {
-            "src": "../charts/articles_by_category.png",
-            "alt": "Articles By Category"
-          }
-        ],
+        "text": "Data & Analytics Northeast Coverage Analytics 11 Selected Articles 5 Sections 4 Charts The analytical layer summarizes the articles\n                retained by the editorial pipeline and provides\n                visual evidence for category, source, temporal\n                and Northeast-state coverage. 35",
+        "images": [],
         "links": []
       },
       {
@@ -917,14 +854,14 @@
           "magazine-page"
         ],
         "type": "chart",
-        "title": "Articles By Source",
+        "title": "Articles By Category",
         "article_id": null,
         "is_continuation": false,
-        "text": "Data Visualization Articles By Source 36",
+        "text": "Data Visualization Articles By Category 36",
         "images": [
           {
-            "src": "../charts/articles_by_source.png",
-            "alt": "Articles By Source"
+            "src": "../charts/articles_by_category.png",
+            "alt": "Articles By Category"
           }
         ],
         "links": []
@@ -937,14 +874,14 @@
           "magazine-page"
         ],
         "type": "chart",
-        "title": "Articles Over Time",
+        "title": "Articles By Source",
         "article_id": null,
         "is_continuation": false,
-        "text": "Data Visualization Articles Over Time 37",
+        "text": "Data Visualization Articles By Source 37",
         "images": [
           {
-            "src": "../charts/articles_over_time.png",
-            "alt": "Articles Over Time"
+            "src": "../charts/articles_by_source.png",
+            "alt": "Articles By Source"
           }
         ],
         "links": []
@@ -957,10 +894,30 @@
           "magazine-page"
         ],
         "type": "chart",
+        "title": "Articles Over Time",
+        "article_id": null,
+        "is_continuation": false,
+        "text": "Data Visualization Articles Over Time 38",
+        "images": [
+          {
+            "src": "../charts/articles_over_time.png",
+            "alt": "Articles Over Time"
+          }
+        ],
+        "links": []
+      },
+      {
+        "index": 39,
+        "page_number": 39,
+        "classes": [
+          "chart-page",
+          "magazine-page"
+        ],
+        "type": "chart",
         "title": "Northeast State Coverage",
         "article_id": null,
         "is_continuation": false,
-        "text": "Data Visualization Northeast State Coverage 38",
+        "text": "Data Visualization Northeast State Coverage 39",
         "images": [
           {
             "src": "../charts/northeast_state_coverage.png",
@@ -970,30 +927,16 @@
         "links": []
       },
       {
-        "index": 39,
-        "page_number": 39,
-        "classes": [
-          "magazine-page"
-        ],
-        "type": "generic",
-        "title": "How This Edition Was Selected",
-        "article_id": null,
-        "is_continuation": false,
-        "text": "Northeast Sentinel AI How This Edition Was Selected The editorial dataset contains 11 selected articles across 5 sections. The selected articles contain approximately 3,773 generated editorial words, with an average of 343 words per article. Selected reporting spans 10 September 2026 to 04 October 2026. Selection is driven by the project's relevance, classification, scoring, retrieval and grounding pipeline rather than manual page placement. 39",
-        "images": [],
-        "links": []
-      },
-      {
         "index": 40,
         "page_number": 40,
         "classes": [
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Northeast State Coverage",
+        "title": "Appendix A — Sources & Article Count",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Northeast State Coverage State mentions detected in the selected editorial corpus: Assam: 6 article(s) Manipur: 3 article(s) Mizoram: 2 article(s) Nagaland: 2 article(s) Arunachal Pradesh: 1 article(s) Meghalaya: 1 article(s) Sikkim: 1 article(s) Tripura: 1 article(s) A state is counted when its name appears in the article title or editorial body. This is a coverage indicator, not a claim of exclusive geographic focus. 40",
+        "text": "Appendix A Appendix A — Sources & Article Count This appendix lists every source represented in the final selected article set and the number of articles contributed by each source. Counts are calculated directly from the Phase 14 editorial records used to compose this edition. Source Articles The Assam Tribune 11 Total selected articles 11 Counts are generated from the same article records used by the magazine composition engine; no manual source count is maintained separately. 40",
         "images": [],
         "links": []
       },
@@ -1004,10 +947,10 @@
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Editorial Mix by Section",
+        "title": "Appendix B — Article Selection Reasoning",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Editorial Mix by Section The final editorial mix is: Security & Strategic Affairs: 1 article(s) Development: 4 article(s) Regional News: 2 article(s) Society & Youth: 3 article(s) Sports & Achievements: 1 article(s) The section structure is inherited from the classifier output used by the magazine composition stage. 41",
+        "text": "Appendix B Appendix B — Article Selection Reasoning Each selected article is accompanied by an auditable explanation derived from the pipeline's relevance, classification and scoring metadata. The reasoning explains the article's Northeast connection, editorial category, security relevance where applicable, overall score, date eligibility and source traceability. # Article Score Why Selected 1 Final Campaign Day in Nagaon Bypoll: BJP, Congress, AIUDF Trade Barbs as Polls Near Regional News · The Assam Tribune 39/100 NE: 26 Northeast relevance: 26/100; category: Regional News; overall score: 39/100; publication-window eligible; source: The Assam Tribune. 2 Nagaon Bypoll: Alleged Pushback of Women Sparks Political Debate Society & Youth · The Assam Tribune 44/100 NE: 41 Northeast relevance: 41/100; category: Society & Youth; overall score: 44/100; publication-window eligible; source: The Assam Tribune. 3 Roaming cattle and roadside garbage pose civic challenges in Lumding Society & Youth · The Assam Tribune 40/100 NE: 18 Northeast relevance: 18/100; category: Society & Youth; overall score: 40/100; publication-window eligible; source: The Assam Tribune. 4 Guwahati Railway Station Expands Capacity with Major Infrastructure Projects Development · The Assam Tribune 43/100 NE: 25 Northeast relevance: 25/100; category: Development; overall score: 43/100; publication-window eligible; source: The Assam Tribune. 5 Assam Rifles Seize Rs 5.07 Crore Heroin in Mizoram, Apprehend Two Myanmar Nationals Security & Strategic Affairs · The Assam Tribune 96/100 NE: 100 Northeast relevance: 100/100; category: Security & Strategic Affairs; security relevance: 54/100; overall score: 96/100; publication-window eligible; source: The Assam Tribune. 6 Assam CM Highlights Land Shortage as Key Industrial Hurdle; Govt Pushes for Land Banks and Estates Development · The Assam Tribune 48/100 NE: 24 Northeast relevance: 24/100; category: Development; overall score: 48/100; publication-window eligible; source: The Assam Tribune. 7 Mizoram Fails to Receive SASCI Funds in 2026-27, Opposition Demands Explanation from CM Lalduhoma Development · The Assam Tribune 65/100 NE: 100 Northeast relevance: 100/100; category: Development; overall score: 65/100; publication-window eligible; source: The Assam Tribune. 8 Search Suspended After 71-Year-Old Man Found Dead in Manipur’s Kangpokpi Forest Regional News · The Assam Tribune 45/100 NE: 44 Northeast relevance: 44/100; category: Regional News; overall score: 45/100; publication-window eligible; source: The Assam Tribune. 9 NEC Pledges Comprehensive Support to Nagaland’s Coffee Sector Amid Push for Modernization Development · The Assam Tribune 67/100 NE: 59 Northeast relevance: 59/100; category: Development; overall score: 67/100; publication-window eligible; source: The Assam Tribune. 10 Guwahati’s 800-Run ODI: Did the Pitch Serve Cricket’s Core? Sports & Achievements · The Assam Tribune 37/100 NE: 18 Northeast relevance: 18/100; category: Sports & Achievements; overall score: 37/100; publication-window eligible; source: The Assam Tribune. 11 AASU Raises Concerns Over CJP’s School Visits, Cites Alleged Political Motives Society & Youth · The Assam Tribune 43/100 NE: 37 Northeast relevance: 37/100; category: Society & Youth; overall score: 43/100; publication-window eligible; source: The Assam Tribune. 41",
         "images": [],
         "links": []
       },
@@ -1018,10 +961,10 @@
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Source Distribution",
+        "title": "How This Edition Was Selected",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Source Distribution Sources represented in the final article set: The Assam Tribune: 11 article(s) Source counts describe inclusion in this edition; they do not constitute a quality ranking by themselves. 42",
+        "text": "Northeast Sentinel AI How This Edition Was Selected The editorial dataset contains 11 selected articles across 5 sections. The selected articles contain approximately 3,677 generated editorial words, with an average of 334 words per article. Selected reporting spans 10 September 2026 to 04 October 2026. Selection is driven by the project's relevance, classification, scoring, retrieval and grounding pipeline rather than manual page placement. 42",
         "images": [],
         "links": []
       },
@@ -1032,10 +975,10 @@
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Coverage Window",
+        "title": "Editorial Mix by Section",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Coverage Window Selected reporting spans 10 September 2026 to 04 October 2026. Configured assignment window: 2026-09-05 to 2026-10-05. Final editorial records: 11. The date filter is applied before final editorial composition. 43",
+        "text": "Northeast Sentinel AI Editorial Mix by Section The final editorial mix is: Security & Strategic Affairs: 1 article(s) Development: 4 article(s) Regional News: 2 article(s) Society & Youth: 3 article(s) Sports & Achievements: 1 article(s) The section structure is inherited from the classifier output used by the magazine composition stage. 43",
         "images": [],
         "links": []
       },
@@ -1046,10 +989,10 @@
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Editorial Decision Process",
+        "title": "Coverage Window",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Editorial Decision Process 1. Discover and collect candidate reporting. 2. Validate title, URL, source, date and content. 3. Reject articles without a meaningful Northeast connection. 4. Classify surviving articles into editorial themes. 5. Score relevance, theme, security relevance, freshness, source quality and content quality. 6. Remove duplicate or near-duplicate candidates. 7. Retrieve evidence from the local vector store for grounded generation. 8. Validate generated claims against retrieved evidence. 44",
+        "text": "Northeast Sentinel AI Coverage Window Selected reporting spans 10 September 2026 to 04 October 2026. Configured assignment window: 2026-09-05 to 2026-10-04. Final editorial records: 11. The date filter is applied before final editorial composition. 44",
         "images": [],
         "links": []
       },
@@ -1060,10 +1003,10 @@
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Grounded AI Editorial Generation",
+        "title": "Editorial Decision Process",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Grounded AI Editorial Generation The editorial generator does not treat the language model as an independent news source. Selected articles are embedded with Sentence Transformers and stored in Chroma. The requested story is used to retrieve relevant evidence, which is passed to Mistral as the generation context. Generated factual paragraphs carry source citations, and the grounding stage compares claims with their cited evidence before an article is accepted. 45",
+        "text": "Editor's Note Editorial Decision Process 1. Discover and collect candidate reporting. 2. Validate title, URL, source, date and content. 3. Reject articles without a meaningful Northeast connection. 4. Classify surviving articles into editorial themes. 5. Score relevance, theme, security relevance, freshness, source quality and content quality. 6. Remove duplicate or near-duplicate candidates. 7. Retrieve evidence from the local vector store for grounded generation. 8. Validate generated claims against retrieved evidence. 45",
         "images": [],
         "links": []
       },
@@ -1074,10 +1017,10 @@
           "magazine-page"
         ],
         "type": "generic",
-        "title": "Image Selection",
+        "title": "Grounded AI Editorial Generation",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Image Selection 11 of 11 selected articles have an associated local image asset. The composition engine places the selected image on the article opener and removes it from continuation pages so the text can use the available page area efficiently. Image files are kept local to the generated magazine package for deterministic PDF rendering. 46",
+        "text": "Methodology Grounded AI Editorial Generation 01 Web collection Articles are discovered and collected\n                        through the scraping pipeline. 02 Validation and date filtering Article metadata and publication dates\n                        are validated against the configured\n                        coverage period. 03 Relevance and classification Articles are evaluated for Northeast\n                        relevance and classified into magazine\n                        themes. 04 Scoring and ranking Relevance, theme, security, freshness,\n                        source quality and content quality\n                        contribute to article ranking. 05 Retrieval and grounded generation Selected articles are embedded into the\n                        vector store and retrieved as evidence\n                        for grounded editorial generation. 46",
         "images": [],
         "links": []
       },
@@ -1091,7 +1034,7 @@
         "title": "Source Index",
         "article_id": null,
         "is_continuation": false,
-        "text": "Sources Source Index # Source Articles 1 The Assam Tribune 11 Individual article pages contain the original source URL as a clickable reference. 47",
+        "text": "Sources Source Index 1 The Assam Tribune Articles included:\n                                11 47",
         "images": [],
         "links": []
       },
@@ -1105,7 +1048,7 @@
         "title": "Research Methodology",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI Research Methodology The system combines web collection, validation, relevance classification, scoring, semantic retrieval, grounded generation and editorial quality checks before composition. 48",
+        "text": "Methodology Research Methodology 01 Web collection Articles are discovered and collected\n                        through the scraping pipeline. 02 Validation and date filtering Article metadata and publication dates\n                        are validated against the configured\n                        coverage period. 03 Relevance and classification Articles are evaluated for Northeast\n                        relevance and classified into magazine\n                        themes. 04 Scoring and ranking Relevance, theme, security, freshness,\n                        source quality and content quality\n                        contribute to article ranking. 05 Retrieval and grounded generation Selected articles are embedded into the\n                        vector store and retrieved as evidence\n                        for grounded editorial generation. 48",
         "images": [],
         "links": []
       },
@@ -1119,7 +1062,7 @@
         "title": "AI Editorial Pipeline",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI AI Editorial Pipeline Scrapling → SQLite → NLP → scoring → embeddings → Chroma → Mistral RAG → grounding → images → analytics → magazine composition → PDF. 49",
+        "text": "AI Editorial Pipeline AI Editorial Pipeline 01 Scrapling Web article discovery and extraction. 02 SQLite Structured article storage and metadata. 03 NLP Classification Northeast relevance, themes and entities. 04 Article Scoring Multi-factor ranking of candidate articles. 05 Sentence Transformers Semantic embeddings for retrieval. 06 Chroma Local vector storage and semantic search. 07 Mistral RAG Evidence-grounded editorial generation. 08 Magazine Composition Automated page planning and HTML composition. 49",
         "images": [],
         "links": []
       },
@@ -1134,7 +1077,7 @@
         "title": "End of Edition",
         "article_id": null,
         "is_continuation": false,
-        "text": "Northeast Sentinel AI End of Edition Securing the Northeast: Indian Army's Role in Stability, Peace & National Security Coverage period: 10 September 2026 – 04 October 2026 50",
+        "text": "Northeast Sentinel AI End of Edition Securing the Northeast:\n                Indian Army's Role in Stability,\n                Peace & National Security Coverage period:\n                5 September 2026 —\n                5 October 2026 50",
         "images": [],
         "links": []
       }
@@ -1143,55 +1086,55 @@
   "pdf": {
     "physical_pages": 50,
     "page_text_word_counts": {
-      "1": 46,
-      "2": 28,
+      "1": 47,
+      "2": 29,
       "3": 83,
       "4": 30,
-      "5": 42,
-      "6": 52,
-      "7": 93,
-      "8": 232,
-      "9": 32,
-      "10": 113,
-      "11": 360,
-      "12": 126,
-      "13": 404,
-      "14": 113,
-      "15": 301,
-      "16": 111,
-      "17": 312,
-      "18": 33,
-      "19": 121,
-      "20": 315,
-      "21": 136,
-      "22": 294,
-      "23": 33,
-      "24": 74,
-      "25": 391,
-      "26": 127,
-      "27": 107,
-      "28": 194,
-      "29": 110,
-      "30": 228,
-      "31": 38,
-      "32": 143,
-      "33": 431,
-      "34": 37,
-      "35": 9,
-      "36": 9,
-      "37": 9,
-      "38": 9,
-      "39": 65,
+      "5": 87,
+      "6": 28,
+      "7": 115,
+      "8": 231,
+      "9": 21,
+      "10": 70,
+      "11": 316,
+      "12": 106,
+      "13": 413,
+      "14": 74,
+      "15": 100,
+      "16": 322,
+      "17": 71,
+      "18": 269,
+      "19": 21,
+      "20": 102,
+      "21": 331,
+      "22": 58,
+      "23": 336,
+      "24": 21,
+      "25": 57,
+      "26": 362,
+      "27": 132,
+      "28": 90,
+      "29": 198,
+      "30": 77,
+      "31": 228,
+      "32": 20,
+      "33": 66,
+      "34": 293,
+      "35": 35,
+      "36": 6,
+      "37": 6,
+      "38": 6,
+      "39": 6,
       "40": 75,
-      "41": 53,
-      "42": 35,
-      "43": 35,
-      "44": 72,
-      "45": 72,
-      "46": 58,
-      "47": 23,
-      "48": 25,
-      "49": 21,
+      "41": 474,
+      "42": 65,
+      "43": 53,
+      "44": 35,
+      "45": 71,
+      "46": 88,
+      "47": 11,
+      "48": 86,
+      "49": 67,
       "50": 42
     },
     "duplicate_pairs": [],
@@ -1199,54 +1142,66 @@
     "title_occurrences": {
       "29": [
         7,
-        8
+        8,
+        41
       ],
       "15": [
         10,
-        11
+        11,
+        41
       ],
       "3": [
         12,
-        13
+        13,
+        14,
+        41
       ],
       "30": [
-        14,
-        15
+        15,
+        16,
+        41
       ],
       "32": [
-        16,
-        17
+        17,
+        18,
+        41
       ],
       "11": [
-        19,
-        20
+        20,
+        21,
+        41
       ],
       "31": [
-        21,
-        22
+        22,
+        23,
+        41
       ],
       "12": [
-        24,
         25,
-        26
+        26,
+        27,
+        41
       ],
       "13": [
-        27,
-        28
+        28,
+        29,
+        41
       ],
       "9": [
-        29,
-        30
+        30,
+        31,
+        41
       ],
       "34": [
-        32,
-        33
+        33,
+        34,
+        41
       ]
     },
     "low_text_pages": [
       {
         "page": 2,
-        "word_count": 28,
+        "word_count": 29,
         "html_type": "generic"
       },
       {
@@ -1255,78 +1210,63 @@
         "html_type": "generic"
       },
       {
-        "page": 5,
-        "word_count": 42,
-        "html_type": "generic"
+        "page": 6,
+        "word_count": 28,
+        "html_type": "section"
       },
       {
         "page": 9,
-        "word_count": 32,
+        "word_count": 21,
         "html_type": "section"
       },
       {
-        "page": 18,
-        "word_count": 33,
+        "page": 19,
+        "word_count": 21,
         "html_type": "section"
       },
       {
-        "page": 23,
-        "word_count": 33,
+        "page": 24,
+        "word_count": 21,
         "html_type": "section"
       },
       {
-        "page": 31,
-        "word_count": 38,
+        "page": 32,
+        "word_count": 20,
         "html_type": "section"
-      },
-      {
-        "page": 34,
-        "word_count": 37,
-        "html_type": "generic"
       },
       {
         "page": 35,
-        "word_count": 9,
-        "html_type": "chart"
-      },
-      {
-        "page": 36,
-        "word_count": 9,
-        "html_type": "chart"
-      },
-      {
-        "page": 37,
-        "word_count": 9,
-        "html_type": "chart"
-      },
-      {
-        "page": 38,
-        "word_count": 9,
-        "html_type": "chart"
-      },
-      {
-        "page": 42,
         "word_count": 35,
         "html_type": "generic"
       },
       {
-        "page": 43,
+        "page": 36,
+        "word_count": 6,
+        "html_type": "chart"
+      },
+      {
+        "page": 37,
+        "word_count": 6,
+        "html_type": "chart"
+      },
+      {
+        "page": 38,
+        "word_count": 6,
+        "html_type": "chart"
+      },
+      {
+        "page": 39,
+        "word_count": 6,
+        "html_type": "chart"
+      },
+      {
+        "page": 44,
         "word_count": 35,
         "html_type": "generic"
       },
       {
         "page": 47,
-        "word_count": 23,
-        "html_type": "generic"
-      },
-      {
-        "page": 48,
-        "word_count": 25,
-        "html_type": "generic"
-      },
-      {
-        "page": 49,
-        "word_count": 21,
+        "word_count": 11,
         "html_type": "generic"
       },
       {
@@ -1336,101 +1276,9 @@
       }
     ],
     "placeholder_hits": [],
-    "pdf_links": [
-      {
-        "page": 7,
-        "url": "https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285"
-      },
-      {
-        "page": 8,
-        "url": "https://assamtribune.com/north-east/assam-rifles-seize-heroin-worth-rs-507-cr-in-mizoram-nab-two-myanmar-nationals-1619285"
-      },
-      {
-        "page": 10,
-        "url": "https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287"
-      },
-      {
-        "page": 11,
-        "url": "https://assamtribune.com/guwahati/guwahati-railway-station-handles-50000-daily-passengers-major-projects-under-way-1619287"
-      },
-      {
-        "page": 12,
-        "url": "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912"
-      },
-      {
-        "page": 13,
-        "url": "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912"
-      },
-      {
-        "page": 14,
-        "url": "https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278"
-      },
-      {
-        "page": 15,
-        "url": "https://assamtribune.com/north-east/centre-funds-not-released-to-mizoram-mnf-seeks-explanation-from-cm-lalduhoma-1619278"
-      },
-      {
-        "page": 16,
-        "url": "https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276"
-      },
-      {
-        "page": 17,
-        "url": "https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276"
-      },
-      {
-        "page": 19,
-        "url": "https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316"
-      },
-      {
-        "page": 20,
-        "url": "https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316"
-      },
-      {
-        "page": 21,
-        "url": "https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314"
-      },
-      {
-        "page": 22,
-        "url": "https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314"
-      },
-      {
-        "page": 24,
-        "url": "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301"
-      },
-      {
-        "page": 25,
-        "url": "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301"
-      },
-      {
-        "page": 26,
-        "url": "https://assamtribune.com/assam/nagaon-bypoll-womens-alleged-pushback-to-bangladesh-fuels-political-sparring-1619301"
-      },
-      {
-        "page": 27,
-        "url": "https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279"
-      },
-      {
-        "page": 28,
-        "url": "https://assamtribune.com/assam/roaming-cattle-roadside-garbage-raise-civic-concerns-in-lumding-1619279"
-      },
-      {
-        "page": 29,
-        "url": "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294"
-      },
-      {
-        "page": 30,
-        "url": "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294"
-      },
-      {
-        "page": 32,
-        "url": "https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044"
-      },
-      {
-        "page": 33,
-        "url": "https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044"
-      }
-    ],
-    "pdf_link_urls": [
+    "pdf_links": [],
+    "pdf_link_urls": [],
+    "missing_pdf_links": [
       "https://assamtribune.com/assam/aasu-flags-cjp-school-visits-alleges-political-agenda-to-keep-assam-volatile-1619294",
       "https://assamtribune.com/assam/land-crunch-hindering-assam-industry-says-cm-govt-plans-land-banks-estates-1616912",
       "https://assamtribune.com/assam/nagaon-bypoll-bjp-congress-aiudf-make-final-pitches-trade-barbs-as-campaign-ends-1619316",
@@ -1442,7 +1290,6 @@
       "https://assamtribune.com/north-east/missing-71-year-old-kuki-man-found-dead-in-manipurs-kangpokpi-forest-1619314",
       "https://assamtribune.com/north-east/nec-assures-support-to-nagaland-coffee-farmers-pushes-modernisation-1619276",
       "https://assamtribune.com/opinion/guwahatis-800-run-odi-begs-a-simple-question-what-is-a-good-pitch-1619044"
-    ],
-    "missing_pdf_links": []
+    ]
   }
 }

@@ -1,6 +1,9 @@
-NORTHEAST SENTINEL AI
-Source Distribution
-Sources represented in the final article set:
-The Assam Tribune: 11 article(s)
-Source counts describe inclusion in this edition; they do not constitute a quality ranking by themselves.
+NORTHEAST SENTINEL AI 
+How This Edition Was Selected 
+The editorial dataset contains 11 selected articles across 5 sections. 
+The selected articles contain approximately 3,677 generated editorial words, with an average of 334 words per
+article. 
+Selected reporting spans 10 September 2026 to 04 October 2026. 
+Selection is driven by the project's relevance, classification, scoring, retrieval and grounding pipeline rather than
+manual page placement. 
 42

@@ -30,6 +30,11 @@ class ArticleEmbedder:
                 f"{torch.cuda.get_device_name(0)}"
             )
 
+            print(
+                f"CUDA   : "
+                f"{torch.version.cuda}"
+            )
+
         self.model = SentenceTransformer(
             self.MODEL_NAME,
             device=self.device,
@@ -41,6 +46,10 @@ class ArticleEmbedder:
         )
 
         print("Model loaded successfully.")
+
+    # ==========================================================
+    # Single text embedding
+    # ==========================================================
 
     def embed_text(
         self,
@@ -63,17 +72,28 @@ class ArticleEmbedder:
 
         return embedding.tolist()
 
+    # ==========================================================
+    # Batch embedding
+    # ==========================================================
+
     def embed_texts(
         self,
         texts: list[str],
-        batch_size: int = 32,
+        batch_size: int = 16,
     ) -> list[list[float]]:
         """
         Generate embeddings for multiple texts.
+
+        Batch processing allows Sentence Transformers to
+        efficiently use the GPU.
         """
 
         if not texts:
             return []
+
+        # ------------------------------------------------------
+        # Validate input
+        # ------------------------------------------------------
 
         if any(
             not text or not text.strip()
@@ -82,6 +102,15 @@ class ArticleEmbedder:
             raise ValueError(
                 "Text list contains an empty value."
             )
+
+        print(
+            f"\nGenerating embeddings for "
+            f"{len(texts)} texts..."
+        )
+
+        print(
+            f"Batch size: {batch_size}"
+        )
 
         embeddings = self.model.encode(
             texts,
@@ -92,6 +121,10 @@ class ArticleEmbedder:
         )
 
         return embeddings.tolist()
+
+    # ==========================================================
+    # Article embedding
+    # ==========================================================
 
     def embed_article(
         self,
@@ -115,7 +148,12 @@ class ArticleEmbedder:
         )
 
 
+# ==============================================================
+# TEST
+# ==============================================================
+
 if __name__ == "__main__":
+
     embedder = ArticleEmbedder()
 
     test_text = """
@@ -128,8 +166,10 @@ if __name__ == "__main__":
     )
 
     print("\nEmbedding test successful.")
+
     print(
-        f"Vector length: {len(embedding)}"
+        f"Vector length: "
+        f"{len(embedding)}"
     )
 
     print(

@@ -22,6 +22,8 @@ class EditorialContentGenerator:
           ↓
         Relevant articles
           ↓
+        Article-specific retrieval query
+          ↓
         RAGGenerator
           ↓
         Grounded article
@@ -36,6 +38,7 @@ class EditorialContentGenerator:
         output_path: str | None = None,
         max_article_retries: int = 2,
     ):
+
         self.output_path = Path(
             output_path
             or (
@@ -61,7 +64,7 @@ class EditorialContentGenerator:
 
     def _get_articles(self, db):
         """
-        Get only articles that passed the previous
+        Select only articles that passed the previous
         relevance/classification pipeline.
         """
 
@@ -85,79 +88,137 @@ class EditorialContentGenerator:
     @staticmethod
     def _build_query(article: Article) -> str:
         """
-        Build a focused retrieval/generation query.
+        Build an article-specific retrieval query.
 
-        Keep this query close to the actual article title.
-        This reduces the chance of Mistral drifting into
-        unrelated information.
+        Important:
+        Keep the query focused on the actual news article
+        rather than asking a generic magazine-writing question.
         """
 
         title = (article.title or "").strip()
         category = (article.category or "").strip()
+        source = (article.source or "").strip()
+
+        parts = [
+            "Retrieve the exact source article for the following "
+            "Northeast India news story.",
+            "",
+            "Use the article title, category, and source as the "
+            "primary retrieval anchors.",
+            "",
+            f"Article title: {title}",
+        ]
 
         if category:
-            return (
-                f"Write a factual magazine article about "
-                f"the following Northeast India news story. "
-                f"Focus specifically on the reported facts "
-                f"from the retrieved source.\n\n"
-                f"Category: {category}\n"
-                f"Article title: {title}"
+            parts.append(
+                f"Category: {category}"
             )
 
-        return (
-            "Write a factual magazine article about the "
-            "following Northeast India news story. "
-            "Use only the retrieved source material.\n\n"
-            f"Article title: {title}"
+        if source:
+            parts.append(
+                f"Source: {source}"
+            )
+
+        parts.extend(
+            [
+                "",
+                "After retrieving the source, generate a factual "
+                "magazine article using ONLY the retrieved evidence.",
+                "Do not use outside knowledge.",
+            ]
         )
+
+        return "\n".join(parts)
 
     # =========================================================
     # RETRY QUERY
     # =========================================================
 
     @staticmethod
-    def _build_retry_query(article: Article, attempt: int) -> str:
+    def _build_retry_query(
+        article: Article,
+        attempt: int,
+    ) -> str:
         """
-        A more restrictive query used when the first generation
-        fails.
+        Strict retry query.
 
-        The important part is telling the model to stay tightly
-        focused on the selected article and avoid repeated
-        citation markers.
+        IMPORTANT:
+        Do not hardcode Source 1.
+
+        The RAG system uses the actual retrieved source/article
+        IDs. The model must cite the actual source ID returned
+        in the evidence context.
         """
 
         title = (article.title or "").strip()
         category = (article.category or "").strip()
+        source = (article.source or "").strip()
 
-        return (
-            "Write ONE grounded magazine article using ONLY "
-            "the retrieved evidence for this specific article.\n\n"
-            f"Article title: {title}\n"
-            f"Category: {category}\n\n"
-            "STRICT REQUIREMENTS:\n"
-            "1. Use only facts explicitly supported by the "
-            "retrieved source.\n"
-            "2. Do not add outside knowledge.\n"
-            "3. Do not invent facts, numbers, dates, quotes "
-            "or explanations.\n"
-            "4. Write approximately 4 to 6 paragraphs.\n"
-            "5. Put exactly ONE [Source 1] citation at the "
-            "end of each factual paragraph.\n"
-            "6. Do not repeat [Source 1] continuously.\n"
-            "7. Do not output a bibliography.\n"
-            "8. Return only valid JSON.\n"
-            "9. The JSON must contain exactly these fields:\n"
-            "   headline, article, source_ids\n"
-            "10. source_ids must be [1] when Source 1 is used."
-        )
+        return f"""
+Retrieve the exact source article for this specific news story
+and write one grounded magazine article using ONLY that source.
+
+Article title:
+{title}
+
+Category:
+{category}
+
+Source:
+{source}
+
+STRICT REQUIREMENTS:
+
+1. Use ONLY information explicitly supported by the retrieved
+   source material.
+
+2. Do NOT use outside knowledge.
+
+3. Do NOT invent facts, numbers, dates, locations, organizations,
+   quotes, explanations, or conclusions.
+
+4. Stay focused on this exact article.
+
+5. Write approximately 4 to 6 paragraphs.
+
+6. Every factual paragraph MUST contain a citation.
+
+7. Citation format MUST use the ACTUAL source ID supplied in
+   the retrieved evidence.
+
+8. Do NOT assume the source ID is 1.
+
+9. The declared source_ids array MUST contain the SAME actual
+   source IDs that appear in the article citations.
+
+10. Do NOT create or invent source IDs.
+
+11. Do NOT output a bibliography.
+
+12. Return valid JSON only.
+
+13. JSON must contain exactly these fields:
+
+    headline
+    article
+    source_ids
+
+14. The article should be written in a neutral,
+    factual magazine-news style.
+
+15. Do not add information merely because it is generally known.
+
+Attempt:
+{attempt}
+""".strip()
 
     # =========================================================
-    # RESULT SERIALIZATION
+    # DATE SERIALIZATION
     # =========================================================
 
     @staticmethod
     def _serialize_date(value):
+
         if value is None:
             return None
 
@@ -167,21 +228,18 @@ class EditorialContentGenerator:
         return str(value)
 
     # =========================================================
-    # RETRIEVED ARTICLE METADATA
+    # RETRIEVED ARTICLE SERIALIZATION
     # =========================================================
 
     @staticmethod
     def _serialize_retrieved_articles(
         retrieved_articles,
     ) -> list[dict[str, Any]]:
-        """
-        Convert RAG ArticleResult objects into JSON-safe
-        dictionaries.
-        """
 
         serialized = []
 
         for item in retrieved_articles or []:
+
             serialized.append(
                 {
                     "source_id": getattr(
@@ -189,26 +247,31 @@ class EditorialContentGenerator:
                         "source_id",
                         None,
                     ),
+
                     "article_id": getattr(
                         item,
                         "article_id",
                         None,
                     ),
+
                     "title": getattr(
                         item,
                         "title",
                         "",
                     ),
+
                     "source": getattr(
                         item,
                         "source",
                         "",
                     ),
+
                     "url": getattr(
                         item,
                         "url",
                         "",
                     ),
+
                     "published_date": (
                         getattr(
                             item,
@@ -216,11 +279,13 @@ class EditorialContentGenerator:
                             None,
                         )
                     ),
+
                     "category": getattr(
                         item,
                         "category",
                         None,
                     ),
+
                     "similarity": round(
                         float(
                             getattr(
@@ -231,6 +296,7 @@ class EditorialContentGenerator:
                         ),
                         4,
                     ),
+
                     "article_score": getattr(
                         item,
                         "article_score",
@@ -249,11 +315,6 @@ class EditorialContentGenerator:
     def _serialize_grounding(
         grounding: dict[str, Any] | None,
     ) -> dict[str, Any]:
-        """
-        Keep grounding information in the editorial JSON.
-
-        This is useful later for QA and magazine generation.
-        """
 
         if not grounding:
             return {}
@@ -263,26 +324,32 @@ class EditorialContentGenerator:
                 "valid",
                 False,
             ),
+
             "cited_source_ids": grounding.get(
                 "cited_source_ids",
                 [],
             ),
+
             "missing_source_ids": grounding.get(
                 "missing_source_ids",
                 [],
             ),
+
             "invalid_source_ids": grounding.get(
                 "invalid_source_ids",
                 [],
             ),
+
             "unsupported_claims": grounding.get(
                 "unsupported_claims",
                 [],
             ),
+
             "errors": grounding.get(
                 "errors",
                 [],
             ),
+
             "claim_results": grounding.get(
                 "claim_results",
                 [],
@@ -290,7 +357,7 @@ class EditorialContentGenerator:
         }
 
     # =========================================================
-    # SUCCESS RESULT
+    # SUCCESS RECORD
     # =========================================================
 
     def _build_success_record(
@@ -312,6 +379,7 @@ class EditorialContentGenerator:
 
         return {
             "article_id": article.id,
+
             "status": "approved",
 
             "category": article.category,
@@ -391,7 +459,7 @@ class EditorialContentGenerator:
         }
 
     # =========================================================
-    # FAILURE RESULT
+    # FAILURE RECORD
     # =========================================================
 
     def _build_failure_record(
@@ -528,7 +596,7 @@ class EditorialContentGenerator:
         }
 
         # -----------------------------------------------------
-        # Initial generation
+        # Create ONE RAG generator for this article
         # -----------------------------------------------------
 
         generator = RAGGenerator(
@@ -537,6 +605,10 @@ class EditorialContentGenerator:
             grounding_threshold=0.45,
             max_generation_attempts=2,
         )
+
+        # -----------------------------------------------------
+        # Article-level retries
+        # -----------------------------------------------------
 
         for attempt in range(
             1,
@@ -558,11 +630,13 @@ class EditorialContentGenerator:
             )
 
             try:
+
                 result = generator.generate(
                     query=current_query
                 )
 
             except Exception as exc:
+
                 result = {
                     "success": False,
                     "status": "exception",
@@ -611,10 +685,6 @@ class EditorialContentGenerator:
                 f"{result.get('message', 'Unknown error')}"
             )
 
-            # -------------------------------------------------
-            # Retry only when another attempt remains
-            # -------------------------------------------------
-
             if attempt < self.max_article_retries:
 
                 print(
@@ -623,7 +693,7 @@ class EditorialContentGenerator:
                 )
 
         # -----------------------------------------------------
-        # All retries failed
+        # ALL RETRIES FAILED
         # -----------------------------------------------------
 
         print()
